@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
     public float speed;
+    public int gold;
+    public Text goldText;
 
 	private bool facingright = true;
     //private Rigidbody2D rb2d;
@@ -16,9 +19,13 @@ public class PlayerController : MonoBehaviour {
         //rb2d = GetComponent<Rigidbody2D>();
 		//_spriteRenderer = GetComponent<SpriteRenderer> ();
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    private void LateUpdate()
+    {
+        goldText.text = "Gold: " + gold.ToString();
+    }
+
+    void FixedUpdate () {
         float moveHorizontal = Input.GetAxis("Horizontal");
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, 0.0f);
