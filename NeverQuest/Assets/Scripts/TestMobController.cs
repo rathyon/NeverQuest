@@ -11,7 +11,7 @@ public class TestMobController : MonoBehaviour {
     public float speed;
     public float questAcceptTime;
 
-    private Rigidbody2D rb2d;
+    //private Rigidbody2D rb2d;
     private Vector3 playerPos;
     private bool timerActive;
 	private bool slowed;
@@ -20,7 +20,7 @@ public class TestMobController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        rb2d = GetComponent<Rigidbody2D>();
+        //rb2d = GetComponent<Rigidbody2D>();
         statsInfo.text = "Enemy hp: " + HP.ToString();
         playerPos = player.transform.position;
         timerActive = false;
@@ -44,7 +44,7 @@ public class TestMobController : MonoBehaviour {
             Countdown();
             if (questAcceptTime <= 0.0f)
             {
-                Destroy(player);
+                //Destroy(player);
             }
         }
         else
