@@ -156,6 +156,21 @@ Prefab:
       propertyPath: m_Name
       value: Trap 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212521540579108294, guid: 47377cbfc2c7f13448b3a494a7f66a73,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212521540579108294, guid: 47377cbfc2c7f13448b3a494a7f66a73,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212521540579108294, guid: 47377cbfc2c7f13448b3a494a7f66a73,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 47377cbfc2c7f13448b3a494a7f66a73, type: 2}
   m_IsPrefabParent: 0
@@ -344,11 +359,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &538360837 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1174196433568518, guid: 47377cbfc2c7f13448b3a494a7f66a73,
-    type: 2}
-  m_PrefabInternal: {fileID: 24814023}
 --- !u!1 &539336681
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,6 +937,8 @@ MonoBehaviour:
   speed: 1
   gold: 200
   goldText: {fileID: 884046109}
+  buymodeActive: 0
+  facingright: 1
 --- !u!61 &1044387971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1281,8 +1293,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46201fcdc1fe3654a9dec7aaed19f550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testTrap: {fileID: 538360837}
+  testTrap: {fileID: 1174196433568518, guid: 47377cbfc2c7f13448b3a494a7f66a73, type: 2}
+  canTRAP: {fileID: 1957667081695556, guid: 239ef34c2b2ff4bde911cfeadab354aa, type: 2}
+  cannotTRAP: {fileID: 1957667081695556, guid: bf96fba92c2be4d959541ccbd3ab3165, type: 2}
   player: {fileID: 1044387967}
+  offset: 3
+  player_script: {fileID: 0}
 --- !u!1 &1824830256
 GameObject:
   m_ObjectHideFlags: 0

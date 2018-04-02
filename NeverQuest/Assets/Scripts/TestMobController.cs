@@ -66,12 +66,13 @@ public class TestMobController : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Trap"))
+        if (collision.gameObject.CompareTag("TrapOnce"))
         {
             var trap = collision.GetComponent<TestTrapController>();
 
             HP -= trap.damage;
             statsInfo.text = "Enemy hp: " + HP.ToString();
+			Destroy(GameObject.Find (collision.gameObject.name));
         }
     }
 
