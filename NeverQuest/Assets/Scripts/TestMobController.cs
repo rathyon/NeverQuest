@@ -14,6 +14,9 @@ public class TestMobController : MonoBehaviour {
     private Rigidbody2D rb2d;
     private Vector3 playerPos;
     private bool timerActive;
+	private bool slowed;
+	private float slowPercentage;
+	private float slowTimer;
 
 	// Use this for initialization
 	void Start () {
@@ -21,13 +24,21 @@ public class TestMobController : MonoBehaviour {
         statsInfo.text = "Enemy hp: " + HP.ToString();
         playerPos = player.transform.position;
         timerActive = false;
+		slowed = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
         playerPos = player.transform.position;
-
+		if (slowed) {
+			slowTimer += Time.deltaTime;
+			if (slowTimer >= 2){
+				speed = 3.0f;
+				slowTimer = 0;
+				slowed = false;
+			}
+		}
         if (timerActive)
         {
             Countdown();
@@ -69,10 +80,14 @@ public class TestMobController : MonoBehaviour {
         if (collision.gameObject.CompareTag("TrapOnce"))
         {
             var trap = collision.GetComponent<TestTrapController>();
-
+			slowTimer = 0.0f;
+			slowed = true;
+			slowPercentage = 0.3f;
             HP -= trap.damage;
-            statsInfo.text = "Enemy hp: " + HP.ToString();
+			statsInfo.text = "Enemy hp: " + HP.ToString();
 			Destroy(GameObject.Find (collision.gameObject.name));
+			speed *= slowPercentage;
+
         }
     }
 
@@ -83,7 +98,5 @@ public class TestMobController : MonoBehaviour {
             timerActive = true;
         }
     }
-
-
 
 }

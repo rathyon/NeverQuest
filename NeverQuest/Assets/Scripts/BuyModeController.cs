@@ -14,10 +14,6 @@ public class BuyModeController : MonoBehaviour {
 	GameObject can;
 	GameObject cannot;
 
-
-	private Vector3 colorRed = new Vector3(1,0,0);
-	private Vector3 colorGreen = new Vector3(0,1,0);
-
 	public float offset = 3;
 
     private bool invalidPlacement;
