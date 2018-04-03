@@ -67,13 +67,13 @@ public class SpawnerController : MonoBehaviour{
 
     IEnumerator SpawnEnemies()
     {
-        while (true)
+        while (phase)
         {
             yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
 
             Vector3 spawnPos = new Vector3(spawnPoints[Random.Range(0, spawnPoints.Length)], 0, 0);
 
-            //Instantiate(testEnemy, spawnPos, Quaternion.identity);
+            Instantiate(testEnemy, spawnPos, Quaternion.identity);
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class TestMobController : MonoBehaviour {
 
 	public int HP;
-	public Text statsInfo;
+	public Text labelHP;
 	public GameObject player;
 	public float speed;
 	public float questAcceptTime;
@@ -22,11 +22,12 @@ public class TestMobController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//rb2d = GetComponent<Rigidbody2D>();
-		statsInfo.text = "Enemy hp: " + HP.ToString();
+		//statsInfo.text = "Enemy hp: " + HP.ToString();
 		playerPos = player.transform.position;
 		timerActive = false;
 		slowed = false;
 		slowTimerMAX = 2.0f;
+		HP = 100;
 	}
 
 	// Update is called once per frame
@@ -65,6 +66,7 @@ public class TestMobController : MonoBehaviour {
 				//do nothing...
 			}
 		}
+		labelHP.text = "HP: " + HP;
 
 		if(HP <= 0)
 		{
@@ -87,7 +89,7 @@ public class TestMobController : MonoBehaviour {
 			slowed = true;
 			slowPercentage = 0.3f;
 			HP -= trap.damage;
-			statsInfo.text = "Enemy hp: " + HP.ToString();
+			//statsInfo.text = "Enemy hp: " + HP.ToString();
 			Destroy(GameObject.Find (collision.gameObject.name));
 			speed = 1.0f;
 
@@ -104,7 +106,7 @@ public class TestMobController : MonoBehaviour {
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
             HP -= 20;
-            statsInfo.text = "Enemy hp: " + HP.ToString();
+            //statsInfo.text = "Enemy hp: " + HP.ToString();
         }
 
 	}
