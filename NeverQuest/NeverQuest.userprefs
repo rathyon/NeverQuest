@@ -2,12 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BuyModeController.cs">
     <Files>
-      <File FileName="Assets/Scripts/BuyModeController.cs" Line="45" Column="40" />
+      <File FileName="Assets/Scripts/BuyModeController.cs" Line="48" Column="5" />
       <File FileName="Assets/Scripts/CameraController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/TestMobController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/TestTrapController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SpawnerController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="24" Column="2" />
+      <File FileName="Assets/Scripts/TestMobController.cs" Line="102" Column="57" />
+      <File FileName="Assets/Scripts/TestTrapController.cs" Line="11" Column="17" />
+      <File FileName="Assets/Scripts/SpawnerController.cs" Line="76" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
