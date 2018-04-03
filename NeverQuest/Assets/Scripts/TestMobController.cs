@@ -18,6 +18,7 @@ public class TestMobController : MonoBehaviour {
 	private float slowPercentage;
 	private float slowTimer;
 	private float slowTimerMAX;
+    private bool acceptingQuest = false;
 
 	// Use this for initialization
 	void Start () {
@@ -33,51 +34,58 @@ public class TestMobController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		playerPos = player.transform.position;
-		if (slowed) {
-			slowTimer += Time.deltaTime;
-			if (slowTimer >= slowTimerMAX){
-				speed = 3.0f;
-				slowTimer = 0;
-				slowed = false;
-			}
-		}
-		if (timerActive)
-		{
-			Countdown();
-			if (questAcceptTime <= 0.0f)
-			{
-				//Destroy(player);
-			}
-		}
-		else
-		{
-			// simple tracking movement just in the x axis
-			if (playerPos.x - 0.5f > transform.position.x)
-			{
-				transform.position += new Vector3(speed * 0.025f, 0.0f);
-			}
-			else if (playerPos.x + 0.5f < transform.position.x)
-			{
-				transform.position -= new Vector3(speed * 0.025f, 0.0f);
-			}
-			else
-			{
-				//do nothing...
-			}
-		}
-		labelHP.text = "HP: " + HP;
+        if (Time.timeScale != 0)
+        {
+            playerPos = player.transform.position;
+            if (slowed)
+            {
+                slowTimer += Time.deltaTime;
+                if (slowTimer >= slowTimerMAX)
+                {
+                    speed = 3.0f;
+                    slowTimer = 0;
+                    slowed = false;
+                }
+            }
+            if (timerActive)
+            {
+                Countdown();
+            }
+            else
+            {
+                // simple tracking movement just in the x axis
+                if (playerPos.x - 0.5f > transform.position.x)
+                {
+                    transform.position += new Vector3(speed * 0.025f, 0.0f);
+                }
+                else if (playerPos.x + 0.5f < transform.position.x)
+                {
+                    transform.position -= new Vector3(speed * 0.025f, 0.0f);
+                }
+                else
+                {
+                    //do nothing...
+                }
+            }
+            labelHP.text = "HP: " + HP;
 
-		if(HP <= 0)
-		{
-			Destroy(gameObject);
-		}
+            if (HP <= 0)
+            {
+                player.GetComponent<PlayerController>().RemoveEnemy(gameObject);
+                Destroy(gameObject);
+            }
+        }
 	}
 
 	private void Countdown()
 	{
 		questAcceptTime -= Time.deltaTime;
 	}
+
+    public bool isAcceptingQuest()
+    {
+        return acceptingQuest;
+    }
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
@@ -124,6 +132,7 @@ public class TestMobController : MonoBehaviour {
 		if (collision.gameObject.CompareTag("Player"))
 		{
 			timerActive = true;
+            acceptingQuest = true;
 		}
 	}
 }

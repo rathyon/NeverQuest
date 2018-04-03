@@ -5,6 +5,7 @@ using System.Collections;
 public class SpawnerController : MonoBehaviour{
 
     public GameObject testEnemy;
+    public GameObject player;
     // stores X coordinates of spawnPoints
     // ATTENTION: CURRENTLY SPAWNING AT Y = 0 <-- NEEDS TO BE A PARAMETER IN THE FUTURE
     public int[] spawnPoints;
@@ -73,7 +74,9 @@ public class SpawnerController : MonoBehaviour{
 
             Vector3 spawnPos = new Vector3(spawnPoints[Random.Range(0, spawnPoints.Length)], 0, 0);
 
-            Instantiate(testEnemy, spawnPos, Quaternion.identity);
+            GameObject newEnemy = Instantiate(testEnemy, spawnPos, Quaternion.identity);
+
+            player.GetComponent<PlayerController>().AddEnemy(newEnemy);
         }
     }
 }

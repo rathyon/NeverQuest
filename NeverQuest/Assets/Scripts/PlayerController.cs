@@ -8,13 +8,16 @@ public class PlayerController : MonoBehaviour {
     public float speed;
     public int gold;
     public Text goldText;
-	public bool buymodeActive;
+    public Text questWarning;
+    public bool buymodeActive;
     public float attackCD;
-    private bool attacking = false;
-
     public GameObject sword;
+    public bool facingright = true;
 
-	public bool facingright = true;
+    private bool attacking = false;
+    private List<GameObject> enemies;
+    private bool questIsBeingAccepted = false;
+    private float timeBeforeQuestAccepted = 1000000.0f;
     //private Rigidbody2D rb2d;
 
 	SpriteRenderer _spriteRenderer;
@@ -26,12 +29,55 @@ public class PlayerController : MonoBehaviour {
 		_spriteRenderer = GetComponent<SpriteRenderer> ();
 		buymodeActive = false;
         sword.SetActive(false);
-		//sword.SetActive(true);
-	}
+        //sword.SetActive(true);
+        questWarning.text = "";
+        enemies = new List<GameObject>();
+    }
 
     private void LateUpdate()
     {
         goldText.text = "Gold: " + gold.ToString();
+
+        //check if any enemy is currently accepting quest
+        bool anyAccepting = false;
+
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy != null)
+            {
+                var enemy_script = enemy.GetComponent<TestMobController>();
+
+                if (enemy_script.isAcceptingQuest())
+                {
+                    questIsBeingAccepted = true;
+                    anyAccepting = true;
+                    if (enemy_script.questAcceptTime <= timeBeforeQuestAccepted)
+                    {
+                        timeBeforeQuestAccepted = enemy_script.questAcceptTime;
+                    }
+                }
+            }
+        }
+        if (!anyAccepting)
+        {
+            questIsBeingAccepted = false;
+            timeBeforeQuestAccepted = 1000000.0f;
+        }
+
+        if (questIsBeingAccepted)
+        {
+            questWarning.text = "QUEST ACCEPTED IN: " + ((int)timeBeforeQuestAccepted + 1);
+        }
+        else
+        {
+            questWarning.text = "";
+        }
+
+        if (timeBeforeQuestAccepted <= 0.0f)
+        {
+            questWarning.text = "GAME OVER";
+            Time.timeScale = 0;
+        }
     }
 
 	void Update(){
@@ -43,6 +89,14 @@ public class PlayerController : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.F))
         {
             Attack();
+        }
+
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            if (Time.timeScale != 0)
+                Time.timeScale = 0;
+            else
+                Time.timeScale = 1;
         }
 	}
 
@@ -70,6 +124,16 @@ public class PlayerController : MonoBehaviour {
         {
             StartCoroutine("swing");
         }
+    }
+
+    public void AddEnemy(GameObject enemy)
+    {
+        enemies.Add(enemy);
+    }
+
+    public void RemoveEnemy(GameObject enemy)
+    {
+        enemies.Remove(enemy);
     }
 
     IEnumerator swing()
