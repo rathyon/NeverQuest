@@ -12,6 +12,7 @@ public class SpawnerController : MonoBehaviour{
     public float minSpawnDelay, maxSpawnDelay;
     public int prepDuration;
     public int actionDuration;
+    public int goldReward;
     public Text timerText;
 
     private int timeLeft;
@@ -53,6 +54,7 @@ public class SpawnerController : MonoBehaviour{
                     phase = !phase;
                     timeLeft = prepDuration;
                     StopCoroutine("SpawnEnemies");
+                    player.GetComponent<PlayerController>().GiveGold(goldReward);
                 }
                 // if prep phase ends...
                 else

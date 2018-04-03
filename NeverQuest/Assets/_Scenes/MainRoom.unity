@@ -321,7 +321,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'TESTING STATISTICS HERE
+  m_Text: '
 
 '
 --- !u!222 &377366439
@@ -1579,9 +1579,10 @@ MonoBehaviour:
   player: {fileID: 1044387967}
   spawnPoints: 14000000d8ffffff
   minSpawnDelay: 2
-  maxSpawnDelay: 2
-  prepDuration: 2
+  maxSpawnDelay: 6
+  prepDuration: 30
   actionDuration: 15
+  goldReward: 20
   timerText: {fileID: 1175604374}
 --- !u!4 &2043028558
 Transform:

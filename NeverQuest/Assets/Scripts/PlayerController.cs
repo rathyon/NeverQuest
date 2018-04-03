@@ -137,6 +137,11 @@ public class PlayerController : MonoBehaviour {
         enemies.Remove(enemy);
     }
 
+    public void GiveGold(int amount)
+    {
+        gold += amount;
+    }
+
     IEnumerator swing()
     {
         attacking = true;
