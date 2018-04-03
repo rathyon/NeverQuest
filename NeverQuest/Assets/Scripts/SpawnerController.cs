@@ -13,10 +13,13 @@ public class SpawnerController : MonoBehaviour{
     public int prepDuration;
     public int actionDuration;
     public int goldReward;
+    public int numOfWaves;
     public Text timerText;
 
     private int timeLeft;
     private bool phase = false; //false = prep phase, true = action phase
+    private int wavesBeat = 0;
+    private bool beatGame = false;
 
 
     private void Start()
@@ -30,7 +33,10 @@ public class SpawnerController : MonoBehaviour{
     {
         if (!phase)
         {
-            timerText.text = "Time before next Wave: " + timeLeft;
+            if (!beatGame)
+                timerText.text = "Time before next Wave: " + timeLeft;
+            else
+                timerText.text = "You win!";
         }
         else
         {
@@ -51,10 +57,21 @@ public class SpawnerController : MonoBehaviour{
                 // if action phase ends...
                 if (phase)
                 {
-                    phase = !phase;
-                    timeLeft = prepDuration;
-                    StopCoroutine("SpawnEnemies");
-                    player.GetComponent<PlayerController>().GiveGold(goldReward);
+                    if (wavesBeat >= numOfWaves)
+                    {
+                        phase = !phase;
+                        StopCoroutine("SpawnEnemies");
+                        Time.timeScale = 0;
+                        beatGame = true;
+                    }
+                    else
+                    {
+                        phase = !phase;
+                        timeLeft = prepDuration;
+                        StopCoroutine("SpawnEnemies");
+                        player.GetComponent<PlayerController>().GiveGold(goldReward);
+                        wavesBeat++;
+                    }
                 }
                 // if prep phase ends...
                 else

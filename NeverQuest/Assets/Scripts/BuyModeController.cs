@@ -65,7 +65,7 @@ public class BuyModeController : MonoBehaviour {
 					if (trapNumber == 1) {
 						if (player_script.gold >= 10) {
 							Instantiate (bearTrap, transform.position, Quaternion.identity);
-							player_script.gold -= 10;
+							player_script.gold -= 30;
 						}
 					}
 					if (trapNumber == 2) {
@@ -77,7 +77,7 @@ public class BuyModeController : MonoBehaviour {
 					if (trapNumber == 3) {
 						if (player_script.gold >= 10) {
 							Instantiate (ironMaidenTrap, transform.position, Quaternion.identity);
-							player_script.gold -= 10;
+							player_script.gold -= 60;
 						}
 					}
 				}

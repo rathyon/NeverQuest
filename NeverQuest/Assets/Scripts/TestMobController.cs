@@ -34,9 +34,9 @@ public class TestMobController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        playerPos = player.transform.position;
         if (Time.timeScale != 0)
         {
-            playerPos = player.transform.position;
             if (slowed)
             {
                 slowTimer += Time.deltaTime;
@@ -54,11 +54,11 @@ public class TestMobController : MonoBehaviour {
             else
             {
                 // simple tracking movement just in the x axis
-                if (playerPos.x - 0.5f > transform.position.x)
+                if (playerPos.x > transform.position.x)
                 {
                     transform.position += new Vector3(speed * 0.025f, 0.0f);
                 }
-                else if (playerPos.x + 0.5f < transform.position.x)
+                else if(playerPos.x < transform.position.x)
                 {
                     transform.position -= new Vector3(speed * 0.025f, 0.0f);
                 }
