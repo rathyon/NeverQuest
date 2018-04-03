@@ -17,7 +17,6 @@ public class TestMobController : MonoBehaviour {
 	private bool slowed;
 	private float slowPercentage;
 	private float slowTimer;
-	private float slowTimerMAX;
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +25,6 @@ public class TestMobController : MonoBehaviour {
         playerPos = player.transform.position;
         timerActive = false;
 		slowed = false;
-		slowTimerMAX = 2.0f;
 	}
 	
 	// Update is called once per frame
@@ -35,7 +33,7 @@ public class TestMobController : MonoBehaviour {
         playerPos = player.transform.position;
 		if (slowed) {
 			slowTimer += Time.deltaTime;
-			if (slowTimer >= slowTimerMAX){
+			if (slowTimer >= 2){
 				speed = 3.0f;
 				slowTimer = 0;
 				slowed = false;
@@ -79,29 +77,18 @@ public class TestMobController : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("BearTrap"))
+        if (collision.gameObject.CompareTag("TrapOnce"))
         {
             var trap = collision.GetComponent<TestTrapController>();
 			slowTimer = 0.0f;
-			slowTimerMAX = 2.0f;
 			slowed = true;
 			slowPercentage = 0.3f;
             HP -= trap.damage;
 			statsInfo.text = "Enemy hp: " + HP.ToString();
 			Destroy(GameObject.Find (collision.gameObject.name));
-			speed = 1.0f;
+			speed *= slowPercentage;
 
         }
-		if (collision.gameObject.CompareTag("MoneyTrap"))
-		{
-			var trap = collision.GetComponent<TestTrapController>();
-			slowTimer = 0.0f;
-			slowTimerMAX = 4.0f;
-			slowed = true;
-			speed = 0.0f;
-			Destroy(GameObject.Find (collision.gameObject.name));
-		}
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -111,4 +98,5 @@ public class TestMobController : MonoBehaviour {
             timerActive = true;
         }
     }
+
 }

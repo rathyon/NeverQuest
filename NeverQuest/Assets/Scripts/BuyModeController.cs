@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class BuyModeController : MonoBehaviour {
 
-    public GameObject bearTrap;
-	public GameObject moneyTrap;
+    public GameObject testTrap;
 
 	public GameObject canTRAP;
 	public GameObject cannotTRAP;
@@ -20,11 +19,8 @@ public class BuyModeController : MonoBehaviour {
     private bool invalidPlacement;
 	public PlayerController player_script; 
 
-	private int trapNumber = 1;
-
 	// Use this for initialization
 	void Start () {
-		
 		can = Instantiate (canTRAP, transform.position, Quaternion.identity);
 		can.SetActive (false);
 		cannot = Instantiate (cannotTRAP, transform.position, Quaternion.identity);
@@ -38,14 +34,6 @@ public class BuyModeController : MonoBehaviour {
 	void Update () {
 		
 		if (player_script.buymodeActive) {
-			if (Input.GetKeyDown (KeyCode.Alpha1)) {
-				trapNumber = 1;
-				cannot.GetComponent<SpriteRenderer> ().sprite = can.GetComponent<SpriteRenderer> ().sprite = bearTrap.GetComponent<SpriteRenderer> ().sprite;
-			}
-			if (Input.GetKeyDown (KeyCode.Alpha2)) {
-				trapNumber = 2;
-				cannot.GetComponent<SpriteRenderer> ().sprite = can.GetComponent<SpriteRenderer> ().sprite = moneyTrap.GetComponent<SpriteRenderer> ().sprite;
-			}
 			
 			if (player_script.facingright) {
 				transform.position = new Vector3 (player.transform.position.x + offset, transform.position.y, transform.position.z);
@@ -58,17 +46,10 @@ public class BuyModeController : MonoBehaviour {
 				can.transform.position = transform.position;
 				can.SetActive (true);
 				if (Input.GetKeyDown (KeyCode.E)) {
-					if (trapNumber == 1) {
-						if (player_script.gold >= 10) {
-							Instantiate (bearTrap, transform.position, Quaternion.identity);
-							player_script.gold -= 10;
-						}
-					}
-					if (trapNumber == 2) {
-						if (player_script.gold >= 10) {
-							Instantiate (moneyTrap, transform.position, Quaternion.identity);
-							player_script.gold -= 10;
-						}
+	            
+					if (player_script.gold > 10) {
+						Instantiate (testTrap, transform.position, Quaternion.identity);
+						player_script.gold -= 10;
 					}
 				}
 			} else {
@@ -85,7 +66,7 @@ public class BuyModeController : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-		if (collision.gameObject.CompareTag("BearTrap") || collision.gameObject.CompareTag("MoneyTrap"))
+        if (collision.gameObject.CompareTag("TrapOnce"))
         {
             invalidPlacement = true;
 
@@ -94,7 +75,7 @@ public class BuyModeController : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-		if (collision.gameObject.CompareTag("BearTrap") || collision.gameObject.CompareTag("MoneyTrap"))
+        if (collision.gameObject.CompareTag("TrapOnce"))
         {
             invalidPlacement = false;
         }
