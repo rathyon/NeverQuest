@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour {
     public int gold;
     public Text goldText;
 	public bool buymodeActive;
+    public float attackCD;
+    private bool attacking = false;
+
+    public GameObject sword;
 
 	public bool facingright = true;
     //private Rigidbody2D rb2d;
@@ -20,6 +24,7 @@ public class PlayerController : MonoBehaviour {
         //rb2d = GetComponent<Rigidbody2D>();
 		_spriteRenderer = GetComponent<SpriteRenderer> ();
 		buymodeActive = false;
+        sword.SetActive(false);
 	}
 
     private void LateUpdate()
@@ -28,9 +33,14 @@ public class PlayerController : MonoBehaviour {
     }
 
 	void Update(){
-		if (Input.GetKeyDown (KeyCode.B)) {
+		if (Input.GetKeyDown (KeyCode.B))
+        {
 			buymodeActive = !buymodeActive;
 		}
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            Attack();
+        }
 	}
 
     void FixedUpdate () {
@@ -50,4 +60,35 @@ public class PlayerController : MonoBehaviour {
 
         transform.position += movement * speed * 0.1f;
 	}
+
+    private void Attack()
+    {
+        if (!attacking)
+        {
+            StartCoroutine("swing");
+        }
+    }
+
+    IEnumerator swing()
+    {
+        attacking = true;
+        Vector3 swingPos;
+        if (facingright)
+        {
+            swingPos = new Vector3(transform.position.x + 2, transform.position.y, transform.position.z);
+            sword.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else
+        {
+            swingPos = new Vector3(transform.position.x - 2, transform.position.y, transform.position.z);
+            sword.GetComponent<SpriteRenderer>().flipX = true;
+        }
+
+        
+        sword.transform.position = swingPos;
+        sword.SetActive(true);
+        yield return new WaitForSeconds(attackCD);
+        sword.SetActive(false);
+        attacking = false;
+    }
 }

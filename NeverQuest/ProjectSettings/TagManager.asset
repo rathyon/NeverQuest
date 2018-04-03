@@ -9,6 +9,7 @@ TagManager:
   - TrapOnce
   - MoneyTrap
   - BearTrap
+  - PlayerAttack
   layers:
   - Default
   - TransparentFX

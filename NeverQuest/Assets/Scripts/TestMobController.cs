@@ -101,6 +101,11 @@ public class TestMobController : MonoBehaviour {
 			speed = 0.0f;
 			Destroy(GameObject.Find (collision.gameObject.name));
 		}
+        if (collision.gameObject.CompareTag("PlayerAttack"))
+        {
+            HP -= 20;
+            statsInfo.text = "Enemy hp: " + HP.ToString();
+        }
 
 	}
 
