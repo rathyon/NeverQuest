@@ -73,7 +73,7 @@ public class SpawnerController : MonoBehaviour{
 
             Vector3 spawnPos = new Vector3(spawnPoints[Random.Range(0, spawnPoints.Length)], 0, 0);
 
-            Instantiate(testEnemy, spawnPos, Quaternion.identity);
+           // Instantiate(testEnemy, spawnPos, Quaternion.identity);
         }
     }
 }

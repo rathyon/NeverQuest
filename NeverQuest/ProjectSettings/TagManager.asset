@@ -7,6 +7,8 @@ TagManager:
   - Trap
   - Enemy
   - TrapOnce
+  - MoneyTrap
+  - BearTrap
   layers:
   - Default
   - TransparentFX

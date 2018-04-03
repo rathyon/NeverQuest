@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114330539045708122}
   m_Layer: 0
   m_Name: TestTrap
-  m_TagString: TrapOnce
+  m_TagString: BearTrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
