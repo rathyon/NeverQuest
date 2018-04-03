@@ -103,6 +103,14 @@ public class TestMobController : MonoBehaviour {
 			speed = 0.0f;
 			Destroy(GameObject.Find (collision.gameObject.name));
 		}
+		if (collision.gameObject.CompareTag("IronMaidenTrap"))
+		{
+			var trap = collision.GetComponent<TestTrapController>();
+			if (!trap.wait) {
+				Destroy (gameObject);
+				trap.wait = true;
+			}
+		}
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
             HP -= 20;

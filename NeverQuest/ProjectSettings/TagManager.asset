@@ -10,6 +10,7 @@ TagManager:
   - MoneyTrap
   - BearTrap
   - PlayerAttack
+  - IronMaidenTrap
   layers:
   - Default
   - TransparentFX

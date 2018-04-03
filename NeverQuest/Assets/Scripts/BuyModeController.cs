@@ -6,6 +6,7 @@ public class BuyModeController : MonoBehaviour {
 
 	public GameObject bearTrap;
 	public GameObject moneyTrap;
+	public GameObject ironMaidenTrap;
 
 	public GameObject canTRAP;
 	public GameObject cannotTRAP;
@@ -46,7 +47,10 @@ public class BuyModeController : MonoBehaviour {
 				trapNumber = 2;
 				cannot.GetComponent<SpriteRenderer> ().sprite = can.GetComponent<SpriteRenderer> ().sprite = moneyTrap.GetComponent<SpriteRenderer> ().sprite;
 			}
-
+			if (Input.GetKeyDown (KeyCode.Alpha3)) {
+				trapNumber = 3;
+				cannot.GetComponent<SpriteRenderer> ().sprite = can.GetComponent<SpriteRenderer> ().sprite = ironMaidenTrap.GetComponent<SpriteRenderer> ().sprite;
+			}
 			if (player_script.facingright) {
 				transform.position = new Vector3 (player.transform.position.x + offset, transform.position.y, transform.position.z);
 			} 
@@ -70,6 +74,12 @@ public class BuyModeController : MonoBehaviour {
 							player_script.gold -= 10;
 						}
 					}
+					if (trapNumber == 3) {
+						if (player_script.gold >= 10) {
+							Instantiate (ironMaidenTrap, transform.position, Quaternion.identity);
+							player_script.gold -= 10;
+						}
+					}
 				}
 			} else {
 				can.SetActive (false);
@@ -85,7 +95,7 @@ public class BuyModeController : MonoBehaviour {
 
 	private void OnTriggerStay2D(Collider2D collision)
 	{
-		if (collision.gameObject.CompareTag("BearTrap") || collision.gameObject.CompareTag("MoneyTrap"))
+		if (collision.gameObject.CompareTag("BearTrap") || collision.gameObject.CompareTag("MoneyTrap")|| collision.gameObject.CompareTag("IronMaidenTrap"))
 		{
 			invalidPlacement = true;
 
@@ -94,7 +104,7 @@ public class BuyModeController : MonoBehaviour {
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		if (collision.gameObject.CompareTag("BearTrap") || collision.gameObject.CompareTag("MoneyTrap"))
+		if (collision.gameObject.CompareTag("BearTrap") || collision.gameObject.CompareTag("MoneyTrap")|| collision.gameObject.CompareTag("IronMaidenTrap"))
 		{
 			invalidPlacement = false;
 		}

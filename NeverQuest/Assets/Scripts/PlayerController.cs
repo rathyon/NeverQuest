@@ -22,9 +22,11 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //rb2d = GetComponent<Rigidbody2D>();
+
 		_spriteRenderer = GetComponent<SpriteRenderer> ();
 		buymodeActive = false;
         sword.SetActive(false);
+		//sword.SetActive(true);
 	}
 
     private void LateUpdate()
@@ -36,6 +38,7 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.B))
         {
 			buymodeActive = !buymodeActive;
+			//sword.SetActive(false);
 		}
         if(Input.GetKeyDown(KeyCode.F))
         {
@@ -63,7 +66,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Attack()
     {
-        if (!attacking)
+		if (!attacking && !buymodeActive)
         {
             StartCoroutine("swing");
         }
