@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour {
 
 		_spriteRenderer = GetComponent<SpriteRenderer> ();
 		buymodeActive = false;
+        sword.GetComponent<BoxCollider2D>().enabled = false;
         sword.SetActive(false);
         //sword.SetActive(true);
         questWarning.text = "";
@@ -154,7 +155,9 @@ public class PlayerController : MonoBehaviour {
         
         sword.transform.position = swingPos;
         sword.SetActive(true);
+        sword.GetComponent<BoxCollider2D>().enabled = true;
         yield return new WaitForSeconds(attackCD);
+        sword.GetComponent<BoxCollider2D>().enabled = false;
         sword.SetActive(false);
         attacking = false;
     }
