@@ -139,7 +139,7 @@ MonoBehaviour:
   labelHP: {fileID: 114907916263311622}
   player: {fileID: 1347303896238368, guid: 75d2c88ec2a8682439b111b89b40f70a, type: 2}
   speed: 1
-  questAcceptTime: 5
+  questAcceptTime: 3
 --- !u!114 &114587702461376588
 MonoBehaviour:
   m_ObjectHideFlags: 1

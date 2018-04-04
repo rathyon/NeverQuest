@@ -33,7 +33,11 @@ public class TestMobController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+        if (HP <= 0)
+        {
+            player.GetComponent<PlayerController>().RemoveEnemy(gameObject);
+            Destroy(gameObject);
+        }
         playerPos = player.transform.position;
         if (Time.timeScale != 0)
         {
@@ -68,12 +72,6 @@ public class TestMobController : MonoBehaviour {
                 }
             }
             labelHP.text = "HP: " + HP;
-
-            if (HP <= 0)
-            {
-                player.GetComponent<PlayerController>().RemoveEnemy(gameObject);
-                Destroy(gameObject);
-            }
         }
 	}
 

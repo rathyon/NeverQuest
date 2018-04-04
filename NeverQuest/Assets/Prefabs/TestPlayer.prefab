@@ -213,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bearTrap: {fileID: 1174196433568518, guid: 47377cbfc2c7f13448b3a494a7f66a73, type: 2}
   moneyTrap: {fileID: 1237595736541124, guid: b16776f3ac8264562a8782abd0a90d6f, type: 2}
+  ironMaidenTrap: {fileID: 0}
   canTRAP: {fileID: 1957667081695556, guid: 239ef34c2b2ff4bde911cfeadab354aa, type: 2}
   cannotTRAP: {fileID: 1957667081695556, guid: bf96fba92c2be4d959541ccbd3ab3165, type: 2}
   player: {fileID: 1347303896238368}
@@ -232,8 +233,9 @@ MonoBehaviour:
   speed: 1
   gold: 200
   goldText: {fileID: 0}
+  questWarning: {fileID: 0}
   buymodeActive: 0
-  attackCD: 0.15
+  attackCD: 0.2
   sword: {fileID: 1466130932853606}
   facingright: 1
 --- !u!212 &212530611082194084

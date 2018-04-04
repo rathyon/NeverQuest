@@ -171,6 +171,11 @@ Prefab:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114330539045708122, guid: 47377cbfc2c7f13448b3a494a7f66a73,
+        type: 2}
+      propertyPath: damage
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 47377cbfc2c7f13448b3a494a7f66a73, type: 2}
   m_IsPrefabParent: 0
@@ -812,7 +817,7 @@ Prefab:
     - target: {fileID: 114381679530016148, guid: 578650e146e91534aab26ff78459dfc7,
         type: 2}
       propertyPath: questAcceptTime
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 578650e146e91534aab26ff78459dfc7, type: 2}
@@ -1010,12 +1015,12 @@ Prefab:
     - target: {fileID: 114720686324370086, guid: 75d2c88ec2a8682439b111b89b40f70a,
         type: 2}
       propertyPath: attackCD
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 114720686324370086, guid: 75d2c88ec2a8682439b111b89b40f70a,
         type: 2}
       propertyPath: gold
-      value: 120
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75d2c88ec2a8682439b111b89b40f70a, type: 2}
@@ -1804,12 +1809,12 @@ MonoBehaviour:
   testEnemy: {fileID: 1228049830199122, guid: 578650e146e91534aab26ff78459dfc7, type: 2}
   player: {fileID: 1044387967}
   spawnPoints: 2d000000d3ffffff
-  minSpawnDelay: 2
-  maxSpawnDelay: 5
-  prepDuration: 15
-  actionDuration: 30
-  goldReward: 60
-  numOfWaves: 1
+  minSpawnDelay: 1
+  maxSpawnDelay: 3
+  prepDuration: 20
+  actionDuration: 15
+  goldReward: 120
+  numOfWaves: 3
   timerText: {fileID: 1175604374}
 --- !u!4 &2043028558
 Transform:

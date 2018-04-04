@@ -80,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   wait: 0
-  waittimeIron: 2
+  waittimeIron: 10
 --- !u!212 &212672454544818846
 SpriteRenderer:
   m_ObjectHideFlags: 1
