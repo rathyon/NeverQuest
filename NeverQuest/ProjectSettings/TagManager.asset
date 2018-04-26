@@ -3,14 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Trap
-  - Enemy
-  - TrapOnce
-  - MoneyTrap
-  - BearTrap
-  - PlayerAttack
-  - IronMaidenTrap
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -49,17 +42,11 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
-    uniqueID: 3235188999
+    uniqueID: 3405444259
     locked: 0
   - name: Walls
-    uniqueID: 2252437551
-    locked: 0
-  - name: Traps
-    uniqueID: 3610404983
-    locked: 0
-  - name: Enemies
-    uniqueID: 3766422939
+    uniqueID: 1328575169
     locked: 0
   - name: Player
-    uniqueID: 138481223
+    uniqueID: 3040433181
     locked: 0

@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Trap
+  - Enemy
+  - TrapOnce
+  - MoneyTrap
+  - BearTrap
+  - PlayerAttack
+  - IronMaidenTrap
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3235188999
+    locked: 0
+  - name: Walls
+    uniqueID: 2252437551
+    locked: 0
+  - name: Traps
+    uniqueID: 3610404983
+    locked: 0
+  - name: Enemies
+    uniqueID: 3766422939
+    locked: 0
+  - name: Player
+    uniqueID: 138481223
+    locked: 0
