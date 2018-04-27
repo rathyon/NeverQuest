@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4302125859573856}
   - component: {fileID: 212490980714599416}
-  - component: {fileID: 114096134299006862}
   - component: {fileID: 61148348829351906}
+  - component: {fileID: 114096134299006862}
   m_Layer: 0
   m_Name: BearTrap
   m_TagString: Trap
@@ -80,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placementX: 0
   placementY: 0
+  cost: 0
   _damage: 50
   active: 0
   slowPercentage: 0.3
