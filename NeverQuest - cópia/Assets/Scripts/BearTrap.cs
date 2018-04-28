@@ -14,15 +14,15 @@ public class BearTrap : Trap {
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		//if (collision.gameObject.CompareTag("Mob")){
+		if (collision.gameObject.CompareTag("Mob")){
 
-		//	var mob =collision.GetComponent<MobControler> ();
-		//	mob.HP -= _damage;
-		//	mob.slowed = true;
-		//	mob.slowTimerMAX = 5.0f;
-		//	mob.speedSlowPercentage = slowPercentage;
-		//	mob.speed *= slowPercentage;
-		//}
+			var mob =collision.GetComponent<MobControler> ();
+			mob.HP -= _damage;
+			mob.slowed = true;
+			mob.slowTimerMAX = 5.0f;
+			mob.speedSlowPercentage = slowPercentage;
+			mob.speed *= slowPercentage;
+		}
 	}
 
 }

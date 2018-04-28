@@ -10,12 +10,12 @@ public class MoneyTrap : Trap {
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision){
-		//if (collision.gameObject.CompareTag("Mob")){
-		//	var mob =collision.GetComponent<MobControler> ();
-		//	mob.slowTimerMAX = _stopTime;
-		//	mob.slowed = true;
+		if (collision.gameObject.CompareTag("Mob")){
+			var mob =collision.GetComponent<MobControler> ();
+			mob.slowTimerMAX = _stopTime;
+			mob.slowed = true;
 
-		//}
+		}
 	}
 
 }
