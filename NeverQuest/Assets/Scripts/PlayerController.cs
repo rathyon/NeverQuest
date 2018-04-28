@@ -6,13 +6,17 @@ public class PlayerController : MonoBehaviour {
 
     public float speed;
 
-    private bool facingRight = true;
+	public int gold;
+    public bool facingRight = true;
 
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb2d;
 
+
 	// Use this for initialization
 	void Start () {
+		gold = 200;
+		gameObject.GetComponentInChildren<Canvas> ().enabled = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
 	}
@@ -39,9 +43,13 @@ public class PlayerController : MonoBehaviour {
         //transform.position += movement * speed * 0.1f;
         rb2d.AddForce(movement * speed);
     }
-
+	public void activateStore(){
+		gameObject.GetComponentInChildren<Canvas> ().enabled = !gameObject.GetComponentInChildren<Canvas> ().enabled;
+	}
     // Update is called once per frame
     void Update () {
-		
+		if (Input.GetKeyDown (KeyCode.B)) {
+			activateStore ();
+		}
 	}
 }

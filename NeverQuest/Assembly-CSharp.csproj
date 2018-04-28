@@ -51,13 +51,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\BearTrap.cs" />
      <Compile Include="Assets\Scripts\FollowCameraController.cs" />
-     <Compile Include="Assets\Scripts\IronMaiden.cs" />
      <Compile Include="Assets\Scripts\MobControler.cs" />
-     <Compile Include="Assets\Scripts\MoneyTrap.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\Trap.cs" />
+     <Compile Include="Assets\Scripts\Store\ItemStoreController.cs" />
+     <Compile Include="Assets\Scripts\Traps\BearTrap.cs" />
+     <Compile Include="Assets\Scripts\Traps\IronMaiden.cs" />
+     <Compile Include="Assets\Scripts\Traps\MoneyTrap.cs" />
+     <Compile Include="Assets\Scripts\Traps\Trap.cs" />
+     <Compile Include="Assets\StoreItemClickController.cs" />
+     <Compile Include="Assets\TrapPlacement.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
