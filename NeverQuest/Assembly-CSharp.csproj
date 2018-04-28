@@ -51,15 +51,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\BearTrap.cs" />
      <Compile Include="Assets\Scripts\FollowCameraController.cs" />
+<<<<<<< HEAD
      <Compile Include="Assets\Scripts\IronMaiden.cs" />
      <Compile Include="Assets\Scripts\JumpController.cs" />
      <Compile Include="Assets\Scripts\MobControler.cs" />
      <Compile Include="Assets\Scripts\MobController.cs" />
      <Compile Include="Assets\Scripts\MoneyTrap.cs" />
+=======
+     <Compile Include="Assets\Scripts\MobControler.cs" />
+>>>>>>> 7a27fc6a0a788fcf51000c0a61a9a7076815e714
      <Compile Include="Assets\Scripts\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\Trap.cs" />
+     <Compile Include="Assets\Scripts\Store\ItemStoreController.cs" />
+     <Compile Include="Assets\Scripts\Traps\BearTrap.cs" />
+     <Compile Include="Assets\Scripts\Traps\IronMaiden.cs" />
+     <Compile Include="Assets\Scripts\Traps\MoneyTrap.cs" />
+     <Compile Include="Assets\Scripts\Traps\Trap.cs" />
+     <Compile Include="Assets\StoreItemClickController.cs" />
+     <Compile Include="Assets\TrapPlacement.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
