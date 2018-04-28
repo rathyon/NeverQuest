@@ -25,14 +25,14 @@ public class IronMaiden : Trap {
 			}
 		}
 	}
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (collision.gameObject.CompareTag("Mob")){
-			var mob =collision.GetComponent<MobControler> ();
-			mob.HP -= _damage;
-			active = false;
+	//private void OnTriggerEnter2D(Collider2D collision)
+	//{
+	//	if (collision.gameObject.CompareTag("Mob")){
+	//		var mob =collision.GetComponent<MobControler> ();
+	//		mob.HP -= _damage;
+	//		active = false;
 
-		}
-	}
+	//	}
+	//}
 
 }

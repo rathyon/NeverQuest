@@ -9,13 +9,13 @@ public class MoneyTrap : Trap {
 		_stopTime = 5.0f;
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision){
-		if (collision.gameObject.CompareTag("Mob")){
-			var mob =collision.GetComponent<MobControler> ();
-			mob.slowTimerMAX = _stopTime;
-			mob.slowed = true;
+	//private void OnTriggerEnter2D(Collider2D collision){
+	//	if (collision.gameObject.CompareTag("Mob")){
+	//		var mob =collision.GetComponent<GameObject> ();
+	//		mob.slowTimerMAX = _stopTime;
+	//		mob.slowed = true;
 
-		}
-	}
+	//	}
+	//}
 
 }

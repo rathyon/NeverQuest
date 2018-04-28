@@ -11,16 +11,16 @@ public class ItemStoreController : MonoBehaviour {
 	private SpriteRenderer image;
 	private Text[] slotTexts;
 
-	// Use this for initialization
-	void Start () {
-		trap = item.GetComponent<Trap> ();
-		nameT = trap.trapName;
-		cost = trap.cost.ToString();
-		slotTexts = gameObject.GetComponentsInChildren<Text> ();
+	//// Use this for initialization
+	//void Start () {
+	//	trap = item.GetComponent<Trap> ();
+	//	nameT = trap.trapName;
+	//	cost = trap.cost.ToString();
+	//	slotTexts = gameObject.GetComponentsInChildren<Text> ();
 	
-		slotTexts[0].text = nameT; 
-		slotTexts[1].text = cost; 
-		gameObject.GetComponentInChildren<Image> ().sprite = item.GetComponent<SpriteRenderer> ().sprite;
-	}
+	//	slotTexts[0].text = nameT; 
+	//	slotTexts[1].text = cost; 
+	//	gameObject.GetComponentInChildren<Image> ().sprite = item.GetComponent<SpriteRenderer> ().sprite;
+	//}
 
 }

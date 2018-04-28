@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Trap
   - Placement
+  - Mob
   layers:
   - Default
   - TransparentFX
@@ -54,4 +55,7 @@ TagManager:
     locked: 0
   - name: Trap
     uniqueID: 1542309209
+    locked: 0
+  - name: Mob
+    uniqueID: 2057538891
     locked: 0
