@@ -5,8 +5,8 @@ using UnityEngine;
 public class BearTrap : Trap {
 
 	void Start(){
-		placementX = 5;
-		placementY = 5;
+		placementX = 0.5f;
+		placementY = -0.1f;
 		trapName = "Bear Trap";
 		cost = 20;
 		_damage = 50;

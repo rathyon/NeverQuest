@@ -1,13 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/TrapPlacement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Traps/MoneyTrap.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="9" Column="18" />
-      <File FileName="Assets/Scripts/MobControler.cs" Line="1" Column="1" />
-      <File FileName="Assets/TrapPlacement.cs" Line="56" Column="33" />
-      <File FileName="Assets/StoreItemClickController.cs" Line="24" Column="1" />
-      <File FileName="Assets/Scripts/Traps/BearTrap.cs" Line="8" Column="17" />
-      <File FileName="Assets/Scripts/Store/ItemStoreController.cs" Line="16" Column="37" />
+      <File FileName="Assets/Scripts/Store/ItemStoreController.cs" Line="14" Column="34" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="73" Column="30" />
+      <File FileName="Assets/TrapPlacement.cs" Line="38" Column="84" />
+      <File FileName="Assets/Scripts/Traps/BearTrap.cs" Line="9" Column="17" />
+      <File FileName="Assets/Scripts/Store/StoreItemClickController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Traps/IronMaiden.cs" Line="11" Column="19" />
+      <File FileName="Assets/Scripts/Traps/MoneyTrap.cs" Line="8" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

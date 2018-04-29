@@ -35,10 +35,10 @@ public class TrapPlacement : MonoBehaviour {
 		if (placement) {
 			Vector3 position;
 			if (player_script.facingRight) {
-				position = new Vector3 (gameObject.transform.position.x + trap.placementX,transform.position.y, transform.position.z);
+				position = new Vector3 (gameObject.transform.position.x,transform.position.y + trap.placementY, transform.position.z);
 			} 
 			else {
-				position = new Vector3 (gameObject.transform.position.x - trap.placementX, transform.position.y, transform.position.z);
+				position = new Vector3 (gameObject.transform.position.x - 3, transform.position.y + trap.placementY, transform.position.z);
 			}
 			if (!invalidPlacement) {
 				cannot.SetActive (false);
@@ -47,7 +47,7 @@ public class TrapPlacement : MonoBehaviour {
 				if (Input.GetKeyDown (KeyCode.E)) {
 					
 					if (player_script.gold >= trap.cost) {
-							Instantiate (trap, transform.position, Quaternion.identity);
+							Instantiate (trap, position, Quaternion.identity);
 						player_script.gold -= trap.cost;
 						}
 				}

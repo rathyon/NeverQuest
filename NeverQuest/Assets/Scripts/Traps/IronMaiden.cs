@@ -7,6 +7,8 @@ public class IronMaiden : Trap {
 	private float  waitedTime;
 	
 	void Start(){
+		placementX = 0.3f;
+		placementY = 1.0f;
 		trapName = "Iron Maiden";
 		cost = 75;
 		active = true;

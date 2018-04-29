@@ -12,13 +12,14 @@ public class PlayerController : MonoBehaviour {
     public int gold;
     public bool facingRight = true;
     public GameObject player;
-
+	private bool storeActive;
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb2d;
 
 
 	// Use this for initialization
 	void Start () {
+		storeActive = false;
 		gold = 200;
 		gameObject.GetComponentInChildren<Canvas> ().enabled = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -27,26 +28,27 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
+		if (!storeActive){
+	        float moveHorizontal = Input.GetAxis("Horizontal");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, 0.0f);
-        if (spriteRenderer != null)
-        {
-            if (moveHorizontal < 0 && facingRight)
-            {
-                facingRight = !facingRight;
-                spriteRenderer.flipX = !spriteRenderer.flipX;
-            }
-            if (moveHorizontal > 0 && !facingRight)
-            {
-                facingRight = !facingRight;
-                spriteRenderer.flipX = !spriteRenderer.flipX;
-            }
-        }
+	        Vector3 movement = new Vector3(moveHorizontal, 0.0f, 0.0f);
+	        if (spriteRenderer != null)
+	        {
+	            if (moveHorizontal < 0 && facingRight)
+	            {
+	                facingRight = !facingRight;
+	                spriteRenderer.flipX = !spriteRenderer.flipX;
+	            }
+	            if (moveHorizontal > 0 && !facingRight)
+	            {
+	                facingRight = !facingRight;
+	                spriteRenderer.flipX = !spriteRenderer.flipX;
+	            }
+	        }
 
-        transform.position += movement * speed * 0.1f;
-        //rb2d.AddForce(movement * speed);
-
+	        transform.position += movement * speed * 0.1f;
+	        //rb2d.AddForce(movement * speed);
+		}
         int margem_lateral = 1;
 
         //Wall1
@@ -68,6 +70,7 @@ public class PlayerController : MonoBehaviour {
 
     }
 	public void activateStore(){
+		storeActive = !storeActive;
 		gameObject.GetComponentInChildren<Canvas> ().enabled = !gameObject.GetComponentInChildren<Canvas> ().enabled;
 	}
     // Update is called once per frame
