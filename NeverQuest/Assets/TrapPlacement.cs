@@ -6,6 +6,7 @@ public class TrapPlacement : MonoBehaviour {
 
 	public GameObject canTRAP;
 	public GameObject cannotTRAP;
+	public GameObject player;
 
 	Trap trap;
 
@@ -35,11 +36,12 @@ public class TrapPlacement : MonoBehaviour {
 		if (placement) {
 			Vector3 position;
 			if (player_script.facingRight) {
-				position = new Vector3 (gameObject.transform.position.x,transform.position.y + trap.placementY, transform.position.z);
+				position = new Vector3 (player.transform.position.x + 2, player.transform.position.y + trap.placementY, transform.position.z);
 			} 
 			else {
-				position = new Vector3 (gameObject.transform.position.x - 3, transform.position.y + trap.placementY, transform.position.z);
+				position = new Vector3 (player.transform.position.x - 2, player.transform.position.y + trap.placementY, transform.position.z);
 			}
+			transform.position = position;
 			if (!invalidPlacement) {
 				cannot.SetActive (false);
 				can.transform.position = position;

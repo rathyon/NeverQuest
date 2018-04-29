@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoneyTrap : Trap {
 	void Start(){
 		placementX = 0.5f;
-		placementY = -0.2f;
+		placementY = -0.7f;
 		trapName = "Money bait";
 		cost = 15;
 		_stopTime = 5.0f;

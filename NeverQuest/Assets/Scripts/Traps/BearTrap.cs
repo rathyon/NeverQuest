@@ -6,7 +6,7 @@ public class BearTrap : Trap {
 
 	void Start(){
 		placementX = 0.5f;
-		placementY = -0.1f;
+		placementY = -0.65f;
 		trapName = "Bear Trap";
 		cost = 20;
 		_damage = 50;
