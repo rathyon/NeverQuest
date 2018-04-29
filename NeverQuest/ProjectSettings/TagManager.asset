@@ -50,12 +50,15 @@ TagManager:
   - name: Walls
     uniqueID: 1328575169
     locked: 0
-  - name: Player
-    uniqueID: 3040433181
+  - name: Doors
+    uniqueID: 2650267827
+    locked: 0
+  - name: Mob
+    uniqueID: 2057538891
     locked: 0
   - name: Trap
     uniqueID: 1542309209
     locked: 0
-  - name: Mob
-    uniqueID: 2057538891
+  - name: Player
+    uniqueID: 3040433181
     locked: 0

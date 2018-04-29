@@ -44,8 +44,8 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        //transform.position += movement * speed * 0.1f;
-        rb2d.AddForce(movement * speed);
+        transform.position += movement * speed * 0.1f;
+        //rb2d.AddForce(movement * speed);
 
         int margem_lateral = 1;
 
