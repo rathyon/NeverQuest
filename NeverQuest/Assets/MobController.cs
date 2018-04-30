@@ -12,21 +12,22 @@ public class MobController : MonoBehaviour
 
     public int HP;
     public Text labelHP;
-    public GameObject player, mob;
+    public GameObject player;
+
 
 
     public bool flag_change = false;
+
 
     public float speed;
     public float questAcceptTime;
 
     //private Rigidbody2D rb2d;
-    private Vector3 playerPos;
     private bool timerActive;
-    private bool slowed;
-    private float slowPercentage;
+    public bool slowed;
+    public float slowPercentage;
     private float slowTimer;
-    private float slowTimerMAX;
+    public float slowTimerMAX;
 
     SpriteRenderer spriteRenderer_mob;
     Rigidbody2D rb2d_mob;
@@ -34,6 +35,10 @@ public class MobController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		speed = 1.5f;
+		HP = 100;
+		slowPercentage = 1.0f;
+		timerActive = false;
         spriteRenderer_mob = GetComponent<SpriteRenderer>();
         rb2d_mob = GetComponent<Rigidbody2D>();
     }
@@ -42,48 +47,65 @@ public class MobController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        float xx; int margem_lateral = 2, estado_actual;
-        if (player.transform.position.x <= mob.transform.position.x)
-        {
-            xx = -0.25f; // para o lado esquerdo por exemplo
-            estado_actual = 1;
-        }
-        else
-        {
-            xx = 0.25f; // para o lado direito , nesse caso
-            estado_actual = 2;
-        }
-
-        if (estado_antigo != estado_actual) rb2d_mob.velocity = Vector3.zero;
-
-        rb2d_mob.AddForce(new Vector2(xx, 0.0f));
-
-        estado_antigo = estado_actual;
+		int margem_lateral = 2;
+		if (HP <= 0)
+		{
+			Destroy(gameObject);
+		}
+		if (slowed)
+		{
+			slowTimer += Time.deltaTime;
+			if (slowTimer >= slowTimerMAX)
+			{
+				slowPercentage=1.0f;
+				slowTimer = 0;
+				slowed = false;
+			}
+		}
+		if (timerActive)
+		{
+			Countdown();
+		}
+		else
+		{
+			// simple tracking movement just in the x axis
+			if (player.transform.position.x > transform.position.x)
+			{
+				transform.position += new Vector3(speed * slowPercentage * 0.025f, 0.0f);
+			}
+			else if(player.transform.position.x < transform.position.x)
+			{
+				transform.position -= new Vector3(speed * slowPercentage * 0.025f, 0.0f);
+			}
+			else
+			{
+				//do nothing...
+			}
+		}
 
         //Wall1
-        if ((mob.transform.position.x <= -12 || mob.transform.position.x >= 12) && mob.transform.position.y == -3.18f)//lado esquerdo
+        if ((transform.position.x <= -12 || transform.position.x >= 12) && transform.position.y == -3.18f)//lado esquerdo
         {
             Vector3 aux = rb2d_mob.velocity;
             rb2d_mob.velocity = -aux;
-            if (mob.transform.position.x < 0) margem_lateral = -margem_lateral;
-            mob.transform.position = new Vector2(mob.transform.position.x - margem_lateral, 8.97f);
-            rb2d_mob.AddForce(new Vector2(-xx, 0.0f));
+            if (transform.position.x < 0) margem_lateral = -margem_lateral;
+            transform.position = new Vector2(transform.position.x - margem_lateral, 8.97f);
+           
         }
         //Wall2
-        if ((mob.transform.position.x <= -12 || mob.transform.position.x >= 12) && mob.transform.position.y == 8.97f)//lado esquerdo
+        if ((transform.position.x <= -12 || transform.position.x >= 12) && transform.position.y == 8.97f)//lado esquerdo
         {
             Vector3 aux = rb2d_mob.velocity;
             rb2d_mob.velocity = -aux;
-            if (mob.transform.position.x < 0) margem_lateral = -margem_lateral;
-            mob.transform.position = new Vector2(mob.transform.position.x - margem_lateral, -3.18f);
-            rb2d_mob.AddForce(new Vector2(-xx, 0.0f));
+            if (transform.position.x < 0) margem_lateral = -margem_lateral;
+            transform.position = new Vector2(transform.position.x - margem_lateral, -3.18f);
+            
         }
     }
-    //private void Countdown()
-    //{
-    //    questAcceptTime -= Time.deltaTime;
-    //}
+    private void Countdown()
+    {
+        questAcceptTime -= Time.deltaTime;
+    }
 
 
 }
