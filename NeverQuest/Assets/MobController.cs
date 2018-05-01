@@ -6,11 +6,8 @@ using UnityEngine;
 
 public class MobController : MonoBehaviour
 {
-    public float Tail1_maxPoint; // direira: 12.0f;
-    public float Tail1_minPoint; // esquerda: -12.0f
-
-
     public float HP;
+    private float HP_max;
     public Text labelHP;
     public GameObject player;
 
@@ -28,8 +25,9 @@ public class MobController : MonoBehaviour
     public float slowPercentage;
     private float slowTimer;
     public float slowTimerMAX;
-	public bool facingRight; 
+	public bool facingRight;
 
+    public SimpleHealthBar healthBar;
     SpriteRenderer spriteRenderer_mob;
     Rigidbody2D rb2d_mob;
 
@@ -38,7 +36,8 @@ public class MobController : MonoBehaviour
     {
 		speed = 1.5f;
 		HP = 100;
-		slowPercentage = 1.0f;
+        HP_max = HP;
+        slowPercentage = 1.0f;
 		timerActive = false;
         spriteRenderer_mob = GetComponent<SpriteRenderer>();
         rb2d_mob = GetComponent<Rigidbody2D>();
@@ -48,8 +47,9 @@ public class MobController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		int margem_lateral = 2;
-		if (HP <= 0)
+        HP -= 0.1f;
+        healthBar.UpdateBar(HP, HP_max);
+        if (HP <= 0)
 		{
 			Destroy(gameObject);
 		}
