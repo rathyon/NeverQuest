@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 114985599955085428}
   - component: {fileID: 50150002935235388}
   - component: {fileID: 61410617185537578}
+  - component: {fileID: 114715954464956146}
   m_Layer: 0
   m_Name: Mob
   m_TagString: Mob
@@ -90,7 +91,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1753650936550232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.47, y: -3.45, z: 1}
+  m_LocalPosition: {x: -19, y: 11, z: 1}
   m_LocalScale: {x: 1.9, y: 1.75, z: 1}
   m_Children:
   - {fileID: 224527154281889324}
@@ -252,6 +253,26 @@ MonoBehaviour:
   displayText: 0
   barText: {fileID: 0}
   additionalText: 
+--- !u!114 &114715954464956146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1753650936550232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e066819719c377c408d4e3d745b1514a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  mob: {fileID: 1753650936550232}
+  lvl1: 0
+  lvl2: -6
+  lvl3: 2.8
+  lvl4: 0
+  lvl5: 0
+  lvl6: 0
+  flag_Stop: 0
 --- !u!114 &114933162950634084
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -304,14 +325,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  doorsToCatch: []
+  mobTransportLevel: 5
   flag_change: 0
+  canTransport: 1
+  flag_Teste: 0
   speed: 0
   questAcceptTime: 0
   slowed: 0
   slowPercentage: 0
   slowTimerMAX: 0
   facingRight: 0
-  playerTransportLevel: 0
   healthBar: {fileID: 114447949582664662}
 --- !u!212 &212664937224645766
 SpriteRenderer:

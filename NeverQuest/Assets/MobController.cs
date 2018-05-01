@@ -14,6 +14,8 @@ public class MobController : MonoBehaviour
     public DoorController[] doorsAvaiables;
     public List<DoorController> doorsToCatch = new List<DoorController>();
 
+    int playerTransportLevel;
+    public int mobTransportLevel;
 
     public bool flag_change = false;
     public bool canTransport = true;
@@ -30,7 +32,7 @@ public class MobController : MonoBehaviour
     private float slowTimer;
     public float slowTimerMAX;
 	public bool facingRight;
-    public int playerTransportLevel, mobTransportLevel;
+
 
     public SimpleHealthBar healthBar;
     SpriteRenderer spriteRenderer_mob;
@@ -57,15 +59,18 @@ public class MobController : MonoBehaviour
         //healthBar.UpdateBar(HP, HP_max);
 
         //movimento inteligente do mob
+        playerTransportLevel = player.GetComponent<PlayerController>().transportLevel;
         doorsToCatch = player.GetComponent<PlayerController>().Player_doorsCatched;
 
         if (player.GetComponent<PlayerController>().transportLevel != mobTransportLevel) //player e mob nao estao na mesma sala
         {
-            //if (player.GetComponent<PlayerController>().Player_doorsCatched.Count != 0)
+            if (player.GetComponent<PlayerController>().Player_doorsCatched.Count == 0)
+            {
+                findDoor(mobTransportLevel, player.GetComponent<PlayerController>().transportLevel);
+                posToFollow = doorsToCatch[0].transform.position.x;
+            }
 
-            //foreach (DoorController _door in findDoor(mobTransportLevel, player.GetComponent<PlayerController>().transportLevel)) doorsToCatch.Add(_door);
-          
-            posToFollow = player.GetComponent<PlayerController>().Player_doorsCatched[0].transform.position.x;
+            else posToFollow = player.GetComponent<PlayerController>().Player_doorsCatched[0].transform.position.x;
 
             if (posToFollow > transform.position.x) 
             {
@@ -90,7 +95,7 @@ public class MobController : MonoBehaviour
                 transform.position -= new Vector3(speed * slowPercentage * 0.025f, 0.0f);
                 facingRight = false;
             }
-            //if (doorsToCatch.Count != 0) foreach (DoorController door_aux in doorsToCatch) doorsToCatch.Remove(door_aux);
+            //Se tiverem no mesmo nível, limpa o array das portas de ambos
             if (player.GetComponent<PlayerController>().Player_doorsCatched.Count != 0) foreach (DoorController door_aux in player.GetComponent<PlayerController>().Player_doorsCatched) player.GetComponent<PlayerController>().Player_doorsCatched.Remove(door_aux);
         }
 
@@ -113,63 +118,30 @@ public class MobController : MonoBehaviour
 		{
 			Countdown();
 		}
-      //  playerTransportLevel = player.GetComponent<PlayerController>().transportLevel;
     }
-    //public void movementIA() { //Encontro a door que devo apanhar.
-    //    int nextLevel; bool existsdoor = false;
-
-    //    foreach (DoorController door in doorsAvaiables)
-    //    {
-    //        if (player.GetComponent<PlayerController>().transportLevel == door.DoorToNextLevel && mobTransportLevel == door.DoorLevel)
-    //        {
-    //            doorsToCatch.Add(door); //Visto que não existem portas que levem para o mesmo nível.
-    //            existsdoor = true;
-    //           // posToFollow = door.transform.position.x;
-    //        }
-    //    }
-    //    if (!existsdoor)
-    //    {
-    //        //Caso em que n
-    //        if (player.GetComponent<PlayerController>().transportLevel > mobTransportLevel) nextLevel = mobTransportLevel + 1; //temos de subir de nivel
-    //        else nextLevel = mobTransportLevel - 1;//temos de descer de nível
-
-    //        foreach (DoorController door in doorsAvaiables)
-    //        {
-    //            if (nextLevel == door.DoorToNextLevel && mobTransportLevel == door.DoorLevel)
-    //            {
-    //                doorsToCatch.Add(door);
-    //            }
-    //        }
-    //    }
-    //}
 
     private void Countdown()
     {
         questAcceptTime -= Time.deltaTime;
     }
 
-    //private List<DoorController> findDoor(int mobLevel, int playerLevel) {
-    //    List<DoorController> doors_aux = new List<DoorController>();
-    //    int count = 0;
-    //    foreach (DoorController door in doorsAvaiables) {
-    //        if (door.DoorLevel == mobLevel) //door com acesso direto
-    //        {
-    //            if (count == 1) {
-    //                if (doors_aux[0].DoorToNextLevel == playerLevel) break;
-    //                else
-    //                {
-    //                    doors_aux.Remove(doors_aux[0]);
-    //                    doors_aux.Add(door);
-    //                }
-    //            }
-    //            else
-    //            {
-    //                doors_aux.Add(door);
-    //                count = 1;
-    //            }
-    //        }
-    //    }
-    //    return doors_aux;
-    //}
+    private void findDoor(int mobLevel, int playerLevel)
+    {
+        List<DoorController> doors_aux = new List<DoorController>(), doors_lvl = new List<DoorController>();
+        foreach (DoorController door in doorsAvaiables)
+        {
+            if (door.DoorLevel == mobLevel) //door com acesso direto
+            {
+                if (door.DoorToNextLevel == playerLevel)
+                {
+                    doors_aux.Add(door); break;
+                }
+                else doors_lvl.Add(door); 
+            }
 
+        }
+        if (doors_aux.Count == 0) { doors_aux.Add(doors_lvl[0]); findDoor(doors_lvl[0].DoorToNextLevel, playerLevel); }
+
+        foreach (DoorController door2 in doors_aux) doorsToCatch.Insert(0, door2);
+    }
 }
