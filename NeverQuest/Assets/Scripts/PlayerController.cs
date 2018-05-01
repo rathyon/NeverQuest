@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
@@ -18,6 +19,8 @@ public class PlayerController : MonoBehaviour {
     public List<DoorController> Player_doorsCatched = new List<DoorController>();
 
     private bool storeActive;
+	private Button[] bton;
+
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb2d;
 
@@ -26,6 +29,10 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		bton = gameObject.GetComponentsInChildren<Button> ();
+		foreach (Button b in bton) {
+			b.interactable = false;
+		}
 		storeActive = false;
         transportLevel = 3;
         gold = 200;
@@ -62,6 +69,9 @@ public class PlayerController : MonoBehaviour {
 	public void activateStore(){
 		storeActive = !storeActive;
 		gameObject.GetComponentInChildren<Canvas> ().enabled = !gameObject.GetComponentInChildren<Canvas> ().enabled;
+		foreach (Button b in bton) {
+			b.interactable = !b.interactable;
+		}
 	}
     // Update is called once per frame
     void Update () {
