@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
 
     //public bool grounded = true;
     public float jumpPower;
+    private float waitedTime, inactiveTimerMAX;
 
     public int gold;
     public bool facingRight = true;
@@ -19,7 +20,9 @@ public class PlayerController : MonoBehaviour {
     public List<DoorController> Player_doorsCatched = new List<DoorController>();
 
     private bool storeActive;
-	private Button[] bton;
+    public bool grounded;
+
+    private Button[] bton;
 
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb2d;
@@ -34,9 +37,13 @@ public class PlayerController : MonoBehaviour {
 			b.interactable = false;
 		}
 		storeActive = false;
+        grounded = true;
         transportLevel = 3;
         gold = 200;
-		gameObject.GetComponentInChildren<Canvas> ().enabled = false;
+        waitedTime = 0.0f;
+        inactiveTimerMAX = 1.45f;
+
+        gameObject.GetComponentInChildren<Canvas> ().enabled = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
 	}
@@ -75,10 +82,14 @@ public class PlayerController : MonoBehaviour {
 	}
     // Update is called once per frame
     void Update () {
+        TimerJump();
         float moveHorizontal = Input.GetAxis("Horizontal");
-        if (Input.GetKeyDown(KeyCode.Space))
-            //if(grounded)
+        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        {
             GetComponent<Rigidbody2D>().velocity = new Vector2(moveHorizontal, jumpPower);
+            grounded= false;
+
+        }
 
         if (Input.GetKeyDown (KeyCode.B)) {
 			activateStore ();
@@ -87,5 +98,17 @@ public class PlayerController : MonoBehaviour {
 
     public void AddGold(int _gold) {
         gold += _gold;
+    }
+
+    public void TimerJump() {
+        if (!grounded)
+        {
+            waitedTime += Time.deltaTime;
+            if (waitedTime >= inactiveTimerMAX)
+            {
+                waitedTime = 0.0f;
+                grounded = true;
+            }
+        }
     }
 }

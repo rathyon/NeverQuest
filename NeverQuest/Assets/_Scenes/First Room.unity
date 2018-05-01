@@ -1454,7 +1454,7 @@ GameObject:
   - component: {fileID: 335556666}
   m_Layer: 0
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3234,12 +3234,25 @@ Prefab:
     - target: {fileID: 61784904335788602, guid: 6ecda3d48893ef74f88bd6779fd5da2a,
         type: 2}
       propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 179.49832
+      value: 428.3876
       objectReference: {fileID: 0}
     - target: {fileID: 61784904335788602, guid: 6ecda3d48893ef74f88bd6779fd5da2a,
         type: 2}
       propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 10.375413
+      value: 20.49196
+      objectReference: {fileID: 0}
+    - target: {fileID: 1672517486501516, guid: 6ecda3d48893ef74f88bd6779fd5da2a, type: 2}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019190800749062, guid: 6ecda3d48893ef74f88bd6779fd5da2a, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 61784904335788602, guid: 6ecda3d48893ef74f88bd6779fd5da2a,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ecda3d48893ef74f88bd6779fd5da2a, type: 2}
@@ -7469,7 +7482,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1815465516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.46, y: -3.5, z: 1}
+  m_LocalPosition: {x: 0, y: -3.6, z: 1}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 1276957090}
@@ -7546,6 +7559,7 @@ MonoBehaviour:
   player: {fileID: 1815465516}
   enemies: []
   Player_doorsCatched: []
+  grounded: 0
   transportLevel: 0
 --- !u!212 &1815465521
 SpriteRenderer:
