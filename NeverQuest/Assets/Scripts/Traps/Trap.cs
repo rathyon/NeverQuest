@@ -8,7 +8,7 @@ public class Trap : MonoBehaviour {
 	public float placementY;// some traps would b correctly placed whereas other types wont
 
 	public int cost;
-	public int _damage;
+	public float _damage;
 	public bool active;
 	public float slowPercentage; //0-1
 	public float _stopTime;

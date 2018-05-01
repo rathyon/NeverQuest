@@ -12,7 +12,7 @@ public class IronMaiden : Trap {
 		trapName = "Iron Maiden";
 		cost = 75;
 		active = true;
-		_damage = 150;
+		_damage = 150.0f;
 		inactiveTimerMAX = 1.5f;
 		waitedTime = 0.0f;
 	

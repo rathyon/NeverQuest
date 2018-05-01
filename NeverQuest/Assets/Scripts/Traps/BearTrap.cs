@@ -9,7 +9,7 @@ public class BearTrap : Trap {
 		placementY = -0.65f;
 		trapName = "Bear Trap";
 		cost = 20;
-		_damage = 50;
+		_damage = 50.0f;
 		_stopTime = 1.0f;
 		slowPercentage = 0.3f;
 	}

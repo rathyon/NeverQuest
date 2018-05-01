@@ -10,7 +10,7 @@ public class MobController : MonoBehaviour
     public float Tail1_minPoint; // esquerda: -12.0f
 
 
-    public int HP;
+    public float HP;
     public Text labelHP;
     public GameObject player;
 
@@ -28,6 +28,7 @@ public class MobController : MonoBehaviour
     public float slowPercentage;
     private float slowTimer;
     public float slowTimerMAX;
+	public bool facingRight; 
 
     SpriteRenderer spriteRenderer_mob;
     Rigidbody2D rb2d_mob;
@@ -72,10 +73,12 @@ public class MobController : MonoBehaviour
 			if (player.transform.position.x > transform.position.x)
 			{
 				transform.position += new Vector3(speed * slowPercentage * 0.025f, 0.0f);
+				facingRight = true;
 			}
 			else if(player.transform.position.x < transform.position.x)
 			{
 				transform.position -= new Vector3(speed * slowPercentage * 0.025f, 0.0f);
+				facingRight = false;
 			}
 			else
 			{
