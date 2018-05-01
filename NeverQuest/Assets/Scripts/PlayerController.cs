@@ -11,16 +11,24 @@ public class PlayerController : MonoBehaviour {
 
     public int gold;
     public bool facingRight = true;
+
     public GameObject player;
-	private bool storeActive;
+    public List<GameObject> enemies;
+
+    public List<DoorController> Player_doorsCatched = new List<DoorController>();
+
+    private bool storeActive;
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb2d;
+
+    public int transportLevel;
 
 
 	// Use this for initialization
 	void Start () {
 		storeActive = false;
-		gold = 200;
+        transportLevel = 3;
+        gold = 200;
 		gameObject.GetComponentInChildren<Canvas> ().enabled = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
@@ -64,8 +72,10 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown (KeyCode.B)) {
 			activateStore ();
-		}
+		}   
+    }
 
-    
+    public void AddGold(int _gold) {
+        gold += _gold;
     }
 }
