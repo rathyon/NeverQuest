@@ -44,8 +44,8 @@ public class MobController : MonoBehaviour
     void Start()
     {
         flag_Teste = 0;
-        speed = 1.5f;
-		HP = 100;
+        //speed = 1.5f;
+		//HP = 100;
         HP_max = HP;
         slowPercentage = 1.0f;
 		timerActive = false;
@@ -61,6 +61,7 @@ public class MobController : MonoBehaviour
     {
         //HP -= 0.1f; //Barra HP_mob
         //healthBar.UpdateBar(HP, HP_max);
+        minimapIndicator.transform.position = transform.position;
 
         //movimento inteligente do mob
         playerTransportLevel = player.GetComponent<PlayerController>().transportLevel;
@@ -124,7 +125,6 @@ public class MobController : MonoBehaviour
 		{
 			Countdown();
 		}
-        minimapIndicator.transform.position = transform.position;
     }
 
     private void Countdown()
