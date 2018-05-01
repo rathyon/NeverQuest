@@ -240,11 +240,15 @@
     <Compile Include="Assets\Scripts\FollowCameraController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Store\ItemStoreController.cs" />
+    <Compile Include="Assets\Scripts\Store\StoreItemClickController.cs" />
+    <Compile Include="Assets\Scripts\Store\StoreTabSelector.cs" />
     <Compile Include="Assets\Scripts\Traps\BearTrap.cs" />
+    <Compile Include="Assets\Scripts\Traps\FireTrap.cs" />
     <Compile Include="Assets\Scripts\Traps\IronMaiden.cs" />
+    <Compile Include="Assets\Scripts\Traps\KnockbackTrap.cs" />
     <Compile Include="Assets\Scripts\Traps\MoneyTrap.cs" />
+    <Compile Include="Assets\Scripts\Traps\PoisonTrap.cs" />
     <Compile Include="Assets\Scripts\Traps\Trap.cs" />
-    <Compile Include="Assets\StoreItemClickController.cs" />
     <Compile Include="Assets\TrapPlacement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

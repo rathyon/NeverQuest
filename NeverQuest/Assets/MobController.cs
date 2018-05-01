@@ -86,24 +86,6 @@ public class MobController : MonoBehaviour
 			}
 		}
 
-        //Wall1
-        if ((transform.position.x <= -12 || transform.position.x >= 12) && transform.position.y == -3.18f)//lado esquerdo
-        {
-            Vector3 aux = rb2d_mob.velocity;
-            rb2d_mob.velocity = -aux;
-            if (transform.position.x < 0) margem_lateral = -margem_lateral;
-            transform.position = new Vector2(transform.position.x - margem_lateral, 8.97f);
-           
-        }
-        //Wall2
-        if ((transform.position.x <= -12 || transform.position.x >= 12) && transform.position.y == 8.97f)//lado esquerdo
-        {
-            Vector3 aux = rb2d_mob.velocity;
-            rb2d_mob.velocity = -aux;
-            if (transform.position.x < 0) margem_lateral = -margem_lateral;
-            transform.position = new Vector2(transform.position.x - margem_lateral, -3.18f);
-            
-        }
     }
     private void Countdown()
     {

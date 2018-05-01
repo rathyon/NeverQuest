@@ -49,24 +49,6 @@ public class PlayerController : MonoBehaviour {
 	        transform.position += movement * speed * 0.1f;
 	        //rb2d.AddForce(movement * speed);
 		}
-        int margem_lateral = 1;
-
-        //Wall1
-        if ((player.transform.position.x <= -12 || player.transform.position.x >= 12) && player.transform.position.y < -3f)//lado esquerdo
-        {
-            Vector3 aux = new Vector3(1.0f,0.0f,0.0f);
-            rb2d.velocity = -aux;
-            if (player.transform.position.x < 0) margem_lateral = -margem_lateral;
-            player.transform.position = new Vector2(player.transform.position.x - margem_lateral, 8.97f);
-        }
-        //Wall2
-        if ((player.transform.position.x <= -12 || player.transform.position.x >= 12) && player.transform.position.y < 10f)//lado esquerdo
-        {
-            Vector3 aux = rb2d.velocity;
-            rb2d.velocity = -aux;
-            if (player.transform.position.x < 0) margem_lateral = -margem_lateral;
-            player.transform.position = new Vector2(player.transform.position.x - margem_lateral, -3.18f);
-        }
 
     }
 	public void activateStore(){
