@@ -63,6 +63,9 @@ public class TrapPlacement : MonoBehaviour {
 			cannot.SetActive (false);
 			can.SetActive (false);
 		}
+		if (Input.GetKeyDown (KeyCode.C)) {
+			placement = false;
+		}
 	}
 
 	public void setObject(Trap trapObject){
