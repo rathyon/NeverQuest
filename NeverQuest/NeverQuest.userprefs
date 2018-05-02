@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerController.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="125" Column="5" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Traps/FireTrap.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Store/ItemStoreController.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Traps/BearTrap.cs" Line="1" Column="1" />
@@ -11,11 +11,11 @@
       <File FileName="Assets/Scripts/Traps/MoneyTrap.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Store/StoreTabSelector.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Traps/Trap.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Traps/PoisonTrap.cs" Line="10" Column="26" />
-      <File FileName="Assets/Scripts/Traps/KnockbackTrap.cs" Line="25" Column="5" />
-      <File FileName="Assets/Scripts/ProjectileControler.cs" Line="25" Column="3" />
-      <File FileName="Assets/Scripts/MobController.cs" Line="69" Column="4" />
-      <File FileName="Assets/Scripts/EngQHability.cs" Line="33" Column="71" />
+      <File FileName="Assets/Scripts/Traps/PoisonTrap.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Traps/KnockbackTrap.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ProjectileControler.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MobController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/EngQHability.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
