@@ -39,14 +39,14 @@ public class WeaponsANDArmor : MonoBehaviour {
 
 			if (type == 0) {
 				if (playerControler.gold >= 50) {
-					playerControler.timeToAcceptQuest = 6f;
+					playerControler.timeAccept = 6f;
 					playerControler.gold -= 50;
 					active = false;
 				}
 			}
 			if (type == 2) {
 				if (playerControler.gold >= 200) {
-					playerControler.timeToAcceptQuest = 7f;
+					playerControler.timeAccept = 7f;
 					playerControler.gold -= 200;
 					active = false;
 				}

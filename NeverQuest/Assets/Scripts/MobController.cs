@@ -24,7 +24,7 @@ public class MobController : MonoBehaviour
     private bool flag_TryHard = true;
 
     public int flag_Teste;
-    public float speed, questAcceptTime;
+    public float speed, questAcceptTime=3;
     private float posToFollow;
 
     //private Rigidbody2D rb2d;
@@ -167,6 +167,14 @@ public class MobController : MonoBehaviour
 		{
 			timerActive = true;
 			acceptingQuest = true;
+		}
+	}
+	private void OnCollisionExit2D(Collision2D collision)
+	{
+		if (collision.gameObject.CompareTag("Player"))
+		{
+			timerActive = false;
+			acceptingQuest = false;
 		}
 	}
 

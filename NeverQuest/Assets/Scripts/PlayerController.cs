@@ -31,10 +31,11 @@ public class PlayerController : MonoBehaviour {
 
     public bool grounded;
 
-	public Text goldText;
 	public Text questWarning;
-	private bool questIsBeingAccepted = false;
+	public float timeAccept;
+	public bool questIsBeingAccepted = false;
 	public float timeToAcceptQuest = 5.0f;
+	private bool anyAccepting = false;
 
    
 
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour {
 			b.interactable = false;
 		}
 		//questWarning.text = "";
+		timeAccept=5.0f;
 		qHabilityFlag = false;
 		shoot = false;
 		bullet_damage = 10.0f;
@@ -70,37 +72,36 @@ public class PlayerController : MonoBehaviour {
 
 	private void LateUpdate()
 	{
-		goldText.text = "Gold: " + gold.ToString();
-
+		
 		//check if any enemy is currently accepting quest
-		bool anyAccepting = false;
 
-		foreach (MobController enemy in enemies)
-		{
-			if (enemy != null)
-			{
-				var enemy_script = enemy;
-
-				if (enemy_script.isAcceptingQuest())
-				{
-					questIsBeingAccepted = true;
-					anyAccepting = true;
-					if (enemy_script.questAcceptTime <= timeToAcceptQuest)
-					{
-						timeToAcceptQuest = enemy_script.questAcceptTime;
-					}
-				}
-			}
-		}
+//		foreach (MobController enemy in enemies)
+//		{
+//			if (enemy != null)
+//			{
+//				var enemy_script = enemy;
+//
+//				if (enemy_script.isAcceptingQuest())
+//				{
+//					questIsBeingAccepted = true;
+//					anyAccepting = true;
+//					if (enemy_script.questAcceptTime <= timeToAcceptQuest)
+//					{
+//						timeToAcceptQuest = enemy_script.questAcceptTime;
+//					}
+//				}
+//			}
+//		}
 		if (!anyAccepting)
 		{
 			questIsBeingAccepted = false;
-			timeToAcceptQuest = 5.0f;
+			timeToAcceptQuest = timeAccept;
 		}
 
 		if (questIsBeingAccepted)
 		{
 			questWarning.text = "QUEST ACCEPTED IN: " + ((int)timeToAcceptQuest + 1);
+			timeToAcceptQuest -= Time.deltaTime;
 		}
 		else
 		{
@@ -214,4 +215,21 @@ public class PlayerController : MonoBehaviour {
             }
         }
     }
+
+	private void OnTriggerStay2D(Collider2D collision)
+	{
+		if (collision.gameObject.CompareTag("Mob"))
+		{
+			questIsBeingAccepted = true;
+			anyAccepting = true;
+		}
+	}
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		if (collision.gameObject.CompareTag("Mob"))
+		{
+			questIsBeingAccepted = false;
+			anyAccepting = false;
+		}
+	}
 }
