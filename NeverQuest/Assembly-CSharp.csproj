@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\HUD.cs" />
      <Compile Include="Assets\Scripts\DoorController.cs" />
      <Compile Include="Assets\Scripts\EngQHability.cs" />
      <Compile Include="Assets\Scripts\FollowCameraController.cs" />
@@ -63,6 +64,7 @@
      <Compile Include="Assets\Scripts\Store\ItemStoreController.cs" />
      <Compile Include="Assets\Scripts\Store\StoreItemClickController.cs" />
      <Compile Include="Assets\Scripts\Store\StoreTabSelector.cs" />
+     <Compile Include="Assets\Scripts\Store\WeaponsANDArmor.cs" />
      <Compile Include="Assets\Scripts\TrapPlacement.cs" />
      <Compile Include="Assets\Scripts\Traps\BearTrap.cs" />
      <Compile Include="Assets\Scripts\Traps\DDOSTrap.cs" />

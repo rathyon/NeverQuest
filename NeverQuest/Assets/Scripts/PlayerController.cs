@@ -24,10 +24,17 @@ public class PlayerController : MonoBehaviour {
 
 	public GameObject bullet;
 	private bool shoot;
+	public float bullet_damage; 
+
 	public bool qHabilityFlag;
 	public GameObject qHability;
 
     public bool grounded;
+
+	public Text goldText;
+	public Text questWarning;
+	private bool questIsBeingAccepted = false;
+	public float timeToAcceptQuest = 5.0f;
 
    
 
@@ -43,8 +50,10 @@ public class PlayerController : MonoBehaviour {
 		foreach (Button b in bton) {
 			b.interactable = false;
 		}
+		//questWarning.text = "";
 		qHabilityFlag = false;
 		shoot = false;
+		bullet_damage = 10.0f;
 		storeActive = false;
         grounded = true;
         transportLevel = 3;
@@ -57,6 +66,52 @@ public class PlayerController : MonoBehaviour {
         rb2d = GetComponent<Rigidbody2D>();
 		StartCoroutine(ShootProjectile());
 		StartCoroutine(QHability());
+	}
+
+	private void LateUpdate()
+	{
+		goldText.text = "Gold: " + gold.ToString();
+
+		//check if any enemy is currently accepting quest
+		bool anyAccepting = false;
+
+		foreach (GameObject enemy in enemies)
+		{
+			if (enemy != null)
+			{
+				var enemy_script = enemy.GetComponent<MobController>();
+
+				if (enemy_script.isAcceptingQuest())
+				{
+					questIsBeingAccepted = true;
+					anyAccepting = true;
+					if (enemy_script.questAcceptTime <= timeToAcceptQuest)
+					{
+						timeToAcceptQuest = enemy_script.questAcceptTime;
+					}
+				}
+			}
+		}
+		if (!anyAccepting)
+		{
+			questIsBeingAccepted = false;
+			timeToAcceptQuest = 5.0f;
+		}
+
+		if (questIsBeingAccepted)
+		{
+			questWarning.text = "QUEST ACCEPTED IN: " + ((int)timeToAcceptQuest + 1);
+		}
+		else
+		{
+			questWarning.text = "";
+		}
+
+		if (timeToAcceptQuest <= 0.0f)
+		{
+			questWarning.text = "GAME OVER";
+			Time.timeScale = 0;
+		}
 	}
 
     void FixedUpdate()

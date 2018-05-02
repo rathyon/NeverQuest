@@ -40,6 +40,9 @@ public class MobController : MonoBehaviour
     SpriteRenderer spriteRenderer_mob;
     Rigidbody2D rb2d_mob;
 
+	private bool acceptingQuest = false;
+
+
     // Use this for initialization
     void Start()
     {
@@ -128,10 +131,15 @@ public class MobController : MonoBehaviour
 		}
     }
 
-    private void Countdown()
-    {
-        questAcceptTime -= Time.deltaTime;
-    }
+	private void Countdown()
+	{
+		questAcceptTime -= Time.deltaTime;
+	}
+
+	public bool isAcceptingQuest()
+	{
+		return acceptingQuest;
+	}
 
     private void findDoor(int mobLevel, int playerLevel)
     {
@@ -152,4 +160,13 @@ public class MobController : MonoBehaviour
 
         foreach (DoorController door2 in doors_aux) doorsToCatch.Insert(0, door2);
     }
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.CompareTag("Player"))
+		{
+			timerActive = true;
+			acceptingQuest = true;
+		}
+	}
+
 }

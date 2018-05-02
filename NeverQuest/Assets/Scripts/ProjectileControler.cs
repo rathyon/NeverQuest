@@ -9,8 +9,9 @@ public class ProjectileControler : MonoBehaviour {
 	private float lifeTime;
 	// Use this for initialization
 	void Start () {
+
+		_damage =  GameObject.Find("Player").GetComponent<PlayerController>().bullet_damage;
 		speed = 5.0f;
-		_damage = 10;
 		bool facingRight = GameObject.Find("Player").GetComponent<PlayerController>().facingRight;
 		transform.position = GameObject.Find ("Player").transform.position;
 		if (facingRight) {moveHorizontal = 1;
