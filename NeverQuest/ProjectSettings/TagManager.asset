@@ -8,6 +8,7 @@ TagManager:
   - Placement
   - Mob
   - Wall
+  - Bullet
   layers:
   - Default
   - TransparentFX

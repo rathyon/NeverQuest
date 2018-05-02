@@ -59,8 +59,16 @@ public class MobController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+		if (HP <= 0)
+		{
+			proximityIndicator.GetComponent<ProximityIndicatorController>().removeEnemy(gameObject);
+			Destroy(minimapIndicator);
+			Destroy(gameObject);
+			player.GetComponent<PlayerController>().AddGold(50); //Definir um valor fixo para quando se mata um mob
+		}
         //HP -= 0.1f; //Barra HP_mob
-        //healthBar.UpdateBar(HP, HP_max);
+        healthBar.UpdateBar(HP, HP_max);
         minimapIndicator.transform.position = transform.position;
 
         //movimento inteligente do mob
@@ -103,14 +111,7 @@ public class MobController : MonoBehaviour
             //Se tiverem no mesmo nível, limpa o array das portas de ambos
             if (player.GetComponent<PlayerController>().Player_doorsCatched.Count != 0) foreach (DoorController door_aux in player.GetComponent<PlayerController>().Player_doorsCatched) player.GetComponent<PlayerController>().Player_doorsCatched.Remove(door_aux);
         }
-
-        if (HP <= 0)
-		{
-            proximityIndicator.GetComponent<ProximityIndicatorController>().removeEnemy(gameObject);
-            Destroy(minimapIndicator);
-            Destroy(gameObject);
-            player.GetComponent<PlayerController>().AddGold(50); //Definir um valor fixo para quando se mata um mob
-        }
+			
 		if (slowed)
 		{
 			slowTimer += Time.deltaTime;

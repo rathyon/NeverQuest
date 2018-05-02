@@ -7,7 +7,7 @@ public class PoisonTrap : Trap {
 		_damage = 0.5f;
 		placementX = 0.5f;
 		placementY = -0.7f;
-		trapName = "Poisonous Floor";
+		trapName = "Poison Trap";
 		cost = 65;
 		_stopTime = 5.0f;
 	}
