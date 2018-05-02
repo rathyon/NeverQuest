@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour {
     public bool facingRight = true;
 
     public GameObject player;
-    public List<GameObject> enemies;
+    public List<MobController> enemies;
 
     public List<DoorController> Player_doorsCatched = new List<DoorController>();
 
@@ -75,11 +75,11 @@ public class PlayerController : MonoBehaviour {
 		//check if any enemy is currently accepting quest
 		bool anyAccepting = false;
 
-		foreach (GameObject enemy in enemies)
+		foreach (MobController enemy in enemies)
 		{
 			if (enemy != null)
 			{
-				var enemy_script = enemy.GetComponent<MobController>();
+				var enemy_script = enemy;
 
 				if (enemy_script.isAcceptingQuest())
 				{

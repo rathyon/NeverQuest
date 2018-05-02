@@ -21,7 +21,7 @@ public class MobController : MonoBehaviour
 
     public bool flag_change = false;
     public bool canTransport = true;
-    //private bool flag_TryHard = false;
+    private bool flag_TryHard = true;
 
     public int flag_Teste;
     public float speed, questAcceptTime;
@@ -55,6 +55,8 @@ public class MobController : MonoBehaviour
         spriteRenderer_mob = GetComponent<SpriteRenderer>();
         rb2d_mob = GetComponent<Rigidbody2D>();
 
+        player.GetComponent<PlayerController>().enemies.Add(this);
+
         minimapIndicator = Instantiate(minimapIndicator, transform.position, Quaternion.identity);
     }
 
@@ -62,6 +64,10 @@ public class MobController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (flag_TryHard) {
+            findDoor(mobTransportLevel, player.GetComponent<PlayerController>().transportLevel);
+            flag_TryHard = false;
+        }
 
 		if (HP <= 0)
 		{
@@ -76,18 +82,12 @@ public class MobController : MonoBehaviour
 
         //movimento inteligente do mob
         playerTransportLevel = player.GetComponent<PlayerController>().transportLevel;
-        doorsToCatch = player.GetComponent<PlayerController>().Player_doorsCatched;
+        //doorsToCatch = player.GetComponent<PlayerController>().Player_doorsCatched;
 
         if (player.GetComponent<PlayerController>().transportLevel != mobTransportLevel) //player e mob nao estao na mesma sala
         {
-            if (player.GetComponent<PlayerController>().Player_doorsCatched.Count == 0)
-            {
-                findDoor(mobTransportLevel, player.GetComponent<PlayerController>().transportLevel);
-                posToFollow = doorsToCatch[0].transform.position.x;
-            }
-
-            else posToFollow = player.GetComponent<PlayerController>().Player_doorsCatched[0].transform.position.x;
-
+            posToFollow = doorsToCatch[0].transform.position.x;
+            
             if (posToFollow > transform.position.x) 
             {
                 transform.position += new Vector3(speed * slowPercentage * 0.025f, 0.0f);
@@ -112,10 +112,11 @@ public class MobController : MonoBehaviour
                 facingRight = false;
             }
             //Se tiverem no mesmo nível, limpa o array das portas de ambos
-            if (player.GetComponent<PlayerController>().Player_doorsCatched.Count != 0) foreach (DoorController door_aux in player.GetComponent<PlayerController>().Player_doorsCatched) player.GetComponent<PlayerController>().Player_doorsCatched.Remove(door_aux);
+            foreach (DoorController door_aux in player.GetComponent<PlayerController>().Player_doorsCatched) player.GetComponent<PlayerController>().Player_doorsCatched.Remove(door_aux);
+            foreach (DoorController door_aux in doorsToCatch) doorsToCatch.Remove(door_aux);
         }
-			
-		if (slowed)
+
+        if (slowed)
 		{
 			slowTimer += Time.deltaTime;
 			if (slowTimer >= slowTimerMAX)
