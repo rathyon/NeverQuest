@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour {
     public List<DoorController> Player_doorsCatched = new List<DoorController>();
     public DoorController[] doorsAvaiables;
 
-    private bool storeActive;
+    public bool storeActive;
 	private Button[] bton;
 
     // shooting variables
@@ -55,6 +56,8 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
 		bton = gameObject.GetComponentsInChildren<Button> ();
 		foreach (Button b in bton) {
 			b.interactable = false;
@@ -168,6 +171,9 @@ public class PlayerController : MonoBehaviour {
     }
 
 	public void activateStore(){
+		EventSystem es = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+		es.SetSelectedGameObject(null);
+		es.SetSelectedGameObject(es.firstSelectedGameObject);
 		storeActive = !storeActive;
 		gameObject.GetComponentInChildren<Canvas> ().enabled = !gameObject.GetComponentInChildren<Canvas> ().enabled;
 		foreach (Button b in bton) {

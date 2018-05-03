@@ -32,7 +32,7 @@ public class TrapPlacement : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+		
 		if (placement) {
 			Vector3 position;
 			if (player_script.facingRight) {
@@ -42,21 +42,24 @@ public class TrapPlacement : MonoBehaviour {
 				position = new Vector3 (player.transform.position.x - 2, player.transform.position.y + trap.placementY, transform.position.z);
 			}
 			transform.position = position;
+			if (player_script.gold < trap.cost) {
+				invalidPlacement = true;
+			}
 			if (!invalidPlacement) {
 				cannot.SetActive (false);
 				can.transform.position = position;
 				can.SetActive (true);
 				if (Input.GetKeyDown (KeyCode.E)) {
-					
-					if (player_script.gold >= trap.cost) {
-							Instantiate (trap, position, Quaternion.identity);
+						Instantiate (trap, position, Quaternion.identity);
 						player_script.gold -= trap.cost;
-						}
 				}
 			} else {
 				can.SetActive (false);
 				cannot.transform.position = position;
 				cannot.SetActive (true);	
+			}
+			if (Input.GetKeyDown (KeyCode.C)) {
+				placement = false;
 			}
 		} 
 		else {
