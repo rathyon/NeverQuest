@@ -33,7 +33,8 @@ public class WavesManagerController : MonoBehaviour
 
     public void EnemySlain()
     {
-        LivingEnemies--;
+        LivingEnemies-=1;
+        Debug.Log("Enemy slain!");
     }
 
     // Use this for initialization
@@ -64,7 +65,8 @@ public class WavesManagerController : MonoBehaviour
             //if everything has been spawned, stop spawning
             if (MobsSpawned >= MobsPerWave[CurrentWave - 1] &&
                 RushersSpawned >= RushersPerWave[CurrentWave - 1] &&
-                BruisersSpawned >= BruisersPerWave[CurrentWave - 1])
+                BruisersSpawned >= BruisersPerWave[CurrentWave - 1] && 
+                !AllSpawned)
             {
                 StopCoroutine("SpawnEnemies");
                 AllSpawned = true;
@@ -91,7 +93,8 @@ public class WavesManagerController : MonoBehaviour
 
     IEnumerator PrepCountdown()
     {
-        while (true) {
+        while (true)
+        {
             yield return new WaitForSeconds(1);
             timeLeft--;
         }
@@ -107,7 +110,7 @@ public class WavesManagerController : MonoBehaviour
             // HARDCODED NUMBER OF ENEMY TYPES!!! CHANGE WHEN NUMBER OF TYPES INCREASES!!
 
 
-            
+
             if (MobsSpawned < MobsPerWave[CurrentWave - 1])
                 available.Add(1);
             if (RushersSpawned < RushersPerWave[CurrentWave - 1])
@@ -126,8 +129,9 @@ public class WavesManagerController : MonoBehaviour
             if (spawnType == 1)
             {
                 GameObject Spawn = Instantiate(Mob, SpawnPoints[spawnPoint], Quaternion.identity);
-                Spawn.GetComponent<MobController>().mobTransportLevel = (int)SpawnPoints[spawnPoint].w;
+                Spawn.GetComponent<MobController>().currentFloor = (int)SpawnPoints[spawnPoint].w;
                 Spawn.GetComponent<MobController>().player = Player;
+                Spawn.GetComponent<MobController>().wavesManager = gameObject;
                 Player.GetComponent<PlayerController>().enemies.Add(Spawn.GetComponent<MobController>());
                 MobsSpawned++;
                 LivingEnemies++;
@@ -135,8 +139,9 @@ public class WavesManagerController : MonoBehaviour
             else if (spawnType == 2)
             {
                 GameObject Spawn = Instantiate(Rusher, SpawnPoints[spawnPoint], Quaternion.identity);
-                Spawn.GetComponent<MobController>().mobTransportLevel = (int)SpawnPoints[spawnPoint].w;
+                Spawn.GetComponent<MobController>().currentFloor = (int)SpawnPoints[spawnPoint].w;
                 Spawn.GetComponent<MobController>().player = Player;
+                Spawn.GetComponent<MobController>().wavesManager = gameObject;
                 Player.GetComponent<PlayerController>().enemies.Add(Spawn.GetComponent<MobController>());
                 RushersSpawned++;
                 LivingEnemies++;
@@ -144,8 +149,9 @@ public class WavesManagerController : MonoBehaviour
             else if (spawnType == 3)
             {
                 GameObject Spawn = Instantiate(Bruiser, SpawnPoints[spawnPoint], Quaternion.identity);
-                Spawn.GetComponent<MobController>().mobTransportLevel = (int)SpawnPoints[spawnPoint].w;
+                Spawn.GetComponent<MobController>().currentFloor = (int)SpawnPoints[spawnPoint].w;
                 Spawn.GetComponent<MobController>().player = Player;
+                Spawn.GetComponent<MobController>().wavesManager = gameObject;
                 Player.GetComponent<PlayerController>().enemies.Add(Spawn.GetComponent<MobController>());
                 BruisersSpawned++;
                 LivingEnemies++;

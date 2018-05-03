@@ -7,176 +7,190 @@ using UnityEngine;
 public class MobController : MonoBehaviour
 {
     public float HP;
-    private float HP_max;
-    public Text labelHP;
+    private float MaxHP;
+
+    public Text HPBarText;
+
     public GameObject player;
     public GameObject proximityIndicator;
     public GameObject minimapIndicator;
     public GameObject wavesManager;
 
-    public List<DoorController> doorsToCatch = new List<DoorController>();
+    public List<DoorController> PathToPlayer = new List<DoorController>();
 
-    int playerTransportLevel;
-    public int mobTransportLevel;
-
-    public bool flag_change = false;
+    public int currentFloor;
+    private int playerFloor;
     public bool canTransport = true;
-    private bool flag_TryHard = true;
 
-    public int flag_Teste;
-    public float speed, questAcceptTime=3;
-    private float posToFollow;
+    public float speed, questAcceptTime;
 
-    //private Rigidbody2D rb2d;
-    private bool timerActive;
+    public float targetPos;
+
+    private bool timerActive = false;
     public bool slowed;
     public float slowPercentage;
     private float slowTimer;
     public float slowTimerMAX;
-	public bool facingRight;
-
+    public bool facingRight;
 
     public SimpleHealthBar healthBar;
-    SpriteRenderer spriteRenderer_mob;
-    Rigidbody2D rb2d_mob;
+    private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rb2d;
 
-	private bool acceptingQuest = false;
+    private bool acceptingQuest = false;
 
+    public bool isAcceptingQuest()
+    {
+        return acceptingQuest;
+    }
 
     // Use this for initialization
     void Start()
     {
-        flag_Teste = 0;
-        //speed = 1.5f;
-		//HP = 100;
-        HP_max = HP;
+        MaxHP = HP;
         slowPercentage = 1.0f;
-		timerActive = false;
-        spriteRenderer_mob = GetComponent<SpriteRenderer>();
-        rb2d_mob = GetComponent<Rigidbody2D>();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rb2d = GetComponent<Rigidbody2D>();
 
         player.GetComponent<PlayerController>().enemies.Add(this);
-
         minimapIndicator = Instantiate(minimapIndicator, transform.position, Quaternion.identity);
+        playerFloor = player.GetComponent<PlayerController>().transportLevel;
+
+        findDoor(currentFloor, playerFloor);
     }
-
-    int estado_antigo;
-    // Update is called once per frame
-    void Update()
-    {
-        if (flag_TryHard) {
-            findDoor(mobTransportLevel, player.GetComponent<PlayerController>().transportLevel);
-            flag_TryHard = false;
-        }
-
-		if (HP <= 0)
-		{
-            wavesManager.GetComponent<WavesManagerController>().EnemySlain();
-			proximityIndicator.GetComponent<ProximityIndicatorController>().removeEnemy(gameObject);
-			Destroy(minimapIndicator);
-			Destroy(gameObject);
-			player.GetComponent<PlayerController>().AddGold(50); //Definir um valor fixo para quando se mata um mob
-		}
-        //HP -= 0.1f; //Barra HP_mob
-        healthBar.UpdateBar(HP, HP_max);
-        minimapIndicator.transform.position = transform.position;
-
-        //movimento inteligente do mob
-        playerTransportLevel = player.GetComponent<PlayerController>().transportLevel;
-        //doorsToCatch = player.GetComponent<PlayerController>().Player_doorsCatched;
-
-        if (player.GetComponent<PlayerController>().transportLevel != mobTransportLevel) //player e mob nao estao na mesma sala
-        {
-            posToFollow = doorsToCatch[0].transform.position.x;
-            
-            if (posToFollow > transform.position.x) 
-            {
-                transform.position += new Vector3(speed * slowPercentage * 0.025f, 0.0f);
-                facingRight = true;
-            }
-            else if (posToFollow < transform.position.x)
-            {
-                transform.position -= new Vector3(speed * slowPercentage * 0.025f, 0.0f);
-                facingRight = false;
-            }
-        }
-        else
-        { // simple tracking movement just in the x axis
-            if (player.transform.position.x > transform.position.x)
-            {
-                transform.position += new Vector3(speed * slowPercentage * 0.025f, 0.0f);
-                facingRight = true;
-            }
-            else if (player.transform.position.x < transform.position.x)
-            {
-                transform.position -= new Vector3(speed * slowPercentage * 0.025f, 0.0f);
-                facingRight = false;
-            }
-            //Se tiverem no mesmo nível, limpa o array das portas de ambos
-            foreach (DoorController door_aux in player.GetComponent<PlayerController>().Player_doorsCatched.ToArray()) player.GetComponent<PlayerController>().Player_doorsCatched.Remove(door_aux);
-            foreach (DoorController door_aux2 in doorsToCatch.ToArray()) doorsToCatch.Remove(door_aux2);
-        }
-
-        if (slowed)
-		{
-			slowTimer += Time.deltaTime;
-			if (slowTimer >= slowTimerMAX)
-			{
-				slowPercentage=1.0f;
-				slowTimer = 0;
-				slowed = false;
-			}
-		}
-		if (timerActive)
-		{
-			Countdown();
-		}
-    }
-
-	private void Countdown()
-	{
-		questAcceptTime -= Time.deltaTime;
-	}
-
-	public bool isAcceptingQuest()
-	{
-		return acceptingQuest;
-	}
 
     private void findDoor(int mobLevel, int playerLevel)
     {
-        List<DoorController> doors_aux = new List<DoorController>(), doors_lvl = new List<DoorController>();
-        foreach (DoorController door in player.GetComponent<PlayerController>().doorsAvaiables)
+        List<DoorController> path = new List<DoorController>();
+        List<DoorController> doorsInCurrentLevel = new List<DoorController>();
+
+        // for all doors in the level
+        foreach (DoorController door in player.GetComponent<PlayerController>().allDoors)
         {
-            if (door.DoorLevel == mobLevel) //door com acesso direto
+            if (door.level == mobLevel)
             {
-                if (door.DoorToNextLevel == playerLevel)
+                if (door.nextLevel == playerLevel)
                 {
-                    doors_aux.Add(door); break;
+                    path.Add(door);
+                    break;
                 }
-                else doors_lvl.Add(door);
+                else
+                {
+                    doorsInCurrentLevel.Add(door);
+                }
             }
 
         }
-        if (doors_aux.Count == 0) { doors_aux.Add(doors_lvl[0]); findDoor(doors_lvl.ToArray()[0].DoorToNextLevel, playerLevel); }
+        if (path.Count == 0)
+        {
+            //this is for the spawn point, where there only is one door
+            path.Add(doorsInCurrentLevel[0]);
+            findDoor(doorsInCurrentLevel.ToArray()[0].nextLevel, playerLevel);
+        }
 
-        foreach (DoorController door2 in doors_aux.ToArray()) doorsToCatch.Insert(0, door2);
+        foreach (DoorController door2 in path.ToArray())
+            PathToPlayer.Insert(0, door2);
+
+        path.Clear();
+        doorsInCurrentLevel.Clear();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-	{
-		if (collision.gameObject.CompareTag("Player"))
-		{
-			timerActive = true;
-			acceptingQuest = true;
-		}
-	}
-	private void OnCollisionExit2D(Collision2D collision)
-	{
-		if (collision.gameObject.CompareTag("Player"))
-		{
-			timerActive = false;
-			acceptingQuest = false;
-		}
-	}
 
+    private void moveTo(float target)
+    {
+        if (target > transform.position.x)
+        {
+            transform.position += new Vector3(speed * slowPercentage * 0.025f, 0.0f);
+            facingRight = true;
+        }
+        else if (target < transform.position.x)
+        {
+            transform.position -= new Vector3(speed * slowPercentage * 0.025f, 0.0f);
+            facingRight = false;
+        }
+    }
+
+    private void updateSpeed()
+    {
+        if (slowed)
+        {
+            slowTimer += Time.deltaTime;
+            if (slowTimer >= slowTimerMAX)
+            {
+                slowPercentage = 1.0f;
+                slowTimer = 0;
+                slowed = false;
+            }
+        }
+    }
+
+    private void Countdown()
+    {
+        questAcceptTime -= Time.deltaTime;
+    }
+
+    void Update()
+    {
+
+        if (HP <= 0)
+        {
+            wavesManager.GetComponent<WavesManagerController>().EnemySlain();
+            proximityIndicator.GetComponent<ProximityIndicatorController>().removeEnemy(gameObject);
+            Destroy(minimapIndicator);
+            player.GetComponent<PlayerController>().AddGold(50); //Definir um valor fixo para quando se mata um mob
+            player.GetComponent<PlayerController>().enemies.Remove(this);
+
+            Destroy(gameObject);
+        }
+
+        // update HUD stuff
+        healthBar.UpdateBar(HP, MaxHP);
+        minimapIndicator.transform.position = transform.position;
+
+        updateSpeed();
+
+        //get player's current floor
+        playerFloor = player.GetComponent<PlayerController>().transportLevel;
+
+        //if mob is not on player's floor
+        if (playerFloor != currentFloor)
+        {
+            moveTo(PathToPlayer[0].transform.position.x);
+        }
+        // if on same floor
+        else
+        {
+            moveTo(player.transform.position.x);
+        }
+
+        //Se tiverem no mesmo nível, limpa o array das portas de ambos
+        /*
+        foreach (DoorController door_aux in player.GetComponent<PlayerController>().Player_doorsCatched.ToArray())
+            player.GetComponent<PlayerController>().Player_doorsCatched.Remove(door_aux);
+        foreach (DoorController door_aux2 in doorsToCatch.ToArray())
+            doorsToCatch.Remove(door_aux2);
+            */
+
+        if (timerActive)
+        {
+            Countdown();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            timerActive = true;
+            acceptingQuest = true;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            timerActive = false;
+            acceptingQuest = false;
+        }
+    }
 }

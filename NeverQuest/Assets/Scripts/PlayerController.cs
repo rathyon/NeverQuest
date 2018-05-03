@@ -4,7 +4,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     public float speed;
 
@@ -18,16 +19,16 @@ public class PlayerController : MonoBehaviour {
     public GameObject player;
     public List<MobController> enemies = new List<MobController>();
 
-    public List<DoorController> Player_doorsCatched = new List<DoorController>();
-    public DoorController[] doorsAvaiables;
+    //public List<DoorController> Player_doorsCatched = new List<DoorController>();
+    public DoorController[] allDoors;
 
     public bool storeActive;
-	private Button[] bton;
+    private Button[] bton;
 
     // shooting variables
-	public GameObject bullet;
+    public GameObject bullet;
     private bool canShoot = true;
-	public float bullet_damage;
+    public float bullet_damage;
     public float shootCooldown;
     private float shootTimeRemaining;
 
@@ -40,13 +41,13 @@ public class PlayerController : MonoBehaviour {
 
     public bool grounded;
 
-	public Text questWarning;
-	public float timeAccept;
-	public bool questIsBeingAccepted = false;
-	public float timeToAcceptQuest = 5.0f;
-	private bool anyAccepting = false;
+    public Text questWarning;
+    public float timeAccept;
+    public bool questIsBeingAccepted = false;
+    public float timeToAcceptQuest = 5.0f;
+    private bool anyAccepting = false;
 
-   
+
 
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb2d;
@@ -54,97 +55,100 @@ public class PlayerController : MonoBehaviour {
     public int transportLevel;
 
 
-	// Use this for initialization
-	void Start () {
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
-		bton = gameObject.GetComponentsInChildren<Button> ();
-		foreach (Button b in bton) {
-			b.interactable = false;
-		}
-		//questWarning.text = "";
-		timeAccept=5.0f;
-		bullet_damage = 10.0f;
-		storeActive = false;
+    // Use this for initialization
+    void Start()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        bton = gameObject.GetComponentsInChildren<Button>();
+        foreach (Button b in bton)
+        {
+            b.interactable = false;
+        }
+        //questWarning.text = "";
+        timeAccept = 5.0f;
+        bullet_damage = 10.0f;
+        storeActive = false;
         grounded = true;
         transportLevel = 3;
         gold = 200;
         waitedTime = 0.0f;
         inactiveTimerMAX = 1.45f;
 
-        gameObject.GetComponentInChildren<Canvas> ().enabled = false;
+        gameObject.GetComponentInChildren<Canvas>().enabled = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
-	}
+    }
 
-	private void LateUpdate()
-	{
-		
-		//check if any enemy is currently accepting quest
+    private void LateUpdate()
+    {
 
-//		foreach (MobController enemy in enemies)
-//		{
-//			if (enemy != null)
-//			{
-//				var enemy_script = enemy;
-//
-//				if (enemy_script.isAcceptingQuest())
-//				{
-//					questIsBeingAccepted = true;
-//					anyAccepting = true;
-//					if (enemy_script.questAcceptTime <= timeToAcceptQuest)
-//					{
-//						timeToAcceptQuest = enemy_script.questAcceptTime;
-//					}
-//				}
-//			}
-//		}
-		if (!anyAccepting)
-		{
-			questIsBeingAccepted = false;
-			timeToAcceptQuest = timeAccept;
-		}
+        //check if any enemy is currently accepting quest
 
-		if (questIsBeingAccepted)
-		{
-			questWarning.text = "QUEST ACCEPTED IN: " + ((int)timeToAcceptQuest + 1);
-			timeToAcceptQuest -= Time.deltaTime;
-		}
-		else
-		{
-			questWarning.text = "";
-		}
+        //		foreach (MobController enemy in enemies)
+        //		{
+        //			if (enemy != null)
+        //			{
+        //				var enemy_script = enemy;
+        //
+        //				if (enemy_script.isAcceptingQuest())
+        //				{
+        //					questIsBeingAccepted = true;
+        //					anyAccepting = true;
+        //					if (enemy_script.questAcceptTime <= timeToAcceptQuest)
+        //					{
+        //						timeToAcceptQuest = enemy_script.questAcceptTime;
+        //					}
+        //				}
+        //			}
+        //		}
+        if (!anyAccepting)
+        {
+            questIsBeingAccepted = false;
+            timeToAcceptQuest = timeAccept;
+        }
 
-		if (timeToAcceptQuest <= 0.0f)
-		{
-			questWarning.text = "GAME OVER";
-			Time.timeScale = 0;
-		}
-	}
+        if (questIsBeingAccepted)
+        {
+            questWarning.text = "QUEST ACCEPTED IN: " + ((int)timeToAcceptQuest + 1);
+            timeToAcceptQuest -= Time.deltaTime;
+        }
+        else
+        {
+            questWarning.text = "";
+        }
+
+        if (timeToAcceptQuest <= 0.0f)
+        {
+            questWarning.text = "GAME OVER";
+            Time.timeScale = 0;
+        }
+    }
 
     void FixedUpdate()
     {
-		if (!storeActive){
-	        float moveHorizontal = Input.GetAxis("Horizontal");
+        if (!storeActive)
+        {
+            float moveHorizontal = Input.GetAxis("Horizontal");
 
-	        Vector3 movement = new Vector3(moveHorizontal, 0.0f, 0.0f);
-	        if (spriteRenderer != null)
-	        {
-	            if (moveHorizontal < 0 && facingRight)
-	            {
-	                facingRight = !facingRight;
-	                spriteRenderer.flipX = !spriteRenderer.flipX;
-	            }
-	            if (moveHorizontal > 0 && !facingRight)
-	            {
-	                facingRight = !facingRight;
-	                spriteRenderer.flipX = !spriteRenderer.flipX;
-	            }
-	        }
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, 0.0f);
+            if (spriteRenderer != null)
+            {
+                if (moveHorizontal < 0 && facingRight)
+                {
+                    facingRight = !facingRight;
+                    spriteRenderer.flipX = !spriteRenderer.flipX;
+                }
+                if (moveHorizontal > 0 && !facingRight)
+                {
+                    facingRight = !facingRight;
+                    spriteRenderer.flipX = !spriteRenderer.flipX;
+                }
+            }
 
-	        transform.position += movement * speed * 0.1f;
-	        //rb2d.AddForce(movement * speed);
-		}
+            transform.position += movement * speed * 0.1f;
+            //rb2d.AddForce(movement * speed);
+        }
     }
 
     private void FireFlamethrower()
@@ -170,28 +174,32 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-	public void activateStore(){
-		EventSystem es = GameObject.Find("EventSystem").GetComponent<EventSystem>();
-		es.SetSelectedGameObject(null);
-		es.SetSelectedGameObject(es.firstSelectedGameObject);
-		storeActive = !storeActive;
-		gameObject.GetComponentInChildren<Canvas> ().enabled = !gameObject.GetComponentInChildren<Canvas> ().enabled;
-		foreach (Button b in bton) {
-			b.interactable = !b.interactable;
-		}
-	}
+    public void activateStore()
+    {
+        EventSystem es = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+        es.SetSelectedGameObject(null);
+        es.SetSelectedGameObject(es.firstSelectedGameObject);
+        storeActive = !storeActive;
+        gameObject.GetComponentInChildren<Canvas>().enabled = !gameObject.GetComponentInChildren<Canvas>().enabled;
+        foreach (Button b in bton)
+        {
+            b.interactable = !b.interactable;
+        }
+    }
 
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         TimerJump();
         float moveHorizontal = Input.GetAxis("Horizontal");
         if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
         {
-			if (!storeActive) {
-				GetComponent<Rigidbody2D> ().velocity = new Vector2 (moveHorizontal, jumpPower);
-				grounded = false;
-			}
+            if (!storeActive)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(moveHorizontal, jumpPower);
+                grounded = false;
+            }
 
         }
 
@@ -209,7 +217,7 @@ public class PlayerController : MonoBehaviour {
 
         if (!canFlamethrower)
         {
-            if(flamethrowerTimeRemaining <= 0)
+            if (flamethrowerTimeRemaining <= 0)
             {
                 canFlamethrower = true;
             }
@@ -219,28 +227,33 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown (KeyCode.B)) {
-			activateStore();
-		}
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            activateStore();
+        }
 
-        if (Input.GetKeyDown (KeyCode.Space)) {
-            ShootProjectile();    
-		}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ShootProjectile();
+        }
 
-		if (Input.GetKeyDown (KeyCode.Q)) {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
             FireFlamethrower();
-		}
-        if (Input.GetKeyUp (KeyCode.Q))
+        }
+        if (Input.GetKeyUp(KeyCode.Q))
         {
             flamethrowerOn = false;
         }
     }
 
-    public void AddGold(int _gold) {
+    public void AddGold(int _gold)
+    {
         gold += _gold;
     }
 
-    public void TimerJump() {
+    public void TimerJump()
+    {
         if (!grounded)
         {
             waitedTime += Time.deltaTime;
@@ -252,20 +265,20 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-	private void OnTriggerStay2D(Collider2D collision)
-	{
-		if (collision.gameObject.CompareTag("Mob"))
-		{
-			questIsBeingAccepted = true;
-			anyAccepting = true;
-		}
-	}
-	private void OnTriggerExit2D(Collider2D collision)
-	{
-		if (collision.gameObject.CompareTag("Mob"))
-		{
-			questIsBeingAccepted = false;
-			anyAccepting = false;
-		}
-	}
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Mob"))
+        {
+            questIsBeingAccepted = true;
+            anyAccepting = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Mob"))
+        {
+            questIsBeingAccepted = false;
+            anyAccepting = false;
+        }
+    }
 }
