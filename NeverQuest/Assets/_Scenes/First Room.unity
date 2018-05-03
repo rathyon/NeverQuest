@@ -1852,7 +1852,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1753650936550232, guid: 8f3d0f891598b054db4b83ada434ecb0, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f3d0f891598b054db4b83ada434ecb0, type: 2}
@@ -5766,7 +5766,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1753650936550232, guid: 8f3d0f891598b054db4b83ada434ecb0, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f3d0f891598b054db4b83ada434ecb0, type: 2}
@@ -6982,17 +6982,6 @@ MonoBehaviour:
     type: 2}
   RusherMob: {fileID: 1506243833303974, guid: 2f6d9db6702954a40a6cae7b4794aede, type: 2}
   BruiserMob: {fileID: 1490694116252194, guid: a56766c005cb75c49be627e637bad47d, type: 2}
-  doorsAvaiables:
-  - {fileID: 282911812}
-  - {fileID: 616248885}
-  - {fileID: 809099419}
-  - {fileID: 1954022773}
-  - {fileID: 1930784294}
-  - {fileID: 1777708573}
-  - {fileID: 212790048}
-  - {fileID: 109285178}
-  - {fileID: 963119583}
-  - {fileID: 2050888509}
   spawnPoints: []
   waveString: 0
   prepDuration: 5
@@ -8039,7 +8028,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1753650936550232, guid: 8f3d0f891598b054db4b83ada434ecb0, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f3d0f891598b054db4b83ada434ecb0, type: 2}
@@ -8890,6 +8879,7 @@ MonoBehaviour:
   player: {fileID: 1815465516}
   enemies: []
   Player_doorsCatched: []
+  doorsAvaiables: []
   bullet: {fileID: 1160426210486804, guid: ebe01ffa595974053ac206ef1ae021bc, type: 2}
   bullet_damage: 0
   shootCooldown: 0.5
@@ -9564,7 +9554,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1753650936550232, guid: 8f3d0f891598b054db4b83ada434ecb0, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f3d0f891598b054db4b83ada434ecb0, type: 2}

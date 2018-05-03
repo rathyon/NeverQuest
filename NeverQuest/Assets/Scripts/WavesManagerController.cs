@@ -12,7 +12,6 @@ public class WavesManagerController : MonoBehaviour
     public int SpawnDelay;
     public GameObject Player, Mob, Rusher, Bruiser;
     public List<Vector4> SpawnPoints = new List<Vector4>();
-    public DoorController[] doorsList;
 
     public int[] MobsPerWave;
     public int[] RushersPerWave;
@@ -128,7 +127,6 @@ public class WavesManagerController : MonoBehaviour
             {
                 GameObject Spawn = Instantiate(Mob, SpawnPoints[spawnPoint], Quaternion.identity);
                 Spawn.GetComponent<MobController>().mobTransportLevel = (int)SpawnPoints[spawnPoint].w;
-                Spawn.GetComponent<MobController>().doorsAvaiables = doorsList;
                 Spawn.GetComponent<MobController>().player = Player;
                 Player.GetComponent<PlayerController>().enemies.Add(Spawn.GetComponent<MobController>());
                 MobsSpawned++;
@@ -138,7 +136,6 @@ public class WavesManagerController : MonoBehaviour
             {
                 GameObject Spawn = Instantiate(Rusher, SpawnPoints[spawnPoint], Quaternion.identity);
                 Spawn.GetComponent<MobController>().mobTransportLevel = (int)SpawnPoints[spawnPoint].w;
-                Spawn.GetComponent<MobController>().doorsAvaiables = doorsList;
                 Spawn.GetComponent<MobController>().player = Player;
                 Player.GetComponent<PlayerController>().enemies.Add(Spawn.GetComponent<MobController>());
                 RushersSpawned++;
@@ -148,7 +145,6 @@ public class WavesManagerController : MonoBehaviour
             {
                 GameObject Spawn = Instantiate(Bruiser, SpawnPoints[spawnPoint], Quaternion.identity);
                 Spawn.GetComponent<MobController>().mobTransportLevel = (int)SpawnPoints[spawnPoint].w;
-                Spawn.GetComponent<MobController>().doorsAvaiables = doorsList;
                 Spawn.GetComponent<MobController>().player = Player;
                 Player.GetComponent<PlayerController>().enemies.Add(Spawn.GetComponent<MobController>());
                 BruisersSpawned++;

@@ -14,7 +14,6 @@ public class MobController : MonoBehaviour
     public GameObject minimapIndicator;
     public GameObject wavesManager;
 
-    public DoorController[] doorsAvaiables;
     public List<DoorController> doorsToCatch = new List<DoorController>();
 
     int playerTransportLevel;
@@ -114,8 +113,8 @@ public class MobController : MonoBehaviour
                 facingRight = false;
             }
             //Se tiverem no mesmo nível, limpa o array das portas de ambos
-            foreach (DoorController door_aux in player.GetComponent<PlayerController>().Player_doorsCatched) player.GetComponent<PlayerController>().Player_doorsCatched.Remove(door_aux);
-            foreach (DoorController door_aux in doorsToCatch) doorsToCatch.Remove(door_aux);
+            foreach (DoorController door_aux in player.GetComponent<PlayerController>().Player_doorsCatched.ToArray()) player.GetComponent<PlayerController>().Player_doorsCatched.Remove(door_aux);
+            foreach (DoorController door_aux2 in doorsToCatch.ToArray()) doorsToCatch.Remove(door_aux2);
         }
 
         if (slowed)
@@ -147,7 +146,7 @@ public class MobController : MonoBehaviour
     private void findDoor(int mobLevel, int playerLevel)
     {
         List<DoorController> doors_aux = new List<DoorController>(), doors_lvl = new List<DoorController>();
-        foreach (DoorController door in doorsAvaiables)
+        foreach (DoorController door in player.GetComponent<PlayerController>().doorsAvaiables)
         {
             if (door.DoorLevel == mobLevel) //door com acesso direto
             {
@@ -155,15 +154,15 @@ public class MobController : MonoBehaviour
                 {
                     doors_aux.Add(door); break;
                 }
-                else doors_lvl.Add(door); 
+                else doors_lvl.Add(door);
             }
 
         }
         if (doors_aux.Count == 0) { doors_aux.Add(doors_lvl[0]); findDoor(doors_lvl[0].DoorToNextLevel, playerLevel); }
 
-        foreach (DoorController door2 in doors_aux) doorsToCatch.Insert(0, door2);
+        foreach (DoorController door2 in doors_aux.ToArray()) doorsToCatch.Insert(0, door2);
     }
-	private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.gameObject.CompareTag("Player"))
 		{

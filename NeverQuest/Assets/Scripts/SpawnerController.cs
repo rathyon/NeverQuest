@@ -8,8 +8,6 @@ public class SpawnerController : MonoBehaviour
 
     public GameObject player, MobOriginal, RusherMob, BruiserMob;
 
-    public DoorController[] doorsAvaiables;
-
     // stores X coordinates of spawnPoints
 
     // ATTENTION: CURRENTLY SPAWNING AT Y = 0 <-- NEEDS TO BE A PARAMETER IN THE FUTURE
@@ -112,19 +110,16 @@ public class SpawnerController : MonoBehaviour
                 int x = Random.Range(0, 2);
                 GameObject MobEnemy = Instantiate(MobOriginal, spawnPoints[x], Quaternion.identity);
                 MobEnemy.GetComponent<MobController>().mobTransportLevel = (int)spawnPoints[x].w;
-                MobEnemy.GetComponent<MobController>().doorsAvaiables = doorsAvaiables;
                 MobEnemy.GetComponent<MobController>().player = player;
 
                 x = Random.Range(0, 2);
                 GameObject RusherEnemy = Instantiate(RusherMob, spawnPoints[x], Quaternion.identity);
                 RusherEnemy.GetComponent<MobController>().mobTransportLevel = (int)spawnPoints[x].w;
-                RusherEnemy.GetComponent<MobController>().doorsAvaiables = doorsAvaiables;
                 RusherEnemy.GetComponent<MobController>().player = player;
 
                 x = Random.Range(0, 2);
                 GameObject RusherEnemy1 = Instantiate(RusherMob, spawnPoints[x], Quaternion.identity);
                 RusherEnemy1.GetComponent<MobController>().mobTransportLevel = (int)spawnPoints[x].w;
-                RusherEnemy1.GetComponent<MobController>().doorsAvaiables = doorsAvaiables;
                 RusherEnemy1.GetComponent<MobController>().player = player;
 
               
@@ -140,12 +135,10 @@ public class SpawnerController : MonoBehaviour
                 int x = Random.Range(0, 2);
                 GameObject _MobEnemy = Instantiate(MobOriginal, spawnPoints[x], Quaternion.identity);
                 _MobEnemy.GetComponent<MobController>().mobTransportLevel = (int)spawnPoints[x].w;
-                _MobEnemy.GetComponent<MobController>().doorsAvaiables = doorsAvaiables;
                 _MobEnemy.GetComponent<MobController>().player = player;
                 x = Random.Range(0, 2);
                 GameObject _MobEnemy1 = Instantiate(MobOriginal, spawnPoints[x], Quaternion.identity);
                 _MobEnemy.GetComponent<MobController>().mobTransportLevel = (int)spawnPoints[x].w;
-                _MobEnemy.GetComponent<MobController>().doorsAvaiables = doorsAvaiables;
                 _MobEnemy.GetComponent<MobController>().player = player;
                 x = Random.Range(0, 2);
                
@@ -153,13 +146,11 @@ public class SpawnerController : MonoBehaviour
                 x = Random.Range(0, 2);
                 GameObject _RusherEnemy = Instantiate(RusherMob, spawnPoints[x], Quaternion.identity);
                 _RusherEnemy.GetComponent<MobController>().mobTransportLevel = (int)spawnPoints[x].w;
-                _RusherEnemy.GetComponent<MobController>().doorsAvaiables = doorsAvaiables;
                 _RusherEnemy.GetComponent<MobController>().player = player;
 
                 x = Random.Range(0, 2);
                 GameObject _RusherEnemy1 = Instantiate(RusherMob, spawnPoints[x], Quaternion.identity);
                 _RusherEnemy.GetComponent<MobController>().mobTransportLevel = (int)spawnPoints[x].w;
-                _RusherEnemy.GetComponent<MobController>().doorsAvaiables = doorsAvaiables;
                 _RusherEnemy.GetComponent<MobController>().player = player;
                 x = Random.Range(0, 2);
                
@@ -168,7 +159,6 @@ public class SpawnerController : MonoBehaviour
                 x = Random.Range(0, 2);
                 GameObject _BruiserEnemy = Instantiate(BruiserMob, spawnPoints[x], Quaternion.identity);
                 _BruiserEnemy.GetComponent<MobController>().mobTransportLevel = (int)spawnPoints[x].w;
-                _BruiserEnemy.GetComponent<MobController>().doorsAvaiables = doorsAvaiables;
                 _BruiserEnemy.GetComponent<MobController>().player = player;
 
 

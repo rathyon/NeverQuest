@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
     public List<MobController> enemies = new List<MobController>();
 
     public List<DoorController> Player_doorsCatched = new List<DoorController>();
+    public DoorController[] doorsAvaiables;
 
     private bool storeActive;
 	private Button[] bton;

@@ -25,12 +25,13 @@ public class DoorController : MonoBehaviour {
             collision.GetComponent<PlayerController>().transform.position = linkedDoor.transform.position;
             collision.GetComponent<PlayerController>().Player_doorsCatched.Add(this);
 
-            foreach (MobController x in collision.GetComponent<PlayerController>().enemies)
-                x.doorsToCatch.Add(this);
+            foreach (MobController x in collision.GetComponent<PlayerController>().enemies.ToArray())
+                if (!x.doorsToCatch.Contains(this.linkedDoor.GetComponent<DoorController>())) x.doorsToCatch.Add(this);
+                else x.doorsToCatch.Remove(this.linkedDoor.GetComponent<DoorController>());
 
             collision.GetComponent<PlayerController>().transportLevel = DoorToNextLevel;
         }
-        if (collision.gameObject.CompareTag("Mob") && collision.GetComponent<MobController>().canTransport && this == collision.GetComponent<MobController>().doorsToCatch[0])
+        if (collision.gameObject.CompareTag("Mob") && collision.GetComponent<MobController>().canTransport && collision.GetComponent<MobController>().doorsToCatch.Count != 0 && this == collision.GetComponent<MobController>().doorsToCatch.ToArray()[0])
         {
             collision.GetComponent<MobController>().transform.position = linkedDoor.transform.position;
             collision.GetComponent<MobController>().mobTransportLevel = DoorToNextLevel;
