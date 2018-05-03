@@ -8879,7 +8879,17 @@ MonoBehaviour:
   player: {fileID: 1815465516}
   enemies: []
   Player_doorsCatched: []
-  doorsAvaiables: []
+  doorsAvaiables:
+  - {fileID: 282911812}
+  - {fileID: 616248885}
+  - {fileID: 809099419}
+  - {fileID: 1954022773}
+  - {fileID: 1930784294}
+  - {fileID: 1777708573}
+  - {fileID: 212790048}
+  - {fileID: 109285178}
+  - {fileID: 963119583}
+  - {fileID: 2050888509}
   bullet: {fileID: 1160426210486804, guid: ebe01ffa595974053ac206ef1ae021bc, type: 2}
   bullet_damage: 0
   shootCooldown: 0.5
@@ -9554,6 +9564,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1753650936550232, guid: 8f3d0f891598b054db4b83ada434ecb0, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114985599955085428, guid: 8f3d0f891598b054db4b83ada434ecb0,
+        type: 2}
+      propertyPath: slowPercentage
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

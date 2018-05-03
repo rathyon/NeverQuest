@@ -158,7 +158,7 @@ public class MobController : MonoBehaviour
             }
 
         }
-        if (doors_aux.Count == 0) { doors_aux.Add(doors_lvl[0]); findDoor(doors_lvl[0].DoorToNextLevel, playerLevel); }
+        if (doors_aux.Count == 0) { doors_aux.Add(doors_lvl[0]); findDoor(doors_lvl.ToArray()[0].DoorToNextLevel, playerLevel); }
 
         foreach (DoorController door2 in doors_aux.ToArray()) doorsToCatch.Insert(0, door2);
     }
