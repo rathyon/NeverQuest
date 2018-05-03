@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EngQHability : MonoBehaviour {
 	private float timeOfLife;
-	private float _damage;
+	public float damagePerFrame;
 	private int moveHorizontal;
 	private bool lastChange;
 	private float lifeTime;
@@ -13,7 +13,7 @@ public class EngQHability : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		lastChange = true;
-		_damage = 1;
+        damagePerFrame = 1;
 		playerCont = GameObject.Find ("Player");
 		timeOfLife = 0.0f;
 	}
@@ -50,7 +50,7 @@ public class EngQHability : MonoBehaviour {
 	private void OnTriggerStay2D(Collider2D collision){
 		if (collision.gameObject.CompareTag("Mob")){
 			var mob =collision.GetComponent<MobController> ();
-			mob.HP -= _damage;
+			mob.HP -= damagePerFrame;
 
 		}
 	}
