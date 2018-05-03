@@ -312,6 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 100
+  goldReward: 50
   HPBarText: {fileID: 0}
   player: {fileID: 0}
   proximityIndicator: {fileID: 1362700259955202, guid: 5f9fc866a87d4384d990f5316dc1e6a3,
