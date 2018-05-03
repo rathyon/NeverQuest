@@ -12,6 +12,7 @@ public class MobController : MonoBehaviour
     public GameObject player;
     public GameObject proximityIndicator;
     public GameObject minimapIndicator;
+    public GameObject wavesManager;
 
     public DoorController[] doorsAvaiables;
     public List<DoorController> doorsToCatch = new List<DoorController>();
@@ -71,6 +72,7 @@ public class MobController : MonoBehaviour
 
 		if (HP <= 0)
 		{
+            wavesManager.GetComponent<WavesManagerController>().EnemySlain();
 			proximityIndicator.GetComponent<ProximityIndicatorController>().removeEnemy(gameObject);
 			Destroy(minimapIndicator);
 			Destroy(gameObject);

@@ -309,6 +309,8 @@ MonoBehaviour:
     type: 2}
   minimapIndicator: {fileID: 1598304894650678, guid: c445000a7af56fa49bc82b1cf08abc76,
     type: 2}
+  wavesManager: {fileID: 1576110891764570, guid: 78db9e1291c33074c966abbd6c848f29,
+    type: 2}
   doorsAvaiables:
   - {fileID: 0}
   - {fileID: 0}

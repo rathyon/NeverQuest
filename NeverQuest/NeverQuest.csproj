@@ -234,24 +234,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\HUD.cs" />
     <Compile Include="Assets\Scripts\DoorController.cs" />
+    <Compile Include="Assets\Scripts\EngQHability.cs" />
     <Compile Include="Assets\Scripts\FollowCameraController.cs" />
     <Compile Include="Assets\Scripts\MobController.cs" />
-    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\ProjectileControler.cs" />
     <Compile Include="Assets\Scripts\ProximityIndicatorController.cs" />
     <Compile Include="Assets\Scripts\SetupLevelIA.cs" />
+    <Compile Include="Assets\Scripts\SpawnerController.cs" />
     <Compile Include="Assets\Scripts\Store\ItemStoreController.cs" />
     <Compile Include="Assets\Scripts\Store\StoreItemClickController.cs" />
     <Compile Include="Assets\Scripts\Store\StoreTabSelector.cs" />
+    <Compile Include="Assets\Scripts\Store\WeaponsANDArmor.cs" />
     <Compile Include="Assets\Scripts\TrapPlacement.cs" />
     <Compile Include="Assets\Scripts\Traps\BearTrap.cs" />
+    <Compile Include="Assets\Scripts\Traps\DDOSTrap.cs" />
     <Compile Include="Assets\Scripts\Traps\FireTrap.cs" />
     <Compile Include="Assets\Scripts\Traps\IronMaiden.cs" />
     <Compile Include="Assets\Scripts\Traps\KnockbackTrap.cs" />
     <Compile Include="Assets\Scripts\Traps\MoneyTrap.cs" />
     <Compile Include="Assets\Scripts\Traps\PoisonTrap.cs" />
     <Compile Include="Assets\Scripts\Traps\Trap.cs" />
+    <Compile Include="Assets\Scripts\WavesManagerController.cs" />
     <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\AsteroidController.cs" />
     <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\GameManager.cs" />
     <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\HealthPickupController.cs" />

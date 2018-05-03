@@ -51,17 +51,25 @@ public class ProximityIndicatorController : MonoBehaviour
         for (int i = 0; i < enemiesArray.Length; i++)
         {
             bool contains = false;
-            for (int j = 0; j < enemies.Count; j++)
+            if (enemies.Count <= 0)
             {
-                if (GameObject.ReferenceEquals(enemiesArray[i], enemies[j]))
+                enemies.Add(enemiesArray[i]);
+                AddIndicator(enemiesArray[i]);
+            }
+            else
+            {
+                for (int j = 0; j < enemies.Count; j++)
                 {
-                    contains = true;
-                }
+                    if (GameObject.ReferenceEquals(enemiesArray[i], enemies[j]))
+                    {
+                        contains = true;
+                    }
 
-                if (!contains)
-                {
-                    enemies.Add(enemiesArray[i]);
-                    AddIndicator(enemiesArray[i]);
+                    if (!contains)
+                    {
+                        enemies.Add(enemiesArray[i]);
+                        AddIndicator(enemiesArray[i]);
+                    }
                 }
             }
         }

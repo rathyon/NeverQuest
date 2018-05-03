@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour {
     public bool facingRight = true;
 
     public GameObject player;
-    public List<MobController> enemies;
+    public List<MobController> enemies = new List<MobController>();
 
     public List<DoorController> Player_doorsCatched = new List<DoorController>();
 

@@ -311,12 +311,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e4320f2e97d204390e9ee725134d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 0
+  HP: 100
   labelHP: {fileID: 0}
   player: {fileID: 0}
   proximityIndicator: {fileID: 1362700259955202, guid: 5f9fc866a87d4384d990f5316dc1e6a3,
     type: 2}
   minimapIndicator: {fileID: 1598304894650678, guid: c445000a7af56fa49bc82b1cf08abc76,
+    type: 2}
+  wavesManager: {fileID: 1576110891764570, guid: 78db9e1291c33074c966abbd6c848f29,
     type: 2}
   doorsAvaiables:
   - {fileID: 0}
@@ -334,7 +336,7 @@ MonoBehaviour:
   flag_change: 0
   canTransport: 1
   flag_Teste: 0
-  speed: 0
+  speed: 1.3
   questAcceptTime: 0
   slowed: 0
   slowPercentage: 0
