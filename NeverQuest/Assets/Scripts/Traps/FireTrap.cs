@@ -10,6 +10,7 @@ public class FireTrap : Trap {
 		trapName = "Fire Trap";
 		cost = 45;
 		_stopTime = 5.0f;
+		description = "Burn them all! Just place it near water so nothing bad happens, oh and deals damage per frame";
 	}
 
 	private void OnTriggerStay2D(Collider2D collision){

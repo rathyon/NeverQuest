@@ -12,6 +12,7 @@ public class BearTrap : Trap {
 		_damage = 50.0f;
 		_stopTime = 1.0f;
 		slowPercentage = 0.3f;
+		description = "If you place it legend says they get slowed by 30%, but that might be a myth";
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)

@@ -9,6 +9,7 @@ public class MoneyTrap : Trap {
 		trapName = "Money bait";
 		cost = 15;
 		_stopTime = 5.0f;
+		description = "Place some coins around a see those peasants pick it up for 5s";
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision){

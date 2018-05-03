@@ -14,8 +14,8 @@ public class IronMaiden : Trap {
 		active = true;
 		_damage = 150.0f;
 		inactiveTimerMAX = 1.5f;
-		waitedTime = 0.0f;
-	
+		waitedTime = 7.0f;
+		description = "The makers of the game thought this was too op so it has a cd of 7s";
 	}
 
 	void Update(){

@@ -15,6 +15,8 @@ public class DDOSTrap : Trap {
 		_stopTime = 20.0f;
 		inactiveTimerMAX = 4.0f;
 		waitedTime = 0.0f;
+		_damage = 0;
+		description = "Placing it calls on a hacker that stuns whoever passes through it, just 20s, otherwise it would be op";
 	}
 
 	void Update(){

@@ -14,6 +14,7 @@ public class KnockbackTrap : Trap {
 		cost = 45;
 		inactiveTimerMAX = 2.5f;
 		waitedTime = 0.0f;
+		description = "If it worked it would push enemies back a bit";
 	}
 
 	void Update(){

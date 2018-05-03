@@ -14,6 +14,8 @@ public class Trap : MonoBehaviour {
 	public float _stopTime;
 	public float _slowTime;
 
+
 	public string trapName; //for store
+	public string description;
 
 }

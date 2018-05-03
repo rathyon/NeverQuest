@@ -10,6 +10,7 @@ public class PoisonTrap : Trap {
 		trapName = "Poison Trap";
 		cost = 65;
 		_stopTime = 5.0f;
+		description = "Strange gas that deals damage to 0.5 damage per frame";
 	}
 
 	private void OnTriggerStay2D(Collider2D collision){
