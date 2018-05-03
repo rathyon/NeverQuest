@@ -33,7 +33,7 @@ public class WavesManagerController : MonoBehaviour
 
     public void EnemySlain()
     {
-        LivingEnemies-=1;
+        LivingEnemies -= 1;
         Debug.Log("Enemy slain!");
     }
 
@@ -48,47 +48,61 @@ public class WavesManagerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if its prep phase
-        if (!IsActionPhase)
+        if (CurrentWave <= NumberOfWaves)
         {
-            if (timeLeft <= 0)
+            // if its prep phase
+            if (!IsActionPhase)
             {
-                StopCoroutine("PrepCountdown");
-                timeLeft = prepTime;
-                StartCoroutine("SpawnEnemies");
-                IsActionPhase = true;
+                // Time is over: start the wave!
+                if (timeLeft <= 0)
+                {
+                    Debug.Log("Wave " + CurrentWave + ": start!");
+
+                    StopCoroutine("PrepCountdown");
+                    timeLeft = prepTime;
+                    StartCoroutine("SpawnEnemies");
+                    IsActionPhase = true;
+                }
+            }
+
+            else // if its action phase
+            {
+                //if everything has been spawned, stop spawning
+                if (MobsSpawned >= MobsPerWave[CurrentWave - 1] &&
+                    RushersSpawned >= RushersPerWave[CurrentWave - 1] &&
+                    BruisersSpawned >= BruisersPerWave[CurrentWave - 1] &&
+                    !AllSpawned)
+                {
+                    StopCoroutine("SpawnEnemies");
+                    AllSpawned = true;
+                    Debug.Log("All spawned!");
+                }
+
+                // if everything has been spawned and killed, move on to the next wave
+                // WAVE COMPLETE:
+                if (AllSpawned && LivingEnemies <= 0)
+                {
+                    //reset booleans and increment wave...
+                    AllSpawned = false;
+                    IsActionPhase = false;
+                    MobsSpawned = 0;
+                    RushersSpawned = 0;
+                    BruisersSpawned = 0;
+                    CurrentWave++;
+                    Debug.Log("Wave Complete!");
+                    Debug.Log("Gold awarded: " + 100 * CurrentWave);
+                    Player.GetComponent<PlayerController>().gold += 100 * CurrentWave;
+
+                    StartCoroutine("PrepCountdown");
+                }
             }
         }
-
-        else // if its action phase
+        else
         {
-            //if everything has been spawned, stop spawning
-            if (MobsSpawned >= MobsPerWave[CurrentWave - 1] &&
-                RushersSpawned >= RushersPerWave[CurrentWave - 1] &&
-                BruisersSpawned >= BruisersPerWave[CurrentWave - 1] && 
-                !AllSpawned)
-            {
-                StopCoroutine("SpawnEnemies");
-                AllSpawned = true;
-                Debug.Log("All spawned!");
-            }
-
-            // if everything has been spawned and killed, move on to the next wave
-            if (AllSpawned && LivingEnemies <= 0)
-            {
-                //reset booleans and increment wave...
-                AllSpawned = false;
-                IsActionPhase = false;
-                MobsSpawned = 0;
-                RushersSpawned = 0;
-                BruisersSpawned = 0;
-                CurrentWave++;
-                Debug.Log("Wave Complete!");
-
-                StartCoroutine("PrepCountdown");
-            }
+            // "You won!"
+            Debug.Log("YOU WON!");
+            Time.timeScale = 0.0f;
         }
-
     }
 
     IEnumerator PrepCountdown()
@@ -132,7 +146,6 @@ public class WavesManagerController : MonoBehaviour
                 Spawn.GetComponent<MobController>().currentFloor = (int)SpawnPoints[spawnPoint].w;
                 Spawn.GetComponent<MobController>().player = Player;
                 Spawn.GetComponent<MobController>().wavesManager = gameObject;
-                Player.GetComponent<PlayerController>().enemies.Add(Spawn.GetComponent<MobController>());
                 MobsSpawned++;
                 LivingEnemies++;
             }
@@ -142,7 +155,6 @@ public class WavesManagerController : MonoBehaviour
                 Spawn.GetComponent<MobController>().currentFloor = (int)SpawnPoints[spawnPoint].w;
                 Spawn.GetComponent<MobController>().player = Player;
                 Spawn.GetComponent<MobController>().wavesManager = gameObject;
-                Player.GetComponent<PlayerController>().enemies.Add(Spawn.GetComponent<MobController>());
                 RushersSpawned++;
                 LivingEnemies++;
             }
@@ -152,7 +164,6 @@ public class WavesManagerController : MonoBehaviour
                 Spawn.GetComponent<MobController>().currentFloor = (int)SpawnPoints[spawnPoint].w;
                 Spawn.GetComponent<MobController>().player = Player;
                 Spawn.GetComponent<MobController>().wavesManager = gameObject;
-                Player.GetComponent<PlayerController>().enemies.Add(Spawn.GetComponent<MobController>());
                 BruisersSpawned++;
                 LivingEnemies++;
             }

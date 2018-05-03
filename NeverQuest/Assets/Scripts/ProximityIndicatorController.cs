@@ -35,6 +35,7 @@ public class ProximityIndicatorController : MonoBehaviour
     void Start()
     {
         GameObject[] enemiesArray = GameObject.FindGameObjectsWithTag("Mob");
+        Debug.Log("Proximity Indicator Start: " + enemiesArray.Length + " enemies found.");
         foreach (GameObject enemy in enemiesArray)
         {
             enemies.Add(enemy);
@@ -47,6 +48,7 @@ public class ProximityIndicatorController : MonoBehaviour
     {
         GameObject[] enemiesArray = GameObject.FindGameObjectsWithTag("Mob");
 
+        /*
         // Add gameobject if its not in the list
         for (int i = 0; i < enemiesArray.Length; i++)
         {
@@ -71,6 +73,17 @@ public class ProximityIndicatorController : MonoBehaviour
                         AddIndicator(enemiesArray[i]);
                     }
                 }
+            }
+        }
+        */
+
+        foreach (GameObject enemy in enemiesArray)
+        {
+            //check if enemy is in the list
+            if (!enemies.Contains(enemy))
+            {
+                enemies.Add(enemy);
+                AddIndicator(enemy);
             }
         }
 
