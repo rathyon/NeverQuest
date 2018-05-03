@@ -8,6 +8,7 @@ public class EngQHability : MonoBehaviour {
 	private int moveHorizontal;
 	private bool lastChange;
 	private float lifeTime;
+    public float maxLifeTime;
 	private GameObject playerCont;
 	// Use this for initialization
 	void Start () {
@@ -19,12 +20,12 @@ public class EngQHability : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (!playerCont.GetComponent<PlayerController> ().qHabilityFlag) {
+		if (!playerCont.GetComponent<PlayerController> ().flamethrowerOn) {
 			Destroy (gameObject);
 		}
 		timeOfLife += Time.deltaTime;  
-		if (timeOfLife >= 7) {
-			playerCont.GetComponent<PlayerController> ().qHabilityFlag = false;
+		if (timeOfLife >= maxLifeTime) {
+			playerCont.GetComponent<PlayerController> ().flamethrowerOn = false;
 			Destroy (gameObject);
 		}
 

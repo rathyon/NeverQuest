@@ -1954,7 +1954,7 @@ Prefab:
     - target: {fileID: 114704010488947876, guid: 78db9e1291c33074c966abbd6c848f29,
         type: 2}
       propertyPath: MobsPerWave.Array.data[0]
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114704010488947876, guid: 78db9e1291c33074c966abbd6c848f29,
         type: 2}
@@ -1974,6 +1974,16 @@ Prefab:
     - target: {fileID: 1576110891764570, guid: 78db9e1291c33074c966abbd6c848f29, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114704010488947876, guid: 78db9e1291c33074c966abbd6c848f29,
+        type: 2}
+      propertyPath: interfaceText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114704010488947876, guid: 78db9e1291c33074c966abbd6c848f29,
+        type: 2}
+      propertyPath: prepTime
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78db9e1291c33074c966abbd6c848f29, type: 2}
@@ -8882,8 +8892,12 @@ MonoBehaviour:
   Player_doorsCatched: []
   bullet: {fileID: 1160426210486804, guid: ebe01ffa595974053ac206ef1ae021bc, type: 2}
   bullet_damage: 0
-  qHabilityFlag: 0
-  qHability: {fileID: 1220033189939054, guid: c74c06c29061149afaaa626b8e1d7cca, type: 2}
+  shootCooldown: 0.5
+  flamethrower: {fileID: 1220033189939054, guid: c74c06c29061149afaaa626b8e1d7cca,
+    type: 2}
+  canFlamethrower: 1
+  flamethrowerOn: 0
+  flamethrowerCooldown: 10
   grounded: 0
   questWarning: {fileID: 1960738534}
   timeAccept: 0

@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WavesManagerController : MonoBehaviour
 {
+    public Text interfaceText;
 
+    public int prepTime;
     public int NumberOfWaves;
     public int SpawnDelay;
     public GameObject Player, Mob, Rusher, Bruiser;
@@ -14,6 +17,7 @@ public class WavesManagerController : MonoBehaviour
     public int[] MobsPerWave;
     public int[] RushersPerWave;
     public int[] BruisersPerWave;
+    public int[] GoldRewardPerWave;
 
     private int CurrentWave = 1;
     private bool IsActionPhase = false;
@@ -25,6 +29,9 @@ public class WavesManagerController : MonoBehaviour
     private int RushersSpawned = 0;
     private int BruisersSpawned = 0;
 
+    //timer variables
+    private int timeLeft;
+
     public void EnemySlain()
     {
         LivingEnemies--;
@@ -33,37 +40,67 @@ public class WavesManagerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        StartCoroutine("SpawnEnemies"); //remember to remove this
+        timeLeft = prepTime;
+        StartCoroutine("PrepCountdown");
+        //StartCoroutine("SpawnEnemies"); //remember to remove this
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (MobsSpawned >= MobsPerWave[CurrentWave - 1] &&
-            RushersSpawned >= RushersPerWave[CurrentWave - 1] &&
-            BruisersSpawned >= BruisersPerWave[CurrentWave - 1])
+        // if its prep phase
+        if (!IsActionPhase)
         {
-            StopCoroutine("SpawnEnemies");
-            AllSpawned = true;
+            if (timeLeft <= 0)
+            {
+                StopCoroutine("PrepCountdown");
+                timeLeft = prepTime;
+                StartCoroutine("SpawnEnemies");
+                IsActionPhase = true;
+            }
         }
 
-        if (AllSpawned && LivingEnemies <= 0)
+        else // if its action phase
         {
-            //reset booleans and increment wave...
-            AllSpawned = false;
-            IsActionPhase = false;
-            MobsSpawned = 0;
-            RushersSpawned = 0;
-            BruisersSpawned = 0;
-            CurrentWave++;
-            Debug.Log("------------------Jobs Done!");
+            //if everything has been spawned, stop spawning
+            if (MobsSpawned >= MobsPerWave[CurrentWave - 1] &&
+                RushersSpawned >= RushersPerWave[CurrentWave - 1] &&
+                BruisersSpawned >= BruisersPerWave[CurrentWave - 1])
+            {
+                StopCoroutine("SpawnEnemies");
+                AllSpawned = true;
+                Debug.Log("All spawned!");
+            }
+
+            // if everything has been spawned and killed, move on to the next wave
+            if (AllSpawned && LivingEnemies <= 0)
+            {
+                //reset booleans and increment wave...
+                AllSpawned = false;
+                IsActionPhase = false;
+                MobsSpawned = 0;
+                RushersSpawned = 0;
+                BruisersSpawned = 0;
+                CurrentWave++;
+                Debug.Log("Wave Complete!");
+
+                StartCoroutine("PrepCountdown");
+            }
         }
 
     }
 
+    IEnumerator PrepCountdown()
+    {
+        while (true) {
+            yield return new WaitForSeconds(1);
+            timeLeft--;
+        }
+    }
+
     IEnumerator SpawnEnemies()
     {
+        List<int> available = new List<int>();
         while (true)
         {
             yield return new WaitForSeconds(SpawnDelay);
@@ -71,7 +108,7 @@ public class WavesManagerController : MonoBehaviour
             // HARDCODED NUMBER OF ENEMY TYPES!!! CHANGE WHEN NUMBER OF TYPES INCREASES!!
 
 
-            List<int> available = new List<int>();
+            
             if (MobsSpawned < MobsPerWave[CurrentWave - 1])
                 available.Add(1);
             if (RushersSpawned < RushersPerWave[CurrentWave - 1])
@@ -117,6 +154,7 @@ public class WavesManagerController : MonoBehaviour
                 BruisersSpawned++;
                 LivingEnemies++;
             }
+            available.Clear();
         }
     }
 }

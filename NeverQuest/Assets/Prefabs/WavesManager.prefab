@@ -51,6 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1bca47249a25e43ace74a0f41666ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interfaceText: {fileID: 0}
+  prepTime: 0
   NumberOfWaves: 5
   SpawnDelay: 0
   Player: {fileID: 0}
@@ -75,3 +77,4 @@ MonoBehaviour:
   MobsPerWave: 0000000000000000000000000000000000000000
   RushersPerWave: 0000000000000000000000000000000000000000
   BruisersPerWave: 0000000000000000000000000000000000000000
+  GoldRewardPerWave: 0000000000000000000000000000000000000000

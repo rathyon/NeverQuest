@@ -23,24 +23,20 @@ public class DoorController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R) && collision.gameObject.CompareTag("Player"))
         {
             collision.GetComponent<PlayerController>().transform.position = linkedDoor.transform.position;
-
             collision.GetComponent<PlayerController>().Player_doorsCatched.Add(this);
 
-            foreach (MobController x in collision.GetComponent<PlayerController>().enemies) x.doorsToCatch.Add(this);
+            foreach (MobController x in collision.GetComponent<PlayerController>().enemies)
+                x.doorsToCatch.Add(this);
 
             collision.GetComponent<PlayerController>().transportLevel = DoorToNextLevel;
         }
         if (collision.gameObject.CompareTag("Mob") && collision.GetComponent<MobController>().canTransport && this == collision.GetComponent<MobController>().doorsToCatch[0])
         {
             collision.GetComponent<MobController>().transform.position = linkedDoor.transform.position;
-
             collision.GetComponent<MobController>().mobTransportLevel = DoorToNextLevel;
-
             collision.GetComponent<MobController>().doorsToCatch.Remove(this);
-
             collision.GetComponent<MobController>().canTransport = false;
             //DelayToDoorFlag(3, collision.GetComponent<MobController>());
-
         }
     }
 

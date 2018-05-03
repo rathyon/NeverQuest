@@ -22,12 +22,19 @@ public class PlayerController : MonoBehaviour {
     private bool storeActive;
 	private Button[] bton;
 
+    // shooting variables
 	public GameObject bullet;
-	private bool shoot;
-	public float bullet_damage; 
+    private bool canShoot = true;
+	public float bullet_damage;
+    public float shootCooldown;
+    private float shootTimeRemaining;
 
-	public bool qHabilityFlag;
-	public GameObject qHability;
+    //flamethrower variables
+    public GameObject flamethrower;
+    public bool canFlamethrower = true;
+    public bool flamethrowerOn = false;
+    public float flamethrowerCooldown;
+    private float flamethrowerTimeRemaining;
 
     public bool grounded;
 
@@ -53,8 +60,6 @@ public class PlayerController : MonoBehaviour {
 		}
 		//questWarning.text = "";
 		timeAccept=5.0f;
-		qHabilityFlag = false;
-		shoot = false;
 		bullet_damage = 10.0f;
 		storeActive = false;
         grounded = true;
@@ -66,8 +71,6 @@ public class PlayerController : MonoBehaviour {
         gameObject.GetComponentInChildren<Canvas> ().enabled = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
-		StartCoroutine(ShootProjectile());
-		StartCoroutine(QHability());
 	}
 
 	private void LateUpdate()
@@ -139,28 +142,29 @@ public class PlayerController : MonoBehaviour {
 	        //rb2d.AddForce(movement * speed);
 		}
     }
-	private IEnumerator ShootProjectile()
-	{
-		while (true) {
-			yield return new WaitForSeconds (1);
-			if (shoot) {
-				Vector3 position = new Vector3 (transform.position.x, transform.position.y + 5, transform.position.z);
-				Instantiate (bullet, position, Quaternion.identity);
-			}
-		}
-	}
 
-	private IEnumerator QHability()
-	{
-		while (true) {
-			yield return new WaitForSeconds (7);
-			if (qHabilityFlag) {
-				Vector3 position = new Vector3 (transform.position.x, transform.position.y + 5, transform.position.z);
-				Instantiate (qHability, position, Quaternion.identity);
-			}
-		}
-	}
+    private void FireFlamethrower()
+    {
+        if (canFlamethrower && !flamethrowerOn)
+        {
+            Vector3 position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
+            Instantiate(flamethrower, position, Quaternion.identity);
+            canFlamethrower = false;
+            flamethrowerOn = true;
+            flamethrowerTimeRemaining = flamethrowerCooldown;
+        }
+    }
 
+    private void ShootProjectile()
+    {
+        if (canShoot)
+        {
+            Vector3 position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
+            Instantiate(bullet, position, Quaternion.identity);
+            canShoot = false;
+            shootTimeRemaining = shootCooldown;
+        }
+    }
 
 	public void activateStore(){
 		storeActive = !storeActive;
@@ -169,6 +173,8 @@ public class PlayerController : MonoBehaviour {
 			b.interactable = !b.interactable;
 		}
 	}
+
+
     // Update is called once per frame
     void Update () {
         TimerJump();
@@ -182,22 +188,45 @@ public class PlayerController : MonoBehaviour {
 
         }
 
+        if (!canShoot)
+        {
+            if (shootTimeRemaining <= 0)
+            {
+                canShoot = true;
+            }
+            else
+            {
+                shootTimeRemaining -= Time.deltaTime;
+            }
+        }
+
+        if (!canFlamethrower)
+        {
+            if(flamethrowerTimeRemaining <= 0)
+            {
+                canFlamethrower = true;
+            }
+            else
+            {
+                flamethrowerTimeRemaining -= Time.deltaTime;
+            }
+        }
+
         if (Input.GetKeyDown (KeyCode.B)) {
-			activateStore ();
+			activateStore();
 		}
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			shoot = true;
-		}
-		if (Input.GetKeyUp (KeyCode.Space)) {
-			shoot = false;
+
+        if (Input.GetKeyDown (KeyCode.Space)) {
+            ShootProjectile();    
 		}
 
 		if (Input.GetKeyDown (KeyCode.Q)) {
-			qHabilityFlag = true;
+            FireFlamethrower();
 		}
-		if (Input.GetKeyUp (KeyCode.Q)) {
-			qHabilityFlag = false;
-		}
+        if (Input.GetKeyUp (KeyCode.Q))
+        {
+            flamethrowerOn = false;
+        }
     }
 
     public void AddGold(int _gold) {
