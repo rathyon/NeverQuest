@@ -49,6 +49,11 @@ public class StoreItemClickController : Selectable {
 //			colorVar.highlightedColor = new Color (255, 116, 0);
 //			yourButton.colors = colorVar;
 			if (canUpdate) {
+				Vector3 x = GameObject.Find ("Trap_Description").transform.localScale;
+				x.x = 1;
+				GameObject.Find ("Trap_Description").transform.localScale = x;
+				x.x = 0;
+				GameObject.Find ("WA_Description").transform.localScale = x;
 				Trap trap = objectSelected.GetComponent<Trap> ();
 				GameObject.Find ("Description_Name").GetComponent<Text> ().text = trap.trapName;
 				GameObject.Find ("Description_Image").GetComponent<Image> ().sprite = objectSelected.GetComponent<SpriteRenderer> ().sprite;

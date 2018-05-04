@@ -78,6 +78,12 @@ public class PlayerController : MonoBehaviour
         gameObject.GetComponentInChildren<Canvas>().enabled = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
+
+		Vector3 x = GameObject.Find ("Trap_Description").transform.localScale;
+		x.x = 0;
+		GameObject.Find ("Trap_Description").transform.localScale = x;
+		GameObject.Find ("WA_Description").transform.localScale = x;
+
     }
 
     private void LateUpdate()

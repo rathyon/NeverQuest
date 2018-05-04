@@ -12,6 +12,6 @@ public class HUD : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		textGold.text ="Gold: " + GetComponentInParent<PlayerController> ().gold.ToString ();
+		textGold.text ="Gold: " + GameObject.Find("Player").GetComponent<PlayerController> ().gold.ToString ();
 	}
 }
