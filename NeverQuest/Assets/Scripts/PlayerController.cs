@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour
 
     private void FireFlamethrower()
     {
-        if (canFlamethrower && !flamethrowerOn)
+		if (canFlamethrower && !flamethrowerOn && !storeActive)
         {
             Vector3 position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
             Instantiate(flamethrower, position, Quaternion.identity);
@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour
 
     private void ShootProjectile()
     {
-        if (canShoot)
+		if (canShoot && !storeActive)
         {
             Vector3 position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
             Instantiate(bullet, position, Quaternion.identity);

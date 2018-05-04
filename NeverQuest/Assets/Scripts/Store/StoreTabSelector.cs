@@ -1,45 +1,54 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
+using UnityEngine;
 
-public class StoreTabSelector : MonoBehaviour{
+public class StoreTabSelector : Selectable {
 	public int type;
-	public GameObject traps;
-	public GameObject weapArmo;
-	public GameObject items;
 
-	public Button btnLoad;
+	BaseEventData m_BaseEvent;
+
+	private bool canUpdate;
+
 
 	public void Start()
 	{
-		
-		/*Navigation navigation = btnLoad.navigation;
-
-		navigation.selectOnRight = btnLoad.OnSelect();
-
-
-		btnLoad.navigation = navigation;*/
+		canUpdate = true;
 	}
-	/*public void OnPointerEnter(BaseEventData eventData)
+	void Update()
 	{
-		//do your stuff when selected
-		if (type == 1) {
-			traps.SetActive (true);
-			weapArmo.SetActive (false);
-			items.SetActive (false);
-		}
-		else if (type == 2) {
-			traps.SetActive (false);
-			weapArmo.SetActive (true);
-			items.SetActive (false);
-		} 
-		else {
-			traps.SetActive (false);
-			weapArmo.SetActive (false);
-			items.SetActive (true);
-		}
+		/*if (IsHighlighted (m_BaseEvent) == true) {
+			if (canUpdate) {
+				if (type == 1) {
+					Vector3 x = GameObject.Find ("Traps").transform.localScale;
+						x.x = 1;
+						GameObject.Find ("Traps").transform.localScale = x;
+						x.x = 0;
+					GameObject.Find ("Weapons_Armor").transform.localScale = x;
+					GameObject.Find ("Weapons_Armor").SetActive (false);
+					GameObject.Find ("Traps").SetActive (true);
+				}
+				else if (type == 2) {
+					Vector3 x = GameObject.Find ("Weapons_Armor").transform.localScale;
+					x.x = 1;
+					GameObject.Find ("Weapons_Armor").transform.localScale = x;
+					x.x = 0;
+					GameObject.Find ("Traps").transform.localScale = x;
 
-	}*/
+					GameObject.Find ("Weapons_Armor").SetActive (true);
+					GameObject.Find ("Traps").SetActive (false);
+				} 
+		
+			}
+			canUpdate = false;
+		} else {
+			if (!canUpdate) {
+				canUpdate = true;
+			}
+		}*/
+
+	}
 
 }

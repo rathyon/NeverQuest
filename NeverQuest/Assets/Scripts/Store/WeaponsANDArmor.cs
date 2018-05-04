@@ -74,7 +74,7 @@ public class WeaponsANDArmor : Selectable {
 				if (type == 0) {
 					GameObject.Find ("Description_Name_WA").GetComponent<Text> ().text = "Leather Armor";
 					GameObject.Find ("Description_Text_WA").GetComponent<Text> ().text = "Increases the time of quest acceptance, but no one really knows why, it just does";
-					GameObject.Find ("Description_Damage_Text_WA").GetComponent<Text> ().text = "Time increase to 6";
+					GameObject.Find ("Description_Damage_Text_WA").GetComponent<Text> ().text = "Time increased to 6";
 				}
 				if (type == 1) {
 					GameObject.Find ("Description_Name_WA").GetComponent<Text> ().text = "Rusty Shotgun";
@@ -85,7 +85,7 @@ public class WeaponsANDArmor : Selectable {
 				if (type == 2) {
 					GameObject.Find ("Description_Name_WA").GetComponent<Text> ().text = "Steel Armor";
 					GameObject.Find ("Description_Text_WA").GetComponent<Text> ().text = "Increases the time of quest acceptance, but no one really knows why, it just does";
-					GameObject.Find ("Description_Damage_Text_WA").GetComponent<Text> ().text = "Time increase to 7";
+					GameObject.Find ("Description_Damage_Text_WA").GetComponent<Text> ().text = "Time increased to 7";
 				}
 				if (type == 3) {
 					GameObject.Find ("Description_Name_WA").GetComponent<Text> ().text = "Golden Shotgun";

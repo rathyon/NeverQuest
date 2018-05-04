@@ -31,11 +31,11 @@ public class EngQHability : MonoBehaviour {
 
 
 		if (!playerCont.GetComponent<PlayerController> ().facingRight) {
-			Vector3 position = new Vector3 (playerCont.transform.position.x - 2.8f,playerCont.transform.position.y +0.4f,playerCont.transform.position.z);
+			Vector3 position = new Vector3 (playerCont.transform.position.x - 2.0f,playerCont.transform.position.y +0.4f,playerCont.transform.position.z);
 
 			transform.position = position;
 		} else {
-			Vector3 position = new Vector3 (playerCont.transform.position.x + 2.8f,playerCont.transform.position.y +0.4f,playerCont.transform.position.z);
+			Vector3 position = new Vector3 (playerCont.transform.position.x + 2.0f,playerCont.transform.position.y +0.4f,playerCont.transform.position.z);
 
 			transform.position = position;
 		}
