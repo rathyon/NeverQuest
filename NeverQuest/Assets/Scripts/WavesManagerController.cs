@@ -12,12 +12,15 @@ public class WavesManagerController : MonoBehaviour
     public int SpawnDelay;
     public GameObject Player, Mob, Rusher, Bruiser;
     public List<Vector4> SpawnPoints = new List<Vector4>();
+    public Text WavesManager_Text;
+    public Text Victory_Text;
 
     public int[] MobsPerWave;
     public int[] RushersPerWave;
     public int[] BruisersPerWave;
     public int[] GoldRewardPerWave;
 
+    public int mobsAlive = 0;
     private int CurrentWave = 1;
     private bool IsActionPhase = false;
     private bool AllSpawned = false;
@@ -53,10 +56,11 @@ public class WavesManagerController : MonoBehaviour
             // if its prep phase
             if (!IsActionPhase)
             {
+                WavesManager_Text.text = "Next wave incoming in: " + timeLeft;
                 // Time is over: start the wave!
                 if (timeLeft <= 0)
                 {
-                    Debug.Log("Wave " + CurrentWave + ": start!");
+                   Debug.Log("Wave " + CurrentWave + ": start!");
 
                     StopCoroutine("PrepCountdown");
                     timeLeft = prepTime;
@@ -67,6 +71,8 @@ public class WavesManagerController : MonoBehaviour
 
             else // if its action phase
             {
+                int cenas = MobsPerWave[CurrentWave - 1] + RushersPerWave[CurrentWave - 1] + BruisersPerWave[CurrentWave - 1];
+                WavesManager_Text.text = "Pesky players remaining: " + LivingEnemies;
                 //if everything has been spawned, stop spawning
                 if (MobsSpawned >= MobsPerWave[CurrentWave - 1] &&
                     RushersSpawned >= RushersPerWave[CurrentWave - 1] &&
@@ -75,7 +81,7 @@ public class WavesManagerController : MonoBehaviour
                 {
                     StopCoroutine("SpawnEnemies");
                     AllSpawned = true;
-                    Debug.Log("All spawned!");
+                    //Debug.Log("All spawned!");
                 }
 
                 // if everything has been spawned and killed, move on to the next wave
@@ -100,6 +106,7 @@ public class WavesManagerController : MonoBehaviour
         else
         {
             // "You won!"
+            Victory_Text.text = "You won!";
             Debug.Log("YOU WON!");
             Time.timeScale = 0.0f;
         }
@@ -142,6 +149,7 @@ public class WavesManagerController : MonoBehaviour
 
             if (spawnType == 1)
             {
+                //spawnPoint = 2;
                 GameObject Spawn = Instantiate(Mob, SpawnPoints[spawnPoint], Quaternion.identity);
                 Spawn.GetComponent<MobController>().currentFloor = (int)SpawnPoints[spawnPoint].w;
                 Spawn.GetComponent<MobController>().player = Player;

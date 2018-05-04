@@ -65,6 +65,7 @@ public class MobController : MonoBehaviour
     {
         List<DoorController> path = new List<DoorController>();
         List<DoorController> doorsInCurrentLevel = new List<DoorController>();
+        bool final_door = false;
 
         // for all doors in the level
         foreach (DoorController door in player.GetComponent<PlayerController>().allDoors)
@@ -74,6 +75,7 @@ public class MobController : MonoBehaviour
                 if (door.nextLevel == playerLevel)
                 {
                     path.Add(door);
+                    final_door = true;
                     break;
                 }
                 else
@@ -83,18 +85,46 @@ public class MobController : MonoBehaviour
             }
 
         }
-        if (path.Count == 0)
+        if (!final_door && doorsInCurrentLevel.Count != 0)
         {
             //this is for the spawn point, where there only is one door
-            path.Add(doorsInCurrentLevel[0]);
-            findDoor(doorsInCurrentLevel.ToArray()[0].nextLevel, playerLevel);
+            // se o floor tiver mais que 1 porta, tenho de escolher a melhor (pode ter 2 ou 3)
+            // doorsInCurrentLevel; door.nextlevel
+
+            DoorController rafa = findBestDoorAux(doorsInCurrentLevel, playerLevel);
+
+            path.Add(rafa);
+            findDoor(rafa.nextLevel, playerLevel);
         }
 
         foreach (DoorController door2 in path.ToArray())
             PathToPlayer.Insert(0, door2);
+    }
 
-        path.Clear();
-        doorsInCurrentLevel.Clear();
+    DoorController findBestDoorAux(List<DoorController> lista_door, int playerLvl) {
+        int max_aux = Mathf.Abs(playerLvl - lista_door[0].nextLevel); // door.nextlevel mais proximo do playerlvl;
+
+        DoorController best_door = new DoorController();
+
+        foreach (DoorController door in lista_door) {
+            int max = Mathf.Abs(playerLvl - door.nextLevel);
+
+            //if (6 == playerLvl) {
+            //    if (Mathf.Abs(playerLvl - door.nextLevel) >= max_aux)
+            //    {
+            //        max_aux = max;
+            //        best_door = door;
+            //    }
+            //}
+            
+            if (Mathf.Abs(playerLvl - door.nextLevel) <= max_aux) {
+                max_aux = max;
+                best_door = door;
+            }
+        }
+        //Debug.Break();
+
+        return best_door;
     }
 
     private void moveTo(float target)

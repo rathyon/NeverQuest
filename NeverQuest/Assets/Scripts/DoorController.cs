@@ -34,12 +34,12 @@ public class DoorController : MonoBehaviour
                 if (!mob.PathToPlayer.Contains(this.linkedDoor.GetComponent<DoorController>()))
                 {
                     mob.PathToPlayer.Add(this);
-                    Debug.Log("Player changed floor, I added!");
+                    //Debug.Log("Player changed floor, I added!");
                 }
                 else
                 {
                     mob.PathToPlayer.Remove(this.linkedDoor.GetComponent<DoorController>());
-                    Debug.Log("Player changed floor, I removed!");
+                    //Debug.Log("Player changed floor, I removed!");
                 }
 
             collision.GetComponent<PlayerController>().transportLevel = nextLevel;

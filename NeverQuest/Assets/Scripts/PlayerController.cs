@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public GameObject player;
     public List<MobController> enemies = new List<MobController>();
 
+    public SimpleHealthBar cooldown_bar;
+
     //public List<DoorController> Player_doorsCatched = new List<DoorController>();
     public DoorController[] allDoors;
 
@@ -36,7 +38,7 @@ public class PlayerController : MonoBehaviour
     public GameObject flamethrower;
     public bool canFlamethrower = true;
     public bool flamethrowerOn = false;
-    public float flamethrowerCooldown;
+    public float flamethrowerCooldown; 
     private float flamethrowerTimeRemaining;
 
     public bool grounded;
@@ -193,11 +195,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     // Update is called once per frame
-    void Update()
+     void Update()
     {
         TimerJump();
+
+        float x2 = flamethrowerCooldown - flamethrowerTimeRemaining;
+
+        cooldown_bar.UpdateBar(x2, flamethrowerCooldown);
+
         float moveHorizontal = Input.GetAxis("Horizontal");
         if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
         {
@@ -226,6 +232,7 @@ public class PlayerController : MonoBehaviour
             if (flamethrowerTimeRemaining <= 0)
             {
                 canFlamethrower = true;
+                flamethrowerTimeRemaining = 0;
             }
             else
             {
@@ -252,6 +259,8 @@ public class PlayerController : MonoBehaviour
             flamethrowerOn = false;
         }
     }
+
+
 
     public void AddGold(int _gold)
     {

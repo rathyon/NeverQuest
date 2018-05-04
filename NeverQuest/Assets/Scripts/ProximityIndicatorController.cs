@@ -35,7 +35,7 @@ public class ProximityIndicatorController : MonoBehaviour
     void Start()
     {
         GameObject[] enemiesArray = GameObject.FindGameObjectsWithTag("Mob");
-        Debug.Log("Proximity Indicator Start: " + enemiesArray.Length + " enemies found.");
+       // Debug.Log("Proximity Indicator Start: " + enemiesArray.Length + " enemies found.");
         foreach (GameObject enemy in enemiesArray)
         {
             enemies.Add(enemy);
