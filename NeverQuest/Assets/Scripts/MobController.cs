@@ -58,11 +58,13 @@ public class MobController : MonoBehaviour
         minimapIndicator = Instantiate(minimapIndicator, transform.position, Quaternion.identity);
         playerFloor = player.GetComponent<PlayerController>().transportLevel;
 
-        findDoor(currentFloor, playerFloor);
+        findDoor(currentFloor, playerFloor, currentFloor);
     }
 
-    private void findDoor(int mobLevel, int playerLevel)
+    private void findDoor(int mobLevel, int playerLevel, int lastLevel)
     {
+        if (mobLevel == playerLevel) return; //Porque a funcao agora é chamada no start, logo temos de garantir que mobLevel != playerLevel
+
         List<DoorController> path = new List<DoorController>();
         List<DoorController> doorsInCurrentLevel = new List<DoorController>();
         bool final_door = false;
@@ -91,35 +93,38 @@ public class MobController : MonoBehaviour
             // se o floor tiver mais que 1 porta, tenho de escolher a melhor (pode ter 2 ou 3)
             // doorsInCurrentLevel; door.nextlevel
 
-            DoorController rafa = findBestDoorAux(doorsInCurrentLevel, playerLevel);
+            DoorController doorToCatch = findBestDoorAux(doorsInCurrentLevel, playerLevel, lastLevel);
 
-            path.Add(rafa);
-            findDoor(rafa.nextLevel, playerLevel);
+            path.Add(doorToCatch);
+            findDoor(doorToCatch.nextLevel, playerLevel, doorToCatch.level);
         }
 
         foreach (DoorController door2 in path.ToArray())
             PathToPlayer.Insert(0, door2);
     }
 
-    DoorController findBestDoorAux(List<DoorController> lista_door, int playerLvl) {
-        int max_aux = Mathf.Abs(playerLvl - lista_door[0].nextLevel); // door.nextlevel mais proximo do playerlvl;
-
+    DoorController findBestDoorAux(List<DoorController> lista_door, int playerLvl, int old_lvl) {
+        bool flag_aux = true;
         DoorController best_door = new DoorController();
+        int max, max_aux=100;
 
+        //print(lista_door.Count);
         foreach (DoorController door in lista_door) {
-            int max = Mathf.Abs(playerLvl - door.nextLevel);
+            if (door.nextLevel != old_lvl)
+            {
+                if (flag_aux)
+                {
+                    max_aux = Mathf.Abs(playerLvl - door.nextLevel); // door.nextlevel mais proximo do playerlvl;
+                    flag_aux = false;
+                }
+                max = Mathf.Abs(playerLvl - door.nextLevel);
 
-            //if (6 == playerLvl) {
-            //    if (Mathf.Abs(playerLvl - door.nextLevel) >= max_aux)
-            //    {
-            //        max_aux = max;
-            //        best_door = door;
-            //    }
-            //}
-            
-            if (Mathf.Abs(playerLvl - door.nextLevel) <= max_aux) {
-                max_aux = max;
-                best_door = door;
+                if (Mathf.Abs(playerLvl - door.nextLevel) <= max_aux)
+                {
+                    max_aux = max;
+                    best_door = door;
+                   // Debug.Log("in");
+                }
             }
         }
         //Debug.Break();

@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         bullet_damage = 10.0f;
         storeActive = false;
         grounded = true;
-        transportLevel = 3;
+        //transportLevel = 3;
         gold = 200;
         waitedTime = 0.0f;
         inactiveTimerMAX = 1.45f;
@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!storeActive)
             {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(moveHorizontal, jumpPower);
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, jumpPower);
                 grounded = false;
             }
 
