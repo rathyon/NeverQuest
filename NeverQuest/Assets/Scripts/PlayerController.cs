@@ -3,10 +3,29 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
+    /* Remover depois*/
+    int points = 0;
+    int hp = 100;
+    /* ============== */
+    /* Screens variables*/
+    private string _nickname;
 
+    public Dictionary<string, int> Leaderboard;
+
+    public List<GameObject> nicks_Data;
+    public List<GameObject> scores_Data;
+
+    public bool paused, endGame;
+    public GameObject pauseScreen, endScreen, saveNickname, saveButton, leadButton, top10;
+    public Text InputNickname, endPointsText;
+
+    public Text TryAgainText, IsOnTOP10, IsOnTOP10_2;
+
+    /*==================*/
     public float speed;
 
     //public bool grounded = true;
@@ -60,8 +79,10 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        endGame = true;
+
         bton = gameObject.GetComponentsInChildren<Button>();
         foreach (Button b in bton)
         {
@@ -77,15 +98,24 @@ public class PlayerController : MonoBehaviour
         waitedTime = 0.0f;
         inactiveTimerMAX = 1.45f;
 
+        paused = true;
+
         gameObject.GetComponentInChildren<Canvas>().enabled = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
 
-		Vector3 x = GameObject.Find ("Trap_Description").transform.localScale;
+        Leaderboard = new Dictionary<string, int>();
+
+        leadButton.GetComponent<Button>().onClick.AddListener(leadButtonScript);
+        saveButton.GetComponent<Button>().onClick.AddListener(saveButtonScript);
+
+        Vector3 x = GameObject.Find ("Trap_Description").transform.localScale;
 		x.x = 0;
 		GameObject.Find ("Trap_Description").transform.localScale = x;
 		GameObject.Find ("WA_Description").transform.localScale = x;
 
+        // WAIT FOR START BUTTON CLICK
+        Time.timeScale = 0;
     }
 
     private void LateUpdate()
@@ -110,6 +140,9 @@ public class PlayerController : MonoBehaviour
         //				}
         //			}
         //		}
+
+
+
         if (!anyAccepting)
         {
             questIsBeingAccepted = false;
@@ -126,10 +159,25 @@ public class PlayerController : MonoBehaviour
             questWarning.text = "";
         }
 
-        if (timeToAcceptQuest <= 0.0f)
+        if (timeToAcceptQuest <= 0.0f) //EndGame
         {
             questWarning.text = "GAME OVER";
             Time.timeScale = 0;
+            endGame = true;
+
+            if (CanBeOnLeaderboard(points)) { //Pede por nickname e espera
+                saveNickname.SetActive(true);
+                IsOnTOP10_2.text = "Congratulations! Your score can be on NEVERQUEST TOP10 !";
+                IsOnTOP10.text = "";
+            }
+            else
+            {
+                saveNickname.SetActive(false);
+                IsOnTOP10.text = "You are too weak for NEVERQUEST TOP10 ...";
+                IsOnTOP10_2.text = "";
+            }
+
+            endScreen.SetActive(true);
         }
     }
 
@@ -204,6 +252,9 @@ public class PlayerController : MonoBehaviour
 
         cooldown_bar.UpdateBar(x2, flamethrowerCooldown);
 
+        endPointsText.text = "" + points + "";
+
+
         float moveHorizontal = Input.GetAxis("Horizontal");
         if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
         {
@@ -244,6 +295,26 @@ public class PlayerController : MonoBehaviour
         {
             activateStore();
         }
+
+        /*Verifica a pausa*/
+        if (Input.GetKeyDown(KeyCode.P) && !endGame)
+        {
+            paused = !paused;
+            if (paused)
+            {
+                pauseScreen.SetActive(true);
+                PauseGame();
+            }
+            else
+            {
+                pauseScreen.SetActive(false);
+                ContinueGame();
+            }
+
+
+
+        }
+        /**/
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -295,5 +366,188 @@ public class PlayerController : MonoBehaviour
             questIsBeingAccepted = false;
             anyAccepting = false;
         }
+    }
+
+    /*Screens functions*/
+    public void closeEndScreenScript()
+    {
+        endScreen.SetActive(false);
+    }
+
+    public void leadButtonScript()
+    {
+        atualizaLeaderBoard();
+        top10.SetActive(true);
+    }
+
+    public void saveButtonScript()
+    {
+        InputNicknameScript();
+        top10.SetActive(true);
+    }
+    private void InputNicknameScript()
+    {
+        print("ENTREIIIIIIII : " + this.GetComponentInParent<ReadWriteTxt>().nicknames.Count);
+        print("ENTRADO: " + InputNickname.text);
+        //print("Count: " + ThirdPerson.GetComponent<GameControler>().GetComponentInParent<ReadWriteTxt>().nicknames.Count);
+        if (this.GetComponentInParent<ReadWriteTxt>().nicknames.Count == 10)
+        {
+            this.GetComponentInParent<ReadWriteTxt>().nicknames.RemoveAt(-1);
+            this.GetComponentInParent<ReadWriteTxt>().scores.RemoveAt(-1);
+        }
+        AddToArraysNickScore(InputNickname.text, points);
+        atualizaLeaderBoard();
+        this.GetComponentInParent<ReadWriteTxt>().WriteFile();
+    }
+    public void SetScore(string username, int score, Dictionary<string, int> _leaderboard)
+    {
+        if (username != "")
+        {
+            if (Leaderboard.ContainsKey(username) == false)
+            {
+                Leaderboard.Add(username, score);
+            }
+            else
+                Leaderboard[username] = score;
+        }
+    }
+
+    public void atualizaLeaderBoard()
+    {
+
+        for (int x = 0; x < this.GetComponentInParent<ReadWriteTxt>().nicknames.Count; x++)
+        {
+            // print("line : " + this.GetComponentInParent<ReadWriteTxt>().nicknames[x] + " score : " + this.GetComponentInParent<ReadWriteTxt>().scores[x]);
+           SetScore(this.GetComponentInParent<ReadWriteTxt>().nicknames[x], this.GetComponentInParent<ReadWriteTxt>().scores[x], this.Leaderboard);
+            print("Nickname: " + this.GetComponentInParent<ReadWriteTxt>().nicknames[x] + "\n Score: " + this.GetComponentInParent<ReadWriteTxt>().scores[x] + "\n");
+        }
+
+        this.GetComponentInParent<ReadWriteTxt>().nicknames = new List<string>();
+        this.GetComponentInParent<ReadWriteTxt>().scores = new List<int>();
+        //// Sorted by Key
+
+        //print("Sorted by Key");
+        //print("=============");
+        //foreach (KeyValuePair<string, int> author in Leaderboard.OrderBy(key => key.Key))
+        //{
+        //    print("Key: " + author.Key + ", Value: " + author.Value + "");
+        //}
+        //print("=============");
+
+
+        foreach (KeyValuePair<string, int> author in Leaderboard.OrderBy(key => key.Value))
+        {
+            this.GetComponentInParent<ReadWriteTxt>().nicknames.Add(author.Key);
+            this.GetComponentInParent<ReadWriteTxt>().scores.Add(author.Value);
+            //print("Key: "+ author.Key + ", Value: " + author.Value + "");
+        }
+
+        this.GetComponentInParent<ReadWriteTxt>().nicknames.Reverse();
+        this.GetComponentInParent<ReadWriteTxt>().scores.Reverse();
+
+        Leaderboard = new Dictionary<string, int>();
+
+        for (int x = 0; x < this.GetComponentInParent<ReadWriteTxt>().nicknames.Count; x++)
+        {
+            //print("line : " + this.GetComponentInParent<ReadWriteTxt>().nicknames[x] + " score : " + this.GetComponentInParent<ReadWriteTxt>().scores[x]);
+            SetScore(this.GetComponentInParent<ReadWriteTxt>().nicknames[x], this.GetComponentInParent<ReadWriteTxt>().scores[x], this.Leaderboard);
+        }
+        print("OLHAI AI  " + this.GetComponentInParent<ReadWriteTxt>().nicknames.Count);
+
+        for (int i = 0; i < this.GetComponentInParent<ReadWriteTxt>().nicknames.Count; i++)
+        {
+            // print("nicknamescount" + this.gameObject.GetComponent<ReadWriteTxt>().nicknames.Count);
+            nicks_Data[i].GetComponent<Text>().text = this.GetComponentInParent<ReadWriteTxt>().nicknames[i];
+
+
+        }
+
+        for (int i = 0; i < this.GetComponentInParent<ReadWriteTxt>().scores.Count; i++)
+        {
+            // print("scorescount" + this.gameObject.GetComponent<ReadWriteTxt>().scores.Count);
+            scores_Data[i].GetComponent<Text>().text = "" + this.GetComponentInParent<ReadWriteTxt>().scores[i] + "";
+
+        }
+
+    }
+
+    public int GetScore(string username, int score)
+    {
+        if (Leaderboard.ContainsKey(username) == false)
+        {
+            return 0;
+        }
+        if (Leaderboard["" + username + ""] != score)
+        {
+            return 0;
+        }
+        return Leaderboard[username];
+    }
+
+
+    //public int ChangeScore(string username, int score)
+    //{
+
+    //}
+
+
+
+    public void OrdenaScores()
+    {
+        this.GetComponentInParent<ReadWriteTxt>().nicknames.Sort();
+    }
+
+    public bool CanBeOnLeaderboard(int _score)
+    {
+
+        //if (this.GetComponentInParent<ReadWriteTxt>().scores.Count == 10) return false;
+        //else
+        //{
+
+        //  }
+
+        foreach (int x in this.GetComponentInParent<ReadWriteTxt>().scores.ToArray())
+        {
+            if (_score > x) return true;
+        }
+        return false;
+    }
+
+    public void AddToArraysNickScore(string nick, int score)
+    {
+        this.GetComponentInParent<ReadWriteTxt>().nicknames.Add(nick);
+        this.GetComponentInParent<ReadWriteTxt>().scores.Add(score);
+    }
+
+    public void pauseScreenON()
+    {
+        pauseScreen.SetActive(true);
+        //Disable scripts that still work while timescale is set to 0
+    }
+    public void pauseScreenOFF()
+    {
+        pauseScreen.SetActive(false);
+        //enable the scripts again
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        //Disable scripts that still work while timescale is set to 0
+    }
+    public void ContinueGame()
+    {
+        Time.timeScale = 1;
+        //enable the scripts again
+    }
+
+    public void addPoints(int x)
+    {
+        points += x;
+    }
+
+    public void damage(int x)
+    {
+        hp -= x;
     }
 }
