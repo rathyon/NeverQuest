@@ -12,6 +12,9 @@ public class StoreTabSelector : Selectable {
 
 	private bool canUpdate;
 
+    private Button[] bton;
+    private StoreItemClickController[] trapScripts;
+    private WeaponsANDArmor[] weapArmScripts;
 
 	public void Start()
 	{
@@ -19,35 +22,65 @@ public class StoreTabSelector : Selectable {
 	}
 	void Update()
 	{
-		/*if (IsHighlighted (m_BaseEvent) == true) {
-			if (canUpdate) {
-				if (type == 1) {
-					Vector3 x = GameObject.Find ("Traps").transform.localScale;
-						x.x = 1;
-						GameObject.Find ("Traps").transform.localScale = x;
-						x.x = 0;
-					GameObject.Find ("Weapons_Armor").transform.localScale = x;
-					GameObject.Find ("Weapons_Armor").SetActive (false);
-					GameObject.Find ("Traps").SetActive (true);
-				}
+		if (IsHighlighted (m_BaseEvent) == true) {
+            if (type == 1)
+            {
+                Vector3 x = GameObject.Find("Traps").transform.localScale;
+                x.x = 1;
+                GameObject.Find("Traps").transform.localScale = x;
+                x.x = 0;
+                GameObject.Find("Weapons/Armor").transform.localScale = x;
+                bton = GameObject.Find("Weapons/Armor").GetComponentsInChildren<Button>();
+                foreach (Button b in bton)
+                {
+                    b.interactable = false;
+                }
+                weapArmScripts = GameObject.Find("Weapons/Armor").GetComponentsInChildren<WeaponsANDArmor>();
+                foreach (WeaponsANDArmor b in weapArmScripts)
+                {
+                    b.interactable = false;
+                }
+                bton = GameObject.Find("Traps").GetComponentsInChildren<Button>();
+                foreach (Button b in bton)
+                {
+                    b.interactable = true;
+                }
+                trapScripts = GameObject.Find("Traps").GetComponentsInChildren<StoreItemClickController>();
+                foreach (StoreItemClickController b in trapScripts)
+                {
+                    b.interactable = true;
+                }
+            }
 				else if (type == 2) {
-					Vector3 x = GameObject.Find ("Weapons_Armor").transform.localScale;
-					x.x = 1;
-					GameObject.Find ("Weapons_Armor").transform.localScale = x;
-					x.x = 0;
-					GameObject.Find ("Traps").transform.localScale = x;
+                    Vector3 x = GameObject.Find("Weapons/Armor").transform.localScale;
+                    x.x = 1;
+                    GameObject.Find("Weapons/Armor").transform.localScale = x;
+                    x.x = 0;
+                    GameObject.Find("Traps").transform.localScale = x;
+                    bton = GameObject.Find("Traps").GetComponentsInChildren<Button>();
+                    foreach (Button b in bton)
+                    {
+                        b.interactable = false;
+                    }
+                    trapScripts = GameObject.Find("Traps").GetComponentsInChildren<StoreItemClickController>();
+                    foreach (StoreItemClickController b in trapScripts)
+                    {
+                        b.interactable = false;
+                    }
+                    bton = GameObject.Find("Weapons/Armor").GetComponentsInChildren<Button>();
+                    foreach (Button b in bton)
+                    {
+                        b.interactable = true;
+                    }
+                    weapArmScripts = GameObject.Find("Weapons/Armor").GetComponentsInChildren<WeaponsANDArmor>();
+                    foreach (WeaponsANDArmor b in weapArmScripts)
+                    {
+                        b.interactable = true;
+                    }
 
-					GameObject.Find ("Weapons_Armor").SetActive (true);
-					GameObject.Find ("Traps").SetActive (false);
 				} 
 		
 			}
-			canUpdate = false;
-		} else {
-			if (!canUpdate) {
-				canUpdate = true;
-			}
-		}*/
 
 	}
 
