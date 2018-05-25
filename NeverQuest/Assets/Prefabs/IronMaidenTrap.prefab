@@ -37,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1860846219032376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.1, y: -2.68, z: 0.24695429}
-  m_LocalScale: {x: 0.6236227, y: 0.6213508, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,18 +54,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.022963881, y: 0.069143295}
+  m_Offset: {x: -0.24625027, y: -1.6685486}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.12, y: 5.9}
+    oldSize: {x: 3.6, y: 5.8}
     newSize: {x: 3.12, y: 5.9}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.1555245, y: 5.5773344}
+  m_Size: {x: 2.4003093, y: 8.073737}
   m_EdgeRadius: 0
 --- !u!114 &114133140869680836
 MonoBehaviour:
@@ -86,6 +86,8 @@ MonoBehaviour:
   slowPercentage: 0
   _stopTime: 0
   _slowTime: 0
+  trapName: 
+  description: 
 --- !u!212 &212661367861477088
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -99,6 +101,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -118,9 +121,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1542309209
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bfae50dec53364c74ba04da4112a2937, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 26617d8313e2f654487b6ddc6bafee69, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
