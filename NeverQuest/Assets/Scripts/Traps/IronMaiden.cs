@@ -13,8 +13,8 @@ public class IronMaiden : Trap {
 		cost = 75;
 		active = true;
 		_damage = 150.0f;
-		inactiveTimerMAX = 3.0f;
-		waitedTime = 7.0f;
+		inactiveTimerMAX = 4.0f;
+		waitedTime = 0.0f;
 		description = "The makers of the game thought this was too op so it has a cd of 7s";
 	}
 

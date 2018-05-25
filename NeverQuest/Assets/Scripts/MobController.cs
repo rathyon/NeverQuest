@@ -13,6 +13,9 @@ public class MobController : MonoBehaviour
     public Text HPBarText;
 
     public GameObject player;
+
+    public GameObject enemy1, enemy2, enemy3;
+
     public GameObject proximityIndicator;
     public GameObject minimapIndicator;
     public GameObject wavesManager;
@@ -61,6 +64,12 @@ public class MobController : MonoBehaviour
         playerFloor = player.GetComponent<PlayerController>().transportLevel;
 
         findDoor(currentFloor, playerFloor, currentFloor);
+
+        Physics2D.IgnoreCollision(GameObject.Find("Player").GetComponent<Collider2D>(), GetComponent<BoxCollider2D>());
+        Physics2D.IgnoreCollision(enemy1.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
+        Physics2D.IgnoreCollision(enemy2.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
+        Physics2D.IgnoreCollision(enemy3.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
+
     }
 
     private void findDoor(int mobLevel, int playerLevel, int lastLevel)

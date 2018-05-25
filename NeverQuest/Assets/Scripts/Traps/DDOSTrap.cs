@@ -11,8 +11,8 @@ public class DDOSTrap : Trap {
 		placementX = 0.5f;
 		placementY = -0.7f;
 		trapName = "DDOS Trap";
-		cost = 15;
-		_stopTime = 20.0f;
+		cost = 55;
+		_stopTime = 10.0f;
 		inactiveTimerMAX = 4.0f;
 		waitedTime = 0.0f;
 		_damage = 0;
@@ -20,13 +20,7 @@ public class DDOSTrap : Trap {
 	}
 
 	void Update(){
-		if (!active) {
-			waitedTime += Time.deltaTime;
-			if (waitedTime >= inactiveTimerMAX) {
-				waitedTime = 0.0f;
-				active = true;
-			}
-		}
+		
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision){
@@ -36,7 +30,7 @@ public class DDOSTrap : Trap {
 			mob.slowPercentage = 0.0f;
 			mob.slowed = true;
 			active = false;
-
+            Destroy(gameObject);
 		}
 	}
 

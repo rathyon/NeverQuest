@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class FireTrap : Trap {
 	void Start(){
-		_damage = 0.4f;
+		_damage = 0.2f;
 		placementX = 0.5f;
 		placementY = -0.7f;
 		trapName = "Fire Trap";
-		cost = 45;
-		_stopTime = 5.0f;
+		cost = 75;
 		description = "Burn them all! Just place it near water so nothing bad happens, oh and deals damage per frame";
 	}
 

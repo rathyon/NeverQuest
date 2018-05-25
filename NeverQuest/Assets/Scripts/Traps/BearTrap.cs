@@ -8,7 +8,7 @@ public class BearTrap : Trap {
 		placementX = 0.5f;
 		placementY = -0.65f;
 		trapName = "Bear Trap";
-		cost = 20;
+		cost = 35;
 		_damage = 50.0f;
 		_stopTime = 1.0f;
 		slowPercentage = 0.3f;
@@ -24,6 +24,7 @@ public class BearTrap : Trap {
 			mob.slowed = true;
 			mob.slowTimerMAX = 5.0f;
 			mob.slowPercentage = slowPercentage;
+            Destroy(gameObject);
 		}
 	}
 

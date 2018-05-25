@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 50984327074441046}
   - component: {fileID: 61926143693201022}
   - component: {fileID: 114139143144804652}
+  - component: {fileID: 70644309474122186}
   m_Layer: 0
   m_Name: Rusher
   m_TagString: Mob
@@ -91,7 +92,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1506243833303974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.86, y: -3.66, z: 1}
+  m_LocalPosition: {x: -11.832861, y: 4.4126663, z: 1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 224963426847676380}
@@ -109,15 +110,15 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61926143693201022
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -127,7 +128,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0622797, y: 0.020521164}
@@ -143,6 +144,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4499264, y: 3.73736}
   m_EdgeRadius: 0
+--- !u!70 &70644309474122186
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1506243833303974}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.013963699, y: -0.09775019}
+  m_Size: {x: 1.7882233, y: 4.1342154}
+  m_Direction: 0
 --- !u!114 &114139143144804652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -302,11 +318,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e4320f2e97d204390e9ee725134d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 30
+  HP: 75
   goldReward: 10
   XPReward: 0
   HPBarText: {fileID: 0}
   player: {fileID: 0}
+  enemy1: {fileID: 1506243833303974}
+  enemy2: {fileID: 1753650936550232, guid: 8f3d0f891598b054db4b83ada434ecb0, type: 2}
+  enemy3: {fileID: 1648322292772792, guid: a56766c005cb75c49be627e637bad47d, type: 2}
   proximityIndicator: {fileID: 1362700259955202, guid: 5f9fc866a87d4384d990f5316dc1e6a3,
     type: 2}
   minimapIndicator: {fileID: 1598304894650678, guid: c445000a7af56fa49bc82b1cf08abc76,
@@ -319,7 +338,7 @@ MonoBehaviour:
   PathToPlayer: []
   currentFloor: 0
   canTransport: 1
-  speed: 2
+  speed: 4
   questAcceptTime: 0
   targetPos: 0
   slowed: 0

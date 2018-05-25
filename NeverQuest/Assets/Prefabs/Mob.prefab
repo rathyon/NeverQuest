@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 50150002935235388}
   - component: {fileID: 61410617185537578}
   - component: {fileID: 114715954464956146}
+  - component: {fileID: 70781593431239640}
   m_Layer: 0
   m_Name: Mob
   m_TagString: Mob
@@ -91,7 +92,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1753650936550232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19, y: 11, z: 1}
+  m_LocalPosition: {x: -10.989965, y: 4.8684206, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224527154281889324}
@@ -109,15 +110,15 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 15
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61410617185537578
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -127,7 +128,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.12830925, y: -0.024058342}
@@ -143,6 +144,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.98792267, y: 2.6708279}
   m_EdgeRadius: 0
+--- !u!70 &70781593431239640
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1753650936550232}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.30023146, y: 0}
+  m_Size: {x: 1.3495378, y: 2.7}
+  m_Direction: 0
 --- !u!114 &114105917648348818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -311,11 +327,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e4320f2e97d204390e9ee725134d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
+  HP: 175
   goldReward: 20
   XPReward: 0
   HPBarText: {fileID: 0}
   player: {fileID: 0}
+  enemy1: {fileID: 1753650936550232}
+  enemy2: {fileID: 1648322292772792, guid: a56766c005cb75c49be627e637bad47d, type: 2}
+  enemy3: {fileID: 1506243833303974, guid: 2f6d9db6702954a40a6cae7b4794aede, type: 2}
   proximityIndicator: {fileID: 1362700259955202, guid: 5f9fc866a87d4384d990f5316dc1e6a3,
     type: 2}
   minimapIndicator: {fileID: 1598304894650678, guid: c445000a7af56fa49bc82b1cf08abc76,
