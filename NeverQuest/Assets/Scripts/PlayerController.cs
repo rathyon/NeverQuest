@@ -11,6 +11,11 @@ public class PlayerController : MonoBehaviour
     int points = 0;
     int hp = 100;
     /* ============== */
+    /* Stats variables*/
+    public int numMobsKilled = 0, numFlamethrowerUsed = 0, numBulletsUsed = 0, numTrapsUsed = 0, numBearTrap = 0, numFireTrap = 0, numDDOSTrap = 0, numMoneyTrap = 0, numIronMaidenTrap = 0, numPoisonTrap = 0;
+    public GameObject FloatingText, GoldAnim;
+    /* ============== */
+
     /* Screens variables*/
     private string _nickname;
 
@@ -19,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public List<GameObject> nicks_Data;
     public List<GameObject> scores_Data;
 
-    public bool paused, endGame;
+    public bool paused, endGame, canWrite = true;
     public GameObject pauseScreen, endScreen, saveNickname, saveButton, leadButton, top10;
     public Text InputNickname, endPointsText;
 
@@ -162,8 +167,15 @@ public class PlayerController : MonoBehaviour
         if (timeToAcceptQuest <= 0.0f) //EndGame
         {
             questWarning.text = "GAME OVER";
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             endGame = true;
+
+            if (canWrite)
+            {
+                this.GetComponentInParent<ReadWriteTxt>().WritePlayerStats();
+                this.GetComponentInParent<ReadWriteTxt>().ActualizeOverviewStats();
+                canWrite = false;
+            }
 
             if (CanBeOnLeaderboard(points)) { //Pede por nickname e espera
                 saveNickname.SetActive(true);
@@ -178,6 +190,8 @@ public class PlayerController : MonoBehaviour
             }
 
             endScreen.SetActive(true);
+
+            Time.timeScale = 0;
         }
     }
 
@@ -214,6 +228,7 @@ public class PlayerController : MonoBehaviour
             Vector3 position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
             Instantiate(flamethrower, position, Quaternion.identity);
             canFlamethrower = false;
+            numFlamethrowerUsed++;
             flamethrowerOn = true;
             flamethrowerTimeRemaining = flamethrowerCooldown;
         }
@@ -225,6 +240,7 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
             Instantiate(bullet, position, Quaternion.identity);
+            numBulletsUsed++;
             canShoot = false;
             shootTimeRemaining = shootCooldown;
         }
@@ -243,8 +259,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+ 
+
+    public void showFloatingText(GameObject _gameObject, Vector3 position, int XP)
+    {
+        GameObject txtAnim;
+        txtAnim = Instantiate(_gameObject, (position + new Vector3(+1f, 5.5f, 0f)), Quaternion.identity);
+        txtAnim.GetComponentInChildren<Text>().text = " + " + XP + "XP";
+
+
+    }
+
+    public void showGoldAnimText(GameObject _gameObject, Vector3 position, int GOLD)
+    {
+            GameObject txtAnim;
+    txtAnim = Instantiate(_gameObject, position, Quaternion.identity);
+        txtAnim.GetComponentInChildren<Text>().text = " + " + GOLD;
+        print(txtAnim.GetComponentInChildren<Text>().text);
+    }
+
     // Update is called once per frame
-     void Update()
+    void Update()
     {
         TimerJump();
 
@@ -512,6 +547,7 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
+
 
     public void AddToArraysNickScore(string nick, int score)
     {

@@ -8,7 +8,7 @@ public class MobController : MonoBehaviour
 {
     public float HP;
     private float MaxHP;
-    public int goldReward;
+    public int goldReward, XPReward;
 
     public Text HPBarText;
 
@@ -16,6 +16,8 @@ public class MobController : MonoBehaviour
     public GameObject proximityIndicator;
     public GameObject minimapIndicator;
     public GameObject wavesManager;
+    public GameObject FloatingText;
+    public GameObject GoldAnim;
 
     public List<DoorController> PathToPlayer = new List<DoorController>();
 
@@ -175,6 +177,9 @@ public class MobController : MonoBehaviour
             Destroy(minimapIndicator);
             player.GetComponent<PlayerController>().AddGold(goldReward); //Definir um valor fixo para quando se mata um mob
             player.GetComponent<PlayerController>().enemies.Remove(this);
+            //player.GetComponent<PlayerController>().showFloatingText(FloatingText, transform.position, XPReward);
+            player.GetComponent<PlayerController>().showGoldAnimText(GoldAnim, GoldAnim.GetComponent<RectTransform>().position, goldReward);
+
 
             Destroy(gameObject);
         }

@@ -52,8 +52,21 @@ public class TrapPlacement : MonoBehaviour {
 				if (Input.GetKeyDown (KeyCode.E)) {
 						Instantiate (trap, position, Quaternion.identity);
 						player_script.gold -= trap.cost;
-				}
-			} else {
+
+                        /*================== Stats /*==================*/
+                        string name_trap = trap.name;
+                        if (name_trap == "BearTrap") player.GetComponent<PlayerController>().numBearTrap++;
+                        else if (name_trap == "DDOSTrap") player.GetComponent<PlayerController>().numDDOSTrap++;
+                        else if (name_trap == "FireTrap") player.GetComponent<PlayerController>().numFireTrap++;
+                        else if (name_trap == "IronMaidenTrap") player.GetComponent<PlayerController>().numIronMaidenTrap++;
+                        else if (name_trap == "MoneyTrap") player.GetComponent<PlayerController>().numMoneyTrap++;
+                        else if (name_trap == "PoisonTrap") player.GetComponent<PlayerController>().numPoisonTrap++;
+                        else print("ERROR: Nao reconheco o tipo da trap ativada!");
+
+                        player.GetComponent<PlayerController>().numTrapsUsed++;
+                        /*=============================================*/
+                }
+            } else {
 				can.SetActive (false);
 				cannot.transform.position = position;
 				cannot.SetActive (true);	

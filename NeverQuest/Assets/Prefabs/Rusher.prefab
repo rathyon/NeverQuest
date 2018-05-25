@@ -304,6 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 30
   goldReward: 10
+  XPReward: 0
   HPBarText: {fileID: 0}
   player: {fileID: 0}
   proximityIndicator: {fileID: 1362700259955202, guid: 5f9fc866a87d4384d990f5316dc1e6a3,
@@ -312,6 +313,9 @@ MonoBehaviour:
     type: 2}
   wavesManager: {fileID: 1576110891764570, guid: 78db9e1291c33074c966abbd6c848f29,
     type: 2}
+  FloatingText: {fileID: 1049069029925732, guid: e2fdcd82276a3cf47b3357cf6f6e1d69,
+    type: 2}
+  GoldAnim: {fileID: 1453608325755588, guid: 24c5764d26a6a424891bf00192390e8f, type: 2}
   PathToPlayer: []
   currentFloor: 0
   canTransport: 1
