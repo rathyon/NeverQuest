@@ -1,13 +1,15 @@
 ﻿<Properties StartupConfiguration="{407324BB-5FA7-DFD5-1377-045319A5E5FB}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Traps/IronMaiden.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MobController.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="263" Column="85" />
       <File FileName="Assets/Scripts/Store/EquipmentStoreControler.cs" Line="47" Column="20" />
       <File FileName="Assets/Scripts/Store/StoreItemClickController.cs" Line="56" Column="65" />
-      <File FileName="Assets/Scripts/Store/StoreTabSelector.cs" Line="8" Column="45" />
+      <File FileName="Assets/Scripts/Store/StoreTabSelector.cs" Line="32" Column="1" />
       <File FileName="Assets/Scripts/TrapPlacement.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Traps/IronMaiden.cs" Line="16" Column="19" />
+      <File FileName="Assets/Scripts/Traps/IronMaiden.cs" Line="32" Column="63" />
+      <File FileName="Assets/Scripts/Traps/KnockbackTrap.cs" Line="37" Column="77" />
+      <File FileName="Assets/Scripts/MobController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

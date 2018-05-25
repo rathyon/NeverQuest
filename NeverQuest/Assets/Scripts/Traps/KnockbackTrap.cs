@@ -28,15 +28,14 @@ public class KnockbackTrap : Trap {
 	}
 
 
-	private void OnTriggerEnter2D(Collider2D collision){
-		if (collision.gameObject.CompareTag("Mob")){
+	private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Mob")){
+            print("entrei");
 			if (active) {
-				var mob = collision.GetComponent<MobController> ();
-				if (mob.facingRight) {
-					mob.GetComponent<Rigidbody2D> ().AddForce (transform.up * 3);
-				} else {
-					mob.GetComponent<Rigidbody2D> ().AddForce(transform.up * 3);		
-				}
+                print("e again");
+                collision.gameObject.GetComponent<Rigidbody2D>().velocity = (transform.forward * 200);
+				 
 			}
 		}
 	}
