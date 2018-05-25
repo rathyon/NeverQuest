@@ -13,7 +13,7 @@ public class IronMaiden : Trap {
 		cost = 75;
 		active = true;
 		_damage = 150.0f;
-		inactiveTimerMAX = 1.5f;
+		inactiveTimerMAX = 3.0f;
 		waitedTime = 7.0f;
 		description = "The makers of the game thought this was too op so it has a cd of 7s";
 	}
@@ -29,7 +29,7 @@ public class IronMaiden : Trap {
 	}
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject.CompareTag("Mob")){
+        if (collision.gameObject.CompareTag("Mob") && active){
 			var mob =collision.GetComponent<MobController> ();
 			mob.HP -= _damage;
 			active = false;
