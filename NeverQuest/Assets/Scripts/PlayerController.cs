@@ -8,12 +8,13 @@ using System.Linq;
 public class PlayerController : MonoBehaviour
 {
     /* Remover depois*/
-    int points = 0;
+    public int points = 0;
     int hp = 100;
     /* ============== */
     /* Stats variables*/
-    public int numMobsKilled = 0, numFlamethrowerUsed = 0, numBulletsUsed = 0, numTrapsUsed = 0, numBearTrap = 0, numFireTrap = 0, numDDOSTrap = 0, numMoneyTrap = 0, numIronMaidenTrap = 0, numPoisonTrap = 0;
+    public int numTimePlayed = 0, numDoorsCatched = 0, numMobsKilled = 0, numFlamethrowerUsed = 0, numBulletsUsed = 0, numTrapsUsed = 0, numBearTrap = 0, numFireTrap = 0, numDDOSTrap = 0, numMoneyTrap = 0, numIronMaidenTrap = 0, numPoisonTrap = 0;
     public GameObject FloatingText, GoldAnim;
+    public float playedTime;
     /* ============== */
 
     /* Screens variables*/
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject player;
     public List<MobController> enemies = new List<MobController>();
+    public List<float> WavesTimers = new List<float>();
 
     public SimpleHealthBar cooldown_bar;
 
@@ -87,6 +89,7 @@ public class PlayerController : MonoBehaviour
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
         endGame = true;
+        playedTime = 0.0f;
 
         bton = gameObject.GetComponentsInChildren<Button>();
         foreach (Button b in bton)
@@ -169,6 +172,7 @@ public class PlayerController : MonoBehaviour
             questWarning.text = "GAME OVER";
             //Time.timeScale = 0;
             endGame = true;
+            numTimePlayed = Mathf.RoundToInt(playedTime);
 
             if (canWrite)
             {
@@ -282,6 +286,12 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         TimerJump();
+
+        if (!endGame)
+        {
+            playedTime += Time.deltaTime;
+            //print(Mathf.RoundToInt(playedTime) + "ASL \n");
+        }
 
         float x2 = flamethrowerCooldown - flamethrowerTimeRemaining;
 

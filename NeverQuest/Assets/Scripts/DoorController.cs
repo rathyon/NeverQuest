@@ -25,6 +25,8 @@ public class DoorController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R) && collision.gameObject.CompareTag("Player"))
         {
+            collision.GetComponent<PlayerController>().numDoorsCatched++;
+
             //move player to othet dorr
             collision.GetComponent<PlayerController>().transform.position = linkedDoor.transform.position;
 

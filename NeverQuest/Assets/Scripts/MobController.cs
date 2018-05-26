@@ -110,7 +110,7 @@ public class MobController : MonoBehaviour
             findDoor(doorToCatch.nextLevel, playerLevel, doorToCatch.level);
         }
 
-        foreach (DoorController door2 in path.ToArray())
+        foreach (DoorController door2 in path)
             PathToPlayer.Insert(0, door2);
     }
 

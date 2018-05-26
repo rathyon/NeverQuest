@@ -15,6 +15,8 @@ public class WavesManagerController : MonoBehaviour
     public Text WavesManager_Text;
     public Text Victory_Text;
 
+    public float WaveTimer = 0.0f;
+
     public int[] MobsPerWave;
     public int[] RushersPerWave;
     public int[] BruisersPerWave;
@@ -71,6 +73,8 @@ public class WavesManagerController : MonoBehaviour
 
             else // if its action phase
             {
+                WaveTimer += Time.deltaTime;
+
                 int cenas = MobsPerWave[CurrentWave - 1] + RushersPerWave[CurrentWave - 1] + BruisersPerWave[CurrentWave - 1];
                 WavesManager_Text.text = "Pesky players remaining: " + LivingEnemies;
                 //if everything has been spawned, stop spawning
@@ -91,6 +95,9 @@ public class WavesManagerController : MonoBehaviour
                     //reset booleans and increment wave...
                     AllSpawned = false;
                     IsActionPhase = false;
+
+                    Player.GetComponent<PlayerController>().WavesTimers.Add(WaveTimer);
+                    WaveTimer = 0.0f;
                     MobsSpawned = 0;
                     RushersSpawned = 0;
                     BruisersSpawned = 0;
@@ -108,6 +115,32 @@ public class WavesManagerController : MonoBehaviour
             // "You won!"
             Victory_Text.text = "You won!";
             Debug.Log("YOU WON!");
+            Player.GetComponent<PlayerController>().endGame = true;
+            Player.GetComponent<PlayerController>().numTimePlayed = Mathf.RoundToInt(Player.GetComponent<PlayerController>().playedTime);
+
+            if (Player.GetComponent<PlayerController>().canWrite)
+            {
+                Player.GetComponent<ReadWriteTxt>().WritePlayerStats();
+                Player.GetComponent<ReadWriteTxt>().WavesWriteFile();
+                Player.GetComponent<ReadWriteTxt>().ActualizeOverviewStats();
+                Player.GetComponent<PlayerController>().canWrite = false;
+            }
+
+            if (Player.GetComponent<PlayerController>().CanBeOnLeaderboard(Player.GetComponent<PlayerController>().points))
+            { //Pede por nickname e espera
+                Player.GetComponent<PlayerController>().saveNickname.SetActive(true);
+                Player.GetComponent<PlayerController>().IsOnTOP10_2.text = "Congratulations! Your score can be on NEVERQUEST TOP10 !";
+                Player.GetComponent<PlayerController>().IsOnTOP10.text = "";
+            }
+            else
+            {
+                Player.GetComponent<PlayerController>().saveNickname.SetActive(false);
+                Player.GetComponent<PlayerController>().IsOnTOP10.text = "You are too weak for NEVERQUEST TOP10 ...";
+                Player.GetComponent<PlayerController>().IsOnTOP10_2.text = "";
+            }
+
+            Player.GetComponent<PlayerController>().endScreen.SetActive(true);
+
             Time.timeScale = 0.0f;
         }
     }
