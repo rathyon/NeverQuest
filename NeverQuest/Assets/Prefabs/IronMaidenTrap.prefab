@@ -36,8 +36,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1860846219032376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.1, y: -2.68, z: 0.24695429}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalPosition: {x: -47.16, y: -1.91, z: 0.24695429}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,7 +54,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.24625027, y: -1.6685486}
+  m_Offset: {x: 0.028242111, y: 0.76175}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -65,7 +65,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.4003093, y: 8.073737}
+  m_Size: {x: 3.8535051, y: 7.896624}
   m_EdgeRadius: 0
 --- !u!114 &114133140869680836
 MonoBehaviour:
@@ -80,13 +80,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placementX: 0
   placementY: 0
-  cost: 0
+  cost: 75
   _damage: 150
   active: 1
   slowPercentage: 0
   _stopTime: 0
   _slowTime: 0
-  trapName: 
+  trapName: Iron Maiden
   description: 
 --- !u!212 &212661367861477088
 SpriteRenderer:
