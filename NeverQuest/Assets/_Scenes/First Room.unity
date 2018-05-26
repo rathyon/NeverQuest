@@ -1582,7 +1582,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 78ed44be2f67e42b5b9d9f1dee44bffb, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -10953,7 +10953,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 8636d90b7dffa874daa25bc11497ac3d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -11574,11 +11574,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4177956461456372, guid: dc667a18d1dd54585b602c36b7ad45f0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -47.2
+      value: -49.18
       objectReference: {fileID: 0}
     - target: {fileID: 4177956461456372, guid: dc667a18d1dd54585b602c36b7ad45f0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -6.27
+      value: -6.07
       objectReference: {fileID: 0}
     - target: {fileID: 4177956461456372, guid: dc667a18d1dd54585b602c36b7ad45f0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -11607,6 +11607,11 @@ Prefab:
     - target: {fileID: 1179713691794272, guid: dc667a18d1dd54585b602c36b7ad45f0, type: 2}
       propertyPath: m_Name
       value: FireTrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 114589444565543488, guid: dc667a18d1dd54585b602c36b7ad45f0,
+        type: 2}
+      propertyPath: placementY
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc667a18d1dd54585b602c36b7ad45f0, type: 2}
@@ -16073,7 +16078,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6a17428ee1ca3424cb5aaa06efa1aca9, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -17648,6 +17653,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4668498141b15064bb26cd8b20c5cb79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points: 0
+  numTimePlayed: 0
+  numDoorsCatched: 0
   numMobsKilled: 0
   numFlamethrowerUsed: 0
   numBulletsUsed: 0
@@ -17660,6 +17668,7 @@ MonoBehaviour:
   numPoisonTrap: 0
   FloatingText: {fileID: 0}
   GoldAnim: {fileID: 0}
+  playedTime: 0
   nicks_Data:
   - {fileID: 1834923893}
   - {fileID: 235571620}
@@ -17702,6 +17711,7 @@ MonoBehaviour:
   facingRight: 1
   player: {fileID: 1815465516}
   enemies: []
+  WavesTimers: []
   cooldown_bar: {fileID: 872064451}
   allDoors:
   - {fileID: 282911812}
@@ -18157,7 +18167,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 62be7a6ae6242459ea322666273a3153, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19287,7 +19297,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: db11a37a4555f684b9dbde411b46b4eb, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -20458,7 +20468,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7f40e5ee0e1334c9282dba7286560900, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
