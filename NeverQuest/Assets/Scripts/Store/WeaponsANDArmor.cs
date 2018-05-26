@@ -27,27 +27,32 @@ public class WeaponsANDArmor : Selectable {
 
 	}
 
-	void TaskOnClick()
-	{
-        int tier = yourButton.GetComponent<EquipmentStoreControler>().tier;
-        yourButton.GetComponent<EquipmentStoreControler>().tierIncrease();
-        type = yourButton.GetComponent<EquipmentStoreControler>().type;
+    void TaskOnClick()
+    {
+        if (active){
+            int tier = yourButton.GetComponent<EquipmentStoreControler>().tier;
+            yourButton.GetComponent<EquipmentStoreControler>().tierIncrease();
+            type = yourButton.GetComponent<EquipmentStoreControler>().type;
 
             if (type == 0)
             {
                 if (tier == 1)
                 {
-                    if (playerControler.gold >= 50)
+                    if (playerControler.gold >= 150)
                     {
-                        playerControler.timeAccept = 6f;
-                        playerControler.gold -= 50;
+                        playerControler.timeAccept = 5.5f;
+                        playerControler.jumpPower = 3;
+                        playerControler.gold -= 150;
+
+                        active = false;
                     }
                 }
                 if (tier == 2)
                 {
                     if (playerControler.gold >= 200)
                     {
-                        playerControler.timeAccept = 7f;
+                        playerControler.timeAccept = 6f;
+                        playerControler.jumpPower = 7;
                         playerControler.gold -= 200;
                         active = false;
                     }
@@ -59,16 +64,29 @@ public class WeaponsANDArmor : Selectable {
                 {
                     if (playerControler.gold >= 100)
                     {
-                        playerControler.bullet_damage = 15.0f;
+                        playerControler.hasGun = true;
+                        playerControler.bullet_damage = 3.0f;
                         playerControler.gold -= 100;
+
+                        active = false;
                     }
                 }
                 if (tier == 2)
                 {
-                    if (playerControler.gold >= 250)
+                    if (playerControler.gold >= 150)
                     {
-                        playerControler.bullet_damage = 25.0f;
-                        playerControler.gold -= 250;
+                        playerControler.hasFlameThrower = true;
+                        playerControler.bullet_damage = 6.0f;
+                        playerControler.gold -= 150;
+                        active = false;
+                    }
+                }
+                if (tier == 3)
+                {
+                    if (playerControler.gold >= 200)
+                    {
+                        playerControler.bullet_damage = 10.0f;
+                        playerControler.gold -= 200;
                         active = false;
                     }
                 }
@@ -78,25 +96,27 @@ public class WeaponsANDArmor : Selectable {
             {
                 if (tier == 1)
                 {
-                    if (playerControler.gold >= 50)
+                    if (playerControler.gold >= 200)
                     {
-                        playerControler.speed = 3f;
-                        playerControler.gold -= 50;
+                        playerControler.speed = 1.9f;
+                        playerControler.gold -= 150;
+
+                        active = false;
                     }
                 }
                 if (tier == 2)
                 {
-                    if (playerControler.gold >= 200)
+                    if (playerControler.gold >= 799)
                     {
-                        playerControler.speed = 3f;
-                        playerControler.gold -= 200;
+                        playerControler.speed = 2.2f;
+                        playerControler.gold -= 799;
                         active = false;
                     }
                 }
             }
 
-	}
+        }
 
-		
+    }
 	}
 	

@@ -1,0 +1,31 @@
+/*=========== New Player ===========*/
+
+Tempo total de jogo: 101 segundos.
+
+Duração da wave1: 58 segundos.
+
+Duração da wave2: 39 segundos.
+
+Número de doors catched: 18
+
+Número de mobs mortos: 37
+
+Número de vezes que Flamethrower foi usado : 0
+
+Número de balas disparadas: 0
+
+Número de traps usadas: 4
+
+
+BearTrap: 0
+
+Fire Trap: 4
+
+Poison Trap: 0
+
+DDOS Trap: 0
+
+MoneyTrap: 0
+
+IronMaidenTrap: 0
+

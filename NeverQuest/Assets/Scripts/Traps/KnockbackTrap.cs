@@ -33,8 +33,8 @@ public class KnockbackTrap : Trap {
         if (collision.gameObject.CompareTag("Mob") && active){
             print("entrei");
 			if (active) {
-                if (collision.gameObject.GetComponent<MobController>().facingRight) { collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(-10f, 50f); }
-                else { collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(10f, 50f); }
+                if (collision.gameObject.GetComponent<MobController>().facingRight) { collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(-35f, 20f); }
+                else { collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(35f, 20f); }
                 active = false;
 				 
 			}

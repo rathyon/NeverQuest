@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
     public float bullet_damage;
     public float shootCooldown;
     private float shootTimeRemaining;
+    public bool hasGun = false;
 
     //flamethrower variables
     public GameObject flamethrower;
@@ -66,6 +67,7 @@ public class PlayerController : MonoBehaviour
     public bool flamethrowerOn = false;
     public float flamethrowerCooldown; 
     private float flamethrowerTimeRemaining;
+    public bool hasFlameThrower = false;
 
     public bool grounded;
 
@@ -102,7 +104,7 @@ public class PlayerController : MonoBehaviour
         storeActive = false;
         grounded = true;
         //transportLevel = 3;
-        gold = 200;
+        gold = 7000;
         waitedTime = 0.0f;
         inactiveTimerMAX = 1.45f;
 
@@ -365,12 +367,12 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ShootProjectile();
+            if(hasGun) ShootProjectile();
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            FireFlamethrower();
+            if(hasFlameThrower) FireFlamethrower();
         }
         if (Input.GetKeyUp(KeyCode.Q))
         {

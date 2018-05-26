@@ -13,7 +13,7 @@ public class EngQHability : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		lastChange = true;
-        damagePerFrame = 1;
+        damagePerFrame = 0.67f;
 		playerCont = GameObject.Find ("Player");
 		timeOfLife = 0.0f;
 	}
