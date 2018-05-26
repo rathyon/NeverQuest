@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
         storeActive = false;
         grounded = true;
         //transportLevel = 3;
-        gold = 7000;
+        gold = 30000;
         waitedTime = 0.0f;
         inactiveTimerMAX = 1.45f;
 

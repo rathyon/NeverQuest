@@ -12,7 +12,7 @@ public class KnockbackTrap : Trap {
         placementY = -1.35f;
 		trapName = "Knockback Trap";
 		cost = 45;
-		inactiveTimerMAX = 2.5f;
+		inactiveTimerMAX = 3.5f;
 		waitedTime = 0.0f;
 		description = "We do not garantee that it will work! Use at your own risk!";
 	}

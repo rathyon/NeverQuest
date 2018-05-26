@@ -31,7 +31,7 @@ public class WeaponsANDArmor : Selectable {
     {
         if (active){
             int tier = yourButton.GetComponent<EquipmentStoreControler>().tier;
-            yourButton.GetComponent<EquipmentStoreControler>().tierIncrease();
+            //yourButton.GetComponent<EquipmentStoreControler>().tierIncrease();
             type = yourButton.GetComponent<EquipmentStoreControler>().type;
 
             if (type == 0)
