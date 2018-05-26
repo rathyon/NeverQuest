@@ -13,20 +13,26 @@ public class EngQHability : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		lastChange = true;
-        damagePerFrame = 0.67f;
+        damagePerFrame = 1;
 		playerCont = GameObject.Find ("Player");
 		timeOfLife = 0.0f;
 	}
 
-	// Update is called once per frame
-	void Update () {
-		if (!playerCont.GetComponent<PlayerController> ().flamethrowerOn) {
-			Destroy (gameObject);
-		}
-		timeOfLife += Time.deltaTime;  
-		if (timeOfLife >= maxLifeTime) {
+    // Update is called once per frame
+    void Update()
+    {
+        //if (!playerCont.GetComponent<PlayerController>().flamethrowerOn)
+        //{
+        //    playerCont.GetComponent<PlayerController>().flamethrowerOn = false;
+        //    playerCont.GetComponent<PlayerController>().canFlamethrower = true;
+        //    print("DEU MERDA");
+        //    Destroy(gameObject);
+        //}
+        timeOfLife += Time.deltaTime;  
+		if (timeOfLife >= maxLifeTime || !playerCont.GetComponent<PlayerController>().flamethrowerOn) {
 			playerCont.GetComponent<PlayerController> ().flamethrowerOn = false;
-			Destroy (gameObject);
+            playerCont.GetComponent<PlayerController>().canFlamethrower = true;
+            Destroy (gameObject);
 		}
 
 

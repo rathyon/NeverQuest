@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
     public bool canFlamethrower = true;
     public bool flamethrowerOn = false;
     public float flamethrowerCooldown; 
-    private float flamethrowerTimeRemaining;
+    public float flamethrowerTimeRemaining;
     public bool hasFlameThrower = false;
 
     public bool grounded;
@@ -109,6 +109,7 @@ public class PlayerController : MonoBehaviour
         inactiveTimerMAX = 1.45f;
 
         paused = true;
+        flamethrowerTimeRemaining = flamethrowerCooldown;
 
         gameObject.GetComponentInChildren<Canvas>().enabled = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -231,15 +232,16 @@ public class PlayerController : MonoBehaviour
 
     private void FireFlamethrower()
     {
-		if (canFlamethrower && !flamethrowerOn && !storeActive)
+		if (!flamethrowerOn && !storeActive)
         {
             Vector3 position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
             Instantiate(flamethrower, position, Quaternion.identity);
             canFlamethrower = false;
+            flamethrower.GetComponent<EngQHability>().maxLifeTime = (flamethrowerTimeRemaining);
             numFlamethrowerUsed++;
-            flamethrowerOn = true;
-            flamethrowerTimeRemaining = flamethrowerCooldown;
         }
+
+        flamethrowerOn = !flamethrowerOn;
     }
 
     private void ShootProjectile()
@@ -297,9 +299,13 @@ public class PlayerController : MonoBehaviour
             //print(Mathf.RoundToInt(playedTime) + "ASL \n");
         }
 
-        float x2 = flamethrowerCooldown - flamethrowerTimeRemaining;
 
-        cooldown_bar.UpdateBar(x2, flamethrowerCooldown);
+        if (flamethrowerTimeRemaining <= 0.0f)
+        {
+            flamethrowerTimeRemaining = 0.0f;
+            flamethrowerOn = false;
+
+        }
 
         endPointsText.text = "" + points + "";
 
@@ -326,6 +332,13 @@ public class PlayerController : MonoBehaviour
                 shootTimeRemaining -= Time.deltaTime;
             }
         }
+
+        if (!flamethrowerOn && (flamethrowerTimeRemaining < flamethrowerCooldown))
+        {
+            flamethrowerTimeRemaining += (Time.deltaTime * 0.3f);
+        }
+        if (flamethrowerOn && (flamethrowerTimeRemaining > 0.0f)) { flamethrowerTimeRemaining -= (Time.deltaTime * 1.2f); }
+
 
         if (!canFlamethrower)
         {
@@ -372,12 +385,14 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if(hasFlameThrower) FireFlamethrower();
+            FireFlamethrower();
         }
         if (Input.GetKeyUp(KeyCode.Q))
         {
             flamethrowerOn = false;
         }
+
+        cooldown_bar.UpdateBar(flamethrowerTimeRemaining, flamethrowerCooldown);
     }
 
 
@@ -551,7 +566,7 @@ public class PlayerController : MonoBehaviour
 
         //if (this.GetComponentInParent<ReadWriteTxt>().scores.Count == 10) return false;
         //else
-        //{
+        //{fl
 
         //  }
 
