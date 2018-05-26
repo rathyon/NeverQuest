@@ -66,5 +66,17 @@ public class StoreItemClickController : Selectable {
 				canUpdate = true;
 			}
 		}
+       /* if (Input.GetKeyDown(KeyCode.E)) { 
+        if (GameObject.Find ("Player").GetComponent<PlayerController> ().storeActive) {
+			if (type == 1) {
+				Trap trap = objectSelected.GetComponent<Trap> ();
+				placement = GameObject.FindGameObjectWithTag ("Placement");
+				placement.GetComponent<TrapPlacement> ().setObject (trap);
+				placement.GetComponent<TrapPlacement> ().placement = true;
+				GetComponentInParent<PlayerController> ().activateStore ();
+			}
+		}
+        }*/
+
 	}
 }

@@ -9,7 +9,7 @@ public class DDOSTrap : Trap {
 
 	void Start(){
 		placementX = 0.5f;
-		placementY = -0.7f;
+		placementY = -1.5f;
 		trapName = "DDOS Trap";
 		cost = 55;
 		_stopTime = 10.0f;

@@ -46,6 +46,8 @@ public class TrapPlacement : MonoBehaviour {
 				invalidPlacement = true;
 			}
 			if (!invalidPlacement) {
+                cannot.transform.localScale = trap.transform.localScale;
+                can.transform.localScale = trap.transform.localScale;
 				cannot.SetActive (false);
 				can.transform.position = position;
 				can.SetActive (true);

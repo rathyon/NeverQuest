@@ -9,7 +9,7 @@ public class KnockbackTrap : Trap {
 	void Start(){
 		active = true;
 		placementX = 0.5f;
-		placementY = -0.7f;
+        placementY = -1.35f;
 		trapName = "Knockback Trap";
 		cost = 45;
 		inactiveTimerMAX = 2.5f;

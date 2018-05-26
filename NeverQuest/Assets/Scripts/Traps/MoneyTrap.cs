@@ -6,7 +6,7 @@ public class MoneyTrap : Trap {
 	void Start(){
         active = true;
 		placementX = 0.5f;
-		placementY = -0.7f;
+		placementY = -1.4f;
 		trapName = "Money bait";
 		cost = 15;
 		_stopTime = 2.0f;

@@ -8,7 +8,7 @@ public class IronMaiden : Trap {
 	
 	void Start(){
 		placementX = 0.3f;
-		placementY = 0.5f;
+		placementY = -0.1f;
 		trapName = "Iron Maiden";
 		cost = 75;
 		active = true;

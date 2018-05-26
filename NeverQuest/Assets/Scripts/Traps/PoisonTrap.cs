@@ -6,7 +6,7 @@ public class PoisonTrap : Trap {
 	void Start(){
 		_damage = 0.05f;
 		placementX = 0.5f;
-		placementY = -0.7f;
+        placementY = -1.3f;
 		trapName = "Poison Trap";
 		cost = 50;
 		_stopTime = 5.0f;

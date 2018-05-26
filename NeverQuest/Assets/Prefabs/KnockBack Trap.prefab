@@ -36,8 +36,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1203280306475062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.5, y: -4, z: 0.24695429}
-  m_LocalScale: {x: 0.5528932, y: 0.5144412, z: 1}
+  m_LocalPosition: {x: -47.17, y: 0.57996774, z: 0.24695429}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,18 +54,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.012180328, y: 0.0197227}
+  m_Offset: {x: 0.012514271, y: -0.0067250505}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.4, y: 1}
+    oldSize: {x: 0.51, y: 0.51}
     newSize: {x: 4.62, y: 2.05}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.4981966, y: 1.852772}
+  m_Size: {x: 0.45633453, y: 0.22359987}
   m_EdgeRadius: 0
 --- !u!114 &114650019872903724
 MonoBehaviour:
@@ -78,15 +78,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe1b0e80e57b47cfa0aea46390b28ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placementX: 0
-  placementY: 0
-  cost: 0
+  placementX: 0.5
+  placementY: -1.5
+  cost: 45
   _damage: 0
-  active: 0
+  active: 1
   slowPercentage: 0
   _stopTime: 0
   _slowTime: 0
-  trapName: 
+  trapName: Knockback Trap
+  description: We do not garantee that it will work! Use at your own risk!
 --- !u!212 &212013040506506362
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -100,6 +101,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -121,7 +123,7 @@ SpriteRenderer:
   m_SortingLayerID: 1542309209
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 88990e7607d917b4ab82a20203c4d5f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77f908ba018709f448ab7f3fd1208931, type: 3}
   m_Color: {r: 1, g: 0.9724138, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
