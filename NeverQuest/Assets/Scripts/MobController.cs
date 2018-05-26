@@ -181,6 +181,7 @@ public class MobController : MonoBehaviour
 
         if (HP <= 0)
         {
+            player.GetComponent<PlayerController>().numMobsKilled++;
             wavesManager.GetComponent<WavesManagerController>().EnemySlain();
             proximityIndicator.GetComponent<ProximityIndicatorController>().removeEnemy(gameObject);
             Destroy(minimapIndicator);

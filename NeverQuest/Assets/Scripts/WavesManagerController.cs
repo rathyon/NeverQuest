@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class WavesManagerController : MonoBehaviour
 {
     public Text interfaceText;
-
+    public bool can_Write = true;
     public int prepTime;
     public int NumberOfWaves;
     public int SpawnDelay;
@@ -97,14 +97,15 @@ public class WavesManagerController : MonoBehaviour
                     IsActionPhase = false;
 
                     Player.GetComponent<PlayerController>().WavesTimers.Add(WaveTimer);
+                    //Player.GetComponent<ReadWriteTxt>().WavesWriteFile();
                     WaveTimer = 0.0f;
                     MobsSpawned = 0;
                     RushersSpawned = 0;
                     BruisersSpawned = 0;
                     CurrentWave++;
                     Debug.Log("Wave Complete!");
-                    Debug.Log("Gold awarded: " + 100 * CurrentWave);
-                    Player.GetComponent<PlayerController>().gold += 100 * CurrentWave;
+                    Debug.Log("Gold awarded: " + 50 * CurrentWave);
+                    Player.GetComponent<PlayerController>().gold += 50 * CurrentWave;
 
                     StartCoroutine("PrepCountdown");
                 }
@@ -113,17 +114,20 @@ public class WavesManagerController : MonoBehaviour
         else
         {
             // "You won!"
-            Victory_Text.text = "You won!";
-            Debug.Log("YOU WON!");
-            Player.GetComponent<PlayerController>().endGame = true;
-            Player.GetComponent<PlayerController>().numTimePlayed = Mathf.RoundToInt(Player.GetComponent<PlayerController>().playedTime);
 
-            if (Player.GetComponent<PlayerController>().canWrite)
+            if (can_Write)
             {
+                Victory_Text.text = "You won!";
+                Debug.Log("YOU WON!");
+                Player.GetComponent<PlayerController>().endGame = true;
+                Player.GetComponent<PlayerController>().numTimePlayed = Mathf.RoundToInt(Player.GetComponent<PlayerController>().playedTime);
+                print("WAVESMANAGERCONTROLLER");
                 Player.GetComponent<ReadWriteTxt>().WritePlayerStats();
                 Player.GetComponent<ReadWriteTxt>().WavesWriteFile();
                 Player.GetComponent<ReadWriteTxt>().ActualizeOverviewStats();
-                Player.GetComponent<PlayerController>().canWrite = false;
+                can_Write  = false;
+
+        
             }
 
             if (Player.GetComponent<PlayerController>().CanBeOnLeaderboard(Player.GetComponent<PlayerController>().points))

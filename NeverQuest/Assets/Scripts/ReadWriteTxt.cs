@@ -13,6 +13,8 @@ public class ReadWriteTxt : MonoBehaviour {
 
 
 
+
+
     StreamReader streamReader, streamReader2, streamReader3;
     string filename;
 	// Use this for initialization
@@ -124,7 +126,7 @@ public class ReadWriteTxt : MonoBehaviour {
         while (File.Exists(@"../NeverQuest/stats/player" + i + ".txt")) i++;
         File.Create(@"../NeverQuest/stats/player" + i + ".txt").Close(); // Para apagar o que lá está
         List<string> aux = new List<string>();
-        print("envieiiii");
+
 
         aux.Add("/*=========== New Player ===========*/\n");
         aux.Add("Tempo total de jogo: " + this.GetComponent<PlayerController>().numTimePlayed + " segundos.\n");

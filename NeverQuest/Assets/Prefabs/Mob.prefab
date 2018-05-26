@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 175
-  goldReward: 20
+  goldReward: 5
   XPReward: 0
   HPBarText: {fileID: 0}
   player: {fileID: 0}

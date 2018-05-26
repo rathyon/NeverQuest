@@ -4227,7 +4227,7 @@ Prefab:
     - target: {fileID: 114704010488947876, guid: 78db9e1291c33074c966abbd6c848f29,
         type: 2}
       propertyPath: prepTime
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114704010488947876, guid: 78db9e1291c33074c966abbd6c848f29,
         type: 2}
@@ -4242,7 +4242,7 @@ Prefab:
     - target: {fileID: 114704010488947876, guid: 78db9e1291c33074c966abbd6c848f29,
         type: 2}
       propertyPath: NumberOfWaves
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114704010488947876, guid: 78db9e1291c33074c966abbd6c848f29,
         type: 2}

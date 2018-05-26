@@ -176,7 +176,9 @@ public class PlayerController : MonoBehaviour
 
             if (canWrite)
             {
+                this.GetComponentInParent<ReadWriteTxt>().WavesWriteFile();
                 this.GetComponentInParent<ReadWriteTxt>().WritePlayerStats();
+                print("PLAYERCONTROLLER");
                 this.GetComponentInParent<ReadWriteTxt>().ActualizeOverviewStats();
                 canWrite = false;
             }
