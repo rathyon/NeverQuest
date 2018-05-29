@@ -45,7 +45,7 @@ public class EquipmentStoreControler : Selectable {
         }
         else if (tier == 2)
         {
-            print("ola deveria de ter trocado");
+            //print("ola deveria de ter trocado");
             Vector3 x = button.transform.localScale;
             x.x = 0;
             button.transform.localScale = x;
@@ -95,7 +95,7 @@ public class EquipmentStoreControler : Selectable {
             {
                 if (tier == 1)
                 {
-                    Debug.Log("FIRST ARMOR");
+                   // Debug.Log("FIRST ARMOR");
                     GameObject.Find("Description_Name_WA").GetComponent<Text>().text = "Leather Armor";
                     GameObject.Find("Description_Image_WA").GetComponent<Image>().sprite = gameObject.GetComponentsInChildren<Image>()[0].sprite;
                     GameObject.Find("Description_Text_WA").GetComponent<Text>().text = "Increases the time of quest acceptance, but no one really knows why and its light materials mean you can finally jump! At 26.. :)";
@@ -104,7 +104,7 @@ public class EquipmentStoreControler : Selectable {
 
                 else if (tier == 2)
                 {
-                    Debug.Log("SEC ARMOR");
+                    //Debug.Log("SEC ARMOR");
                     GameObject.Find("Description_Name_WA").GetComponent<Text>().text = "Steel Armor";
                     GameObject.Find("Description_Image_WA").GetComponent<Image>().sprite = gameObject.GetComponentsInChildren<Image>()[2].sprite;
                     GameObject.Find("Description_Text_WA").GetComponent<Text>().text = "Increases the time of quest acceptance blablabla, you know...same as previous but better.";
@@ -122,7 +122,7 @@ public class EquipmentStoreControler : Selectable {
             {
                 if (tier == 1)
                 {
-                    Debug.Log("FIRST GUN");
+                    //Debug.Log("FIRST GUN");
                     GameObject.Find("Description_Name_WA").GetComponent<Text>().text = "Old Shotgun";
                     GameObject.Find("Description_Image_WA").GetComponent<Image>().sprite = gameObject.GetComponentsInChildren<Image>()[0].sprite;
                     GameObject.Find("Description_Text_WA").GetComponent<Text>().text = "You'll unluck the hability to shoot with this Old shotgun. The owner probably already died and carefull not to cut yourself, you might catch gangrene";
@@ -132,7 +132,7 @@ public class EquipmentStoreControler : Selectable {
 
                 else if (tier == 2)
                 {
-                    Debug.Log("SEC GUN");
+                    //Debug.Log("SEC GUN");
                     GameObject.Find("Description_Name_WA").GetComponent<Text>().text = "Regular Shotgun";
                     GameObject.Find("Description_Image_WA").GetComponent<Image>().sprite = gameObject.GetComponentsInChildren<Image>()[2].sprite;
                     GameObject.Find("Description_Text_WA").GetComponent<Text>().text = "!!Free flamethrower included!! Regarding the shotgun itself? Nothing special honestly.";
@@ -140,7 +140,7 @@ public class EquipmentStoreControler : Selectable {
                 }
                 else if (tier == 3)
                 {
-                    Debug.Log("THIRD GUN");
+                    //Debug.Log("THIRD GUN");
                     GameObject.Find("Description_Name_WA").GetComponent<Text>().text = "Golden Shotgun";
                     GameObject.Find("Description_Image_WA").GetComponent<Image>().sprite = gameObject.GetComponentsInChildren<Image>()[4].sprite;
                     GameObject.Find("Description_Text_WA").GetComponent<Text>().text = " The mother of all shotguns, a product definitely made by a dwarf, or a gnome...well anyone with the expertise.";
@@ -201,7 +201,7 @@ public class EquipmentStoreControler : Selectable {
                         playerControler.jumpPower = 3;
                         playerControler.gold -= 150;
                         tier++;
-                        print(tier);
+                       // print(tier);
                     }
                 }
                 else if (tier == 2)

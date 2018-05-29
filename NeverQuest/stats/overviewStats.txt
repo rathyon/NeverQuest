@@ -1,27 +1,20 @@
-/*=========== Overrall Stats===========*/
+﻿/*=========== Overrall Stats===========*/
 
-Tempo total de jogo: 1056 segundos.
+Tempo total de jogo: 0segundos.
 
-Número de doors catched: 5
+Número de doors catched: 0
 
-Número de mobs mortos: 13
+Número de mobs mortos: 0
 
-Número de vezes que Flamethrower foi usado : 49
-
-Número de balas disparadas: 38
-
-Número de traps usadas: 51
+Número de vezes que Flamethrower foi usado : 0
+Número de balas disparadas: 0
+Número de traps usadas: 0
 
 
-BearTrap: 60
+BearTrap: 0
+Fire Trap: 0
+Poison Trap: 0
+DDOS Trap: 0
 
-Fire Trap: 30
-
-Poison Trap: 60
-
-DDOS Trap: 11
-
-MoneyTrap: 6
-
-IronMaidenTrap: 4
-
+MoneyTrap: 0
+IronMaidenTrap: 0

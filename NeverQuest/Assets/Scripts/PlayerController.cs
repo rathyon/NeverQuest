@@ -186,20 +186,12 @@ public class PlayerController : MonoBehaviour
                 canWrite = false;
             }
 
-            if (CanBeOnLeaderboard(points)) { //Pede por nickname e espera
-                saveNickname.SetActive(true);
-                IsOnTOP10_2.text = "Congratulations! Your score can be on NEVERQUEST TOP10 !";
-                IsOnTOP10.text = "";
-            }
-            else
-            {
-                saveNickname.SetActive(false);
                 IsOnTOP10.text = "You are too weak for NEVERQUEST TOP10 ...";
                 IsOnTOP10_2.text = "";
-            }
+
 
             endScreen.SetActive(true);
-
+            saveNickname.SetActive(false);
             Time.timeScale = 0;
         }
     }
@@ -451,15 +443,16 @@ public class PlayerController : MonoBehaviour
     }
     private void InputNicknameScript()
     {
-        print("ENTREIIIIIIII : " + this.GetComponentInParent<ReadWriteTxt>().nicknames.Count);
-        print("ENTRADO: " + InputNickname.text);
+//        print("ENTREIIIIIIII : " + this.GetComponentInParent<ReadWriteTxt>().nicknames.Count);
+  //      print("ENTRADO: " + InputNickname.text);
         //print("Count: " + ThirdPerson.GetComponent<GameControler>().GetComponentInParent<ReadWriteTxt>().nicknames.Count);
         if (this.GetComponentInParent<ReadWriteTxt>().nicknames.Count == 10)
         {
             this.GetComponentInParent<ReadWriteTxt>().nicknames.RemoveAt(-1);
             this.GetComponentInParent<ReadWriteTxt>().scores.RemoveAt(-1);
         }
-        AddToArraysNickScore(InputNickname.text, points);
+        int roundScore = Mathf.RoundToInt((1 / playedTime) * 1000000);
+        AddToArraysNickScore(InputNickname.text, roundScore);
         atualizaLeaderBoard();
         this.GetComponentInParent<ReadWriteTxt>().WriteFile();
     }

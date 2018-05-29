@@ -10,7 +10,7 @@ public class WavesManagerController : MonoBehaviour
     public int prepTime;
     public int NumberOfWaves;
     public int SpawnDelay;
-    public GameObject Player, Mob, Rusher, Bruiser;
+    public GameObject Player, Mob, Rusher, Bruiser, Endtxt, Scoretxt;
     public List<Vector4> SpawnPoints = new List<Vector4>();
     public Text WavesManager_Text;
     public Text Victory_Text;
@@ -117,31 +117,35 @@ public class WavesManagerController : MonoBehaviour
 
             if (can_Write)
             {
-                Victory_Text.text = "You won!";
-                Debug.Log("YOU WON!");
+                //print(Mathf.RoundToInt(Player.GetComponent<PlayerController>().playedTime));
+                // print("OLHA : " + Player.GetComponent<PlayerController>().CanBeOnLeaderboard(Player.GetComponent<PlayerController>().numTimePlayed) + "\n");
+                int roundScore = Mathf.RoundToInt((1 / Player.GetComponent<PlayerController>().playedTime) * 1000000);
+
+                if (Player.GetComponent<PlayerController>().CanBeOnLeaderboard(roundScore))
+                { //Pede por nickname e espera
+                    Player.GetComponent<PlayerController>().saveNickname.SetActive(true);
+                    Player.GetComponent<PlayerController>().IsOnTOP10_2.text = "Congratulations! Your score can be on NEVERQUEST TOP10 !";
+                    Player.GetComponent<PlayerController>().IsOnTOP10.text = "";
+                }
+                else
+                {
+                    Player.GetComponent<PlayerController>().saveNickname.SetActive(false);
+                    Player.GetComponent<PlayerController>().IsOnTOP10.text = "You are too weak for NEVERQUEST TOP10 ...";
+                    Player.GetComponent<PlayerController>().IsOnTOP10_2.text = "";
+                }
+
+                Endtxt.GetComponent<Text>().text = "You won!";
+                Scoretxt.GetComponent<Text>().text = "" + roundScore + "";
+
                 Player.GetComponent<PlayerController>().endGame = true;
                 Player.GetComponent<PlayerController>().numTimePlayed = Mathf.RoundToInt(Player.GetComponent<PlayerController>().playedTime);
-                print("WAVESMANAGERCONTROLLER");
+                //print("WAVESMANAGERCONTROLLER");
                 Player.GetComponent<ReadWriteTxt>().WritePlayerStats();
                 Player.GetComponent<ReadWriteTxt>().WavesWriteFile();
                 Player.GetComponent<ReadWriteTxt>().ActualizeOverviewStats();
-                can_Write  = false;
-
-        
+                can_Write  = false;       
             }
 
-            if (Player.GetComponent<PlayerController>().CanBeOnLeaderboard(Player.GetComponent<PlayerController>().points))
-            { //Pede por nickname e espera
-                Player.GetComponent<PlayerController>().saveNickname.SetActive(true);
-                Player.GetComponent<PlayerController>().IsOnTOP10_2.text = "Congratulations! Your score can be on NEVERQUEST TOP10 !";
-                Player.GetComponent<PlayerController>().IsOnTOP10.text = "";
-            }
-            else
-            {
-                Player.GetComponent<PlayerController>().saveNickname.SetActive(false);
-                Player.GetComponent<PlayerController>().IsOnTOP10.text = "You are too weak for NEVERQUEST TOP10 ...";
-                Player.GetComponent<PlayerController>().IsOnTOP10_2.text = "";
-            }
 
             Player.GetComponent<PlayerController>().endScreen.SetActive(true);
 

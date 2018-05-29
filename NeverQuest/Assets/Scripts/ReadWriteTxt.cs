@@ -19,7 +19,7 @@ public class ReadWriteTxt : MonoBehaviour {
     string filename;
 	// Use this for initialization
 	void Start () {
-        filename = @"log.txt";
+        filename = @"../NeverQuest/stats/leaderboard.txt";
 
         readFile();
     }
@@ -64,6 +64,7 @@ public class ReadWriteTxt : MonoBehaviour {
     public void WriteFile() {
         File.Create(filename).Close(); // Para apagar o que lá está
         List<string> aux = new List<string>();
+        //print(s);
 
         for (int i = 0; i < nicknames.Count; i++)
         {
