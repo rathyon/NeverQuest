@@ -242,3 +242,6 @@
 /Users/fredsantos101/Documents/GitHub/NeverQuest/NeverQuest/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
 /Users/fredsantos101/Documents/GitHub/NeverQuest/NeverQuest/obj/Debug/Assembly-CSharp.dll
 /Users/fredsantos101/Documents/GitHub/NeverQuest/NeverQuest/obj/Debug/Assembly-CSharp.pdb
+F:\GitHub\NeverQuest\NeverQuest\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+F:\GitHub\NeverQuest\NeverQuest\obj\Debug\Assembly-CSharp.dll
+F:\GitHub\NeverQuest\NeverQuest\obj\Debug\Assembly-CSharp.pdb

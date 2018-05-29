@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
         storeActive = false;
         grounded = true;
         //transportLevel = 3;
-        gold = 30000;
+        gold = 250;
         waitedTime = 0.0f;
         inactiveTimerMAX = 1.45f;
 
@@ -224,9 +224,9 @@ public class PlayerController : MonoBehaviour
 
     private void FireFlamethrower()
     {
-		if (!flamethrowerOn && !storeActive)
+		if (!flamethrowerOn && !storeActive && hasFlameThrower)
         {
-            Vector3 position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
+            Vector3 position = new Vector3(transform.position.x-0.2f, transform.position.y , transform.position.z);
             Instantiate(flamethrower, position, Quaternion.identity);
             canFlamethrower = false;
             flamethrower.GetComponent<EngQHability>().maxLifeTime = (flamethrowerTimeRemaining);
@@ -238,7 +238,7 @@ public class PlayerController : MonoBehaviour
 
     private void ShootProjectile()
     {
-		if (canShoot && !storeActive)
+		if (canShoot && !storeActive && hasGun)
         {
             Vector3 position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
             Instantiate(bullet, position, Quaternion.identity);
