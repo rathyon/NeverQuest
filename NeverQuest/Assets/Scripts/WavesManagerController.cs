@@ -45,7 +45,7 @@ public class WavesManagerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        timeLeft = 120;
+        timeLeft = 100;
         StartCoroutine("PrepCountdown");
         //StartCoroutine("SpawnEnemies"); //remember to remove this
     }

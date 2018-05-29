@@ -92,7 +92,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1506243833303974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.836158, y: 4.4413934, z: 1}
+  m_LocalPosition: {x: -10.002275, y: 4.410756, z: 1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 224963426847676380}
@@ -142,7 +142,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4499264, y: 3.73736}
+  m_Size: {x: 0.1, y: 3.73736}
   m_EdgeRadius: 0
 --- !u!70 &70644309474122186
 CapsuleCollider2D:
@@ -156,8 +156,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.04196644, y: -0.09775019}
-  m_Size: {x: 3.9135685, y: 4.1342154}
+  m_Offset: {x: -0.021324158, y: -0.09775019}
+  m_Size: {x: 4, y: 5}
   m_Direction: 0
 --- !u!114 &114139143144804652
 MonoBehaviour:
@@ -338,7 +338,7 @@ MonoBehaviour:
   PathToPlayer: []
   currentFloor: 0
   canTransport: 1
-  speed: 4
+  speed: 3
   questAcceptTime: 0
   targetPos: 0
   slowed: 0
