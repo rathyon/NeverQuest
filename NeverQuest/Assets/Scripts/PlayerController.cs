@@ -299,8 +299,6 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        endPointsText.text = "" + points + "";
-
 
         float moveHorizontal = Input.GetAxis("Horizontal");
         if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
