@@ -65,7 +65,7 @@ public class WeaponsANDArmor : Selectable {
                     if (playerControler.gold >= 100)
                     {
                         playerControler.hasGun = true;
-                        playerControler.bullet_damage = 3.0f;
+                        playerControler.bullet_damage = 7.0f;
                         playerControler.gold -= 100;
 
                         active = false;
@@ -76,7 +76,7 @@ public class WeaponsANDArmor : Selectable {
                     if (playerControler.gold >= 150)
                     {
                         playerControler.hasFlameThrower = true;
-                        playerControler.bullet_damage = 6.0f;
+                        playerControler.bullet_damage = 12.0f;
                         playerControler.gold -= 150;
                         active = false;
                     }
@@ -85,7 +85,7 @@ public class WeaponsANDArmor : Selectable {
                 {
                     if (playerControler.gold >= 200)
                     {
-                        playerControler.bullet_damage = 10.0f;
+                        playerControler.bullet_damage = 24.0f;
                         playerControler.gold -= 200;
                         active = false;
                     }

@@ -126,7 +126,7 @@ public class EquipmentStoreControler : Selectable {
                     GameObject.Find("Description_Name_WA").GetComponent<Text>().text = "Old Shotgun";
                     GameObject.Find("Description_Image_WA").GetComponent<Image>().sprite = gameObject.GetComponentsInChildren<Image>()[0].sprite;
                     GameObject.Find("Description_Text_WA").GetComponent<Text>().text = "You'll unluck the hability to shoot with this Old shotgun. The owner probably already died and carefull not to cut yourself, you might catch gangrene";
-                    GameObject.Find("Description_Damage_Text_WA").GetComponent<Text>().text = "Damage increased to 3 +3";
+                    GameObject.Find("Description_Damage_Text_WA").GetComponent<Text>().text = "Damage increased to 7 +7";
 
                 }
 
@@ -136,7 +136,7 @@ public class EquipmentStoreControler : Selectable {
                     GameObject.Find("Description_Name_WA").GetComponent<Text>().text = "Regular Shotgun";
                     GameObject.Find("Description_Image_WA").GetComponent<Image>().sprite = gameObject.GetComponentsInChildren<Image>()[2].sprite;
                     GameObject.Find("Description_Text_WA").GetComponent<Text>().text = "!!Free flamethrower included!! Regarding the shotgun itself? Nothing special honestly.";
-                    GameObject.Find("Description_Damage_Text_WA").GetComponent<Text>().text = "Damage increased to 6 +3";
+                    GameObject.Find("Description_Damage_Text_WA").GetComponent<Text>().text = "Damage increased to 13 +6";
                 }
                 else if (tier == 3)
                 {
@@ -144,7 +144,7 @@ public class EquipmentStoreControler : Selectable {
                     GameObject.Find("Description_Name_WA").GetComponent<Text>().text = "Golden Shotgun";
                     GameObject.Find("Description_Image_WA").GetComponent<Image>().sprite = gameObject.GetComponentsInChildren<Image>()[4].sprite;
                     GameObject.Find("Description_Text_WA").GetComponent<Text>().text = " The mother of all shotguns, a product definitely made by a dwarf, or a gnome...well anyone with the expertise.";
-                    GameObject.Find("Description_Damage_Text_WA").GetComponent<Text>().text = "Damage increased to 13 +7";
+                    GameObject.Find("Description_Damage_Text_WA").GetComponent<Text>().text = "Damage increased to 23 +10";
                 }
                 else
                 {
@@ -223,7 +223,7 @@ public class EquipmentStoreControler : Selectable {
                     if (playerControler.gold >= 100)
                     {
                         playerControler.hasGun = true;
-                        playerControler.bullet_damage = 3.0f;
+                        playerControler.bullet_damage = 7.0f;
                         playerControler.gold -= 100;
                         tier++;
 
@@ -234,7 +234,7 @@ public class EquipmentStoreControler : Selectable {
                     if (playerControler.gold >= 150)
                     {
                         playerControler.hasFlameThrower = true;
-                        playerControler.bullet_damage = 6.0f;
+                        playerControler.bullet_damage = 13.0f;
                         playerControler.gold -= 150;
                         tier++;
                     }
@@ -243,7 +243,7 @@ public class EquipmentStoreControler : Selectable {
                 {
                     if (playerControler.gold >= 200)
                     {
-                        playerControler.bullet_damage = 10.0f;
+                        playerControler.bullet_damage = 25.0f;
                         playerControler.gold -= 200;
                         tier++;
                         active = false;

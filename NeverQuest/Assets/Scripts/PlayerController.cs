@@ -325,14 +325,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (!flamethrowerOn && (flamethrowerTimeRemaining < flamethrowerCooldown))
+        if (!flamethrowerOn && (flamethrowerTimeRemaining < flamethrowerCooldown) && hasGun)
         {
             flamethrowerTimeRemaining += (Time.deltaTime * 0.3f);
         }
         if (flamethrowerOn && (flamethrowerTimeRemaining > 0.0f)) { flamethrowerTimeRemaining -= (Time.deltaTime * 1.2f); }
 
 
-        if (!canFlamethrower)
+        if (!canFlamethrower && hasGun)
         {
             if (flamethrowerTimeRemaining <= 0)
             {
