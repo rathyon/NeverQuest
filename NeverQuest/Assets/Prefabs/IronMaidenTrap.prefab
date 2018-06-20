@@ -88,6 +88,8 @@ MonoBehaviour:
   _slowTime: 0
   trapName: Iron Maiden
   description: 
+  onsprite: {fileID: 21300000, guid: 26617d8313e2f654487b6ddc6bafee69, type: 3}
+  cdsprite: {fileID: 21300000, guid: d84331c927fb06746af60d5041697f62, type: 3}
 --- !u!212 &212661367861477088
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -101,7 +103,6 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:

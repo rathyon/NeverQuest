@@ -177,6 +177,8 @@ public class PlayerController : MonoBehaviour
             endGame = true;
             numTimePlayed = Mathf.RoundToInt(playedTime);
 
+            endPointsText.text = "" + ((1/ numTimePlayed) * 1000000) + "";
+
             if (canWrite)
             {
                 this.GetComponentInParent<ReadWriteTxt>().WavesWriteFile();

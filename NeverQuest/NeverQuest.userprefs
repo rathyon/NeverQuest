@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Traps\IronMaiden.cs">
     <Files>
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="107" Column="19" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Store\WeaponsANDArmor.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Store\StoreItemClickController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Store\StoreTabSelector.cs" Line="1" Column="1" />
@@ -10,12 +10,12 @@
       <File FileName="Assets\Scripts\Traps\BearTrap.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Traps\DDOSTrap.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Traps\FireTrap.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Traps\IronMaiden.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Traps\IronMaiden.cs" Line="29" Column="60" />
       <File FileName="Assets\Scripts\Traps\KnockbackTrap.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Traps\MoneyTrap.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Traps\PoisonTrap.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\EngQHability.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Store\EquipmentStoreControler.cs" Line="1" Column="2" />
+      <File FileName="Assets\Scripts\Store\EquipmentStoreControler.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ProjectileControler.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

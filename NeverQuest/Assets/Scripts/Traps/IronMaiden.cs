@@ -5,6 +5,8 @@ using UnityEngine;
 public class IronMaiden : Trap {
 	private float inactiveTimerMAX;
 	private float  waitedTime;
+	public Sprite onsprite;
+	public Sprite cdsprite;
 	
 	void Start(){
 		placementX = 0.3f;
@@ -24,6 +26,7 @@ public class IronMaiden : Trap {
 			if (waitedTime >= inactiveTimerMAX) {
 				waitedTime = 0.0f;
 				active = true;
+				this.GetComponent<SpriteRenderer> ().sprite = onsprite;
 			}
 		}
 	}
@@ -33,7 +36,7 @@ public class IronMaiden : Trap {
 			var mob =collision.GetComponent<MobController> ();
 			mob.HP -= _damage;
 			active = false;
-
+			this.GetComponent<SpriteRenderer> ().sprite = cdsprite;
 		}
 	}
 
